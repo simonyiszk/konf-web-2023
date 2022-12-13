@@ -5,12 +5,13 @@
 
 	height: 100svh;
 
-	h1,
-	p {
+	h2 {
 		background: repeating-linear-gradient(
 			to right,
 			hsla(0, 0%, 100%, 1) 0%,
-			hsla(0, 0%, 100%, 0.77) 50%,
+			hsla(0, 0%, 100%, 1) 25%,
+			hsla(0, 0%, 100%, 0.55) 50%,
+			hsla(0, 0%, 100%, 1) 75%,
 			hsla(0, 0%, 100%, 1) 100%
 		);
 		background-clip: text;
@@ -18,7 +19,7 @@
 		background-size: 200% auto;
 		background-position: 0 100%;
 		width: 100%;
-		animation: scroll 7.7s linear 0s infinite;
+		animation: scroll 5s linear 0s infinite;
 		animation-fill-mode: forwards;
 		animation-timing-function: linear;
 
