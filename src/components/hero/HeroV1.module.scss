@@ -3,6 +3,8 @@
 
 	@apply flex h-screen flex-col items-center justify-center;
 
+	height: 100svh;
+
 	h1,
 	p {
 		background: repeating-linear-gradient(

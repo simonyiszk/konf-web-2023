@@ -5,10 +5,10 @@ import styles from "./HeroV1.module.scss";
 export function HeroV1() {
 	return (
 		<div className={styles.heroV1}>
-			<div>
-				<h1 className="mx-1 my-8 text-center text-5xl font-bold">
-					Hamarosan...
-				</h1>
+			<h1 className="mx-1 my-8 mt-auto text-center text-5xl font-bold">
+				Hamarosan...
+			</h1>
+			<div className="mt-auto mb-16">
 				<p className="my-4 text-center text-xl">
 					Addig is tekintsd meg a korábbi konferenciáinkat:
 				</p>
