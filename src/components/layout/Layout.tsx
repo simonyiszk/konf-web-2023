@@ -14,7 +14,7 @@ export function Layout({
 	return (
 		<div
 			id="app"
-			className="dark flex min-h-screen w-full flex-col justify-between"
+			className="dark flex min-h-screen w-full flex-col justify-between overflow-x-hidden"
 		>
 			{/* <Navbar /> */}
 
