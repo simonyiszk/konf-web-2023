@@ -18,7 +18,7 @@ export default function Index({ buildDate }: PageProps) {
 	return (
 		<Layout className="" buildDate={buildDate}>
 			<Seo
-				title="XX. Simonyi Konferencia | 2023"
+				title="XX. Simonyi Konferencia | 2023. 03. 21."
 				description="Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája."
 			/>
 
