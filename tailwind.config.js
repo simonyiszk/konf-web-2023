@@ -15,6 +15,28 @@ module.exports = {
 			fontFamily: {
 				mona: ["var(--font-mona)", ...fontFamily.sans],
 			},
+			backgroundImage: {
+				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+			},
+			colors: {
+				konf: {
+					primary: {
+						blue: "#42B4E5",
+						green: "#77B16A",
+						white: "#ffffff",
+					},
+					accent: {
+						yellow: "#FFD73A",
+					},
+					overlay: {
+						blue: "#001429",
+					},
+					background: {
+						blue: "#001429",
+						"white-lowOpacity": "rgba(255, 255, 255, 0.07000000029802322)",
+					},
+				},
+			},
 		},
 	},
 	plugins: [aspectRatio],

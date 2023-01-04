@@ -9,3 +9,12 @@
 		opacity: 0.99;
 	}
 }
+
+.blue-green-gradient {
+	@apply bg-gradient-to-r from-konf-primary-blue to-konf-primary-green;
+}
+
+.gradient-on-text {
+	-webkit-text-fill-color: transparent;
+	@apply bg-clip-text;
+}
