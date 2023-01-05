@@ -1,6 +1,4 @@
 .heroV1 {
-	background: linear-gradient(hsl(128, 100%, 3%), hsl(211, 100%, 6%));
-
 	@apply flex h-screen flex-col items-center justify-center;
 
 	height: 100svh;
@@ -41,7 +39,7 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background: url("/pattern.svg") no-repeat center center/cover;
+		background: url("/assets/bg/pattern.svg") no-repeat center center/cover;
 		pointer-events: none;
 	}
 }
