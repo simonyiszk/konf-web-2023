@@ -13,7 +13,7 @@ module.exports = {
 				DEFAULT: transitionTimingFunction.out,
 			},
 			fontFamily: {
-				mona: ["var(--font-mona)", ...fontFamily.sans],
+				mona: ["Mona Sans", ...fontFamily.sans],
 			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

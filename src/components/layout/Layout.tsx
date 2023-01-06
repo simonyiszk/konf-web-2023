@@ -15,7 +15,8 @@ export function Layout({
 	return (
 		<div
 			id="app"
-			className="bg-gradient dark flex min-h-screen w-full flex-col justify-between overflow-x-hidden"
+			// eslint-disable-next-line tailwindcss/no-custom-classname
+			className="bg-gradient dark flex min-h-screen w-full flex-col justify-between overflow-x-hidden font-mona"
 		>
 			{/* <Navbar /> */}
 
