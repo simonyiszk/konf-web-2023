@@ -70,7 +70,7 @@ export function HeroV1() {
 				</span>
 			</div>
 			<div className="mt-2">
-				<CountdownTimer endDate="2023.03.21.08:00" />
+				<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
 			</div>
 			<div className="my-16 mx-8 w-full sm:self-start">
 				<ul className="flex flex-row justify-center gap-8 sm:justify-start">
