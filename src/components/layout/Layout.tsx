@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import Image from "next/image";
 import * as React from "react";
 
 type LayoutProps = {
@@ -15,7 +14,6 @@ export function Layout({
 	return (
 		<div
 			id="app"
-			// eslint-disable-next-line tailwindcss/no-custom-classname
 			className="bg-gradient dark flex min-h-screen w-full flex-col justify-between overflow-x-hidden font-mona"
 		>
 			{/* <Navbar /> */}

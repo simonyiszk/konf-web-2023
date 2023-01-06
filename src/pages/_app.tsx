@@ -1,7 +1,3 @@
-import "@/styles/core.css";
-import "@/styles/fonts.css";
-import "@/styles/components.scss";
-import "@/styles/utilities.css";
 import "@/styles/global.scss";
 
 import type { AppProps } from "next/app";

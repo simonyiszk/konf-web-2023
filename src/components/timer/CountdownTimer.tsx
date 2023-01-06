@@ -50,50 +50,50 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 	}, [endDate]);
 
 	return (
-		<p className="flex flex-row bg-gradient-to-r from-konf-primary-blue to-konf-primary-green bg-clip-text text-4xl font-medium text-transparent sm:text-5xl">
+		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium text-transparent sm:text-5xl">
 			{time.weeks > 0 && (
 				<>
-					<div className="flex flex-col justify-center text-center">
+					<span className="flex flex-col justify-center text-center">
 						<span className="font-black">{`0${time.weeks}`.slice(-2)}</span>
 
 						<span className="text-xl font-normal text-white">hét</span>
-					</div>
-					<div className="mx-1 flex flex-col justify-center text-center">
-						<div className="font-black">:</div>
-						<div className="text-xl font-normal text-white">:</div>
-					</div>
+					</span>
+					<span className="mx-1 flex flex-col justify-center text-center">
+						<span className="font-black">:</span>
+						<span className="text-xl font-normal text-white">:</span>
+					</span>
 				</>
 			)}
 			{time.days + time.weeks > 0 && (
 				<>
-					<div className="flex flex-col justify-center text-center">
+					<span className="flex flex-col justify-center text-center">
 						<span className="font-black">{`0${time.days}`.slice(-2)}</span>
 
 						<span className="text-xl font-normal text-white">nap</span>
-					</div>
-					<div className="mx-1 flex flex-col justify-center text-center">
-						<div className="font-black">:</div>
-						<div className="text-xl font-normal text-white">:</div>
-					</div>
+					</span>
+					<span className="mx-1 flex flex-col justify-center text-center">
+						<span className="font-black">:</span>
+						<span className="text-xl font-normal text-white">:</span>
+					</span>
 				</>
 			)}
 			{time.hours + time.days + time.weeks > 0 && (
 				<>
-					<div className="flex flex-col justify-center text-center">
+					<span className="flex flex-col justify-center text-center">
 						<span className="font-black">{`0${time.hours}`.slice(-2)}</span>
 
 						<span className="text-xl font-normal text-white">óra</span>
-					</div>
-					<div className="mx-1 flex flex-col justify-center text-center">
-						<div className="font-black">:</div>
-						<div className="text-xl font-normal text-white">:</div>
-					</div>
+					</span>
+					<span className="mx-1 flex flex-col justify-center text-center">
+						<span className="font-black">:</span>
+						<span className="text-xl font-normal text-white">:</span>
+					</span>
 				</>
 			)}
-			<div className="flex flex-col justify-center text-center">
+			<span className="flex flex-col justify-center text-center">
 				<span className="font-black">{`0${time.minutes}`.slice(-2)}</span>
 				<span className="text-xl font-normal text-white">perc</span>
-			</div>
+			</span>
 		</p>
 	);
 }
