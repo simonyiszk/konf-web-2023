@@ -41,7 +41,10 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 	// Pass initial state function to useState so logic is only executed once
 	const [storedValue, setStoredValue] = useState<T>(() => {
 		if (typeof window === "undefined") {
-			console.warn("No window yet in useLocalStorage");
+			if (process.env.NODE_ENV !== "production") {
+				// eslint-disable-next-line no-console
+				console.warn("No window yet in useLocalStorage");
+			}
 			return initialValue;
 		}
 		try {
@@ -51,6 +54,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 			return item ? JSON.parse(item) : initialValue;
 		} catch (error) {
 			// If error also return initialValue
+			// eslint-disable-next-line no-console
 			console.error(error);
 			return initialValue;
 		}
@@ -59,7 +63,10 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 	// ... persists the new value to localStorage.
 	const setValue = (value: T | ((val: T) => T)) => {
 		if (typeof window === "undefined") {
-			console.warn("No window yet in useLocalStorage");
+			if (process.env.NODE_ENV !== "production") {
+				// eslint-disable-next-line no-console
+				console.warn("No window yet in useLocalStorage");
+			}
 			return;
 		}
 		try {
@@ -72,6 +79,7 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
 			window.localStorage.setItem(key, JSON.stringify(valueToStore));
 		} catch (error) {
 			// A more advanced implementation would handle the error case
+			// eslint-disable-next-line no-console
 			console.error(error);
 		}
 	};
