@@ -9,7 +9,7 @@ type MenuProps = {
 	closeFn?: () => void;
 };
 
-export function Menu({ isOpen, closeFn }: MenuProps) {
+export function Menu({ isOpen = false, closeFn }: MenuProps) {
 	const variant = isOpen ? "opened" : "closed";
 	const container = {
 		closed: {
@@ -27,7 +27,7 @@ export function Menu({ isOpen, closeFn }: MenuProps) {
 			<div
 				className={clsx(
 					isOpen ? "block" : "hidden",
-					"fixed inset-0 h-full w-full bg-konf-overlay-blue/10 backdrop-blur-sm",
+					"fixed inset-0 h-full w-full bg-konf-overlay-blue/10 backdrop-blur-sm sm:hidden",
 				)}
 			>
 				{/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
@@ -36,6 +36,7 @@ export function Menu({ isOpen, closeFn }: MenuProps) {
 			<motion.div
 				variants={container}
 				animate={variant}
+				initial="closed"
 				className="fixed inset-x-0 top-0 z-10 flex w-full px-3 text-left sm:hidden"
 			>
 				<div className="relative z-20 w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur-md">
