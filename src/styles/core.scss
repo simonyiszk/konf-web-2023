@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+}
+
+@layer utilities {
+	.bg-blur-10 {
+		background-color: rgba(122, 122, 122, 0.66);
+		@supports (
+			(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))
+		) {
+			-webkit-backdrop-filter: blur(10px);
+			backdrop-filter: blur(10px);
+			background-color: rgba(150, 150, 150, 0.33);
+			opacity: 0.99;
+		}
+	}
+
+	.blue-green-gradient {
+		@apply bg-gradient-to-r from-konf-primary-blue to-konf-primary-green;
+	}
+
+	.gradient-on-text {
+		@apply bg-clip-text text-transparent;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.bg-gradient {
+		background: radial-gradient(
+			70.02% 70.02% at 50% 50%,
+			rgba(112, 255, 131, 0) 50%,
+			rgba(46, 192, 243, 0.1) 100%
+		);
+	}
+}

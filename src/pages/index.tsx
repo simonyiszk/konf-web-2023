@@ -1,6 +1,6 @@
 import type { InferGetStaticPropsType } from "next";
 
-import { HeroV1 } from "@/components/hero/HeroV1";
+import { HeroV0 } from "@/components/hero/HeroV0";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
 
@@ -22,7 +22,7 @@ export default function Index({ buildDate }: PageProps) {
 				description="Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája."
 			/>
 
-			<HeroV1 />
+			<HeroV0 />
 		</Layout>
 	);
 }

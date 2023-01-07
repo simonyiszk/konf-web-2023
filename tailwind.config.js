@@ -13,7 +13,7 @@ module.exports = {
 				DEFAULT: transitionTimingFunction.out,
 			},
 			fontFamily: {
-				mona: ["var(--font-mona)", ...fontFamily.sans],
+				mona: ["Mona Sans", ...fontFamily.sans],
 			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -29,7 +29,7 @@ module.exports = {
 						yellow: "#FFD73A",
 					},
 					overlay: {
-						blue: "#001429",
+						blue: "#122538",
 					},
 					background: {
 						blue: "#001429",

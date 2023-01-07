@@ -15,7 +15,15 @@ class KonfDocument extends Document {
 	render() {
 		return (
 			<Html lang="hu" className="dark">
-				<Head />
+				<Head>
+					<link
+						rel="preload"
+						href="/assets/fonts/Mona-Sans.woff2"
+						as="font"
+						type="font/woff2"
+						crossOrigin="anonymous"
+					/>
+				</Head>
 				<body>
 					<Main />
 					<NextScript />

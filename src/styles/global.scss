@@ -1,3 +1,6 @@
+@import "./core.scss";
+@import "./fonts.scss";
+
 :root {
 	color-scheme: dark light;
 }
@@ -12,12 +15,8 @@ body {
 	@apply min-h-screen;
 
 	margin: 0 auto;
-}
 
-.bg-gradient {
-	background: radial-gradient(
-		70.02% 70.02% at 50% 50%,
-		rgba(112, 255, 131, 0) 50%,
-		rgba(46, 192, 243, 0.1) 100%
-	);
+	& main {
+		background: url("/assets/bg/pattern.svg") no-repeat center center/cover;
+	}
 }
