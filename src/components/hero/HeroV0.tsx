@@ -162,10 +162,10 @@ function Hero() {
 	);
 }
 
-export function HeroV0() {
+function LocalMenu() {
 	const [isMenuOpen, setMenuOpen] = useBool(false);
 	return (
-		<div className={styles.heroV0}>
+		<>
 			<div className="fixed top-2 left-2 z-30 sm:hidden">
 				<button
 					role="menu"
@@ -177,6 +177,13 @@ export function HeroV0() {
 				</button>
 			</div>
 			<Menu isOpen={isMenuOpen} closeFn={setMenuOpen.setFalse} />
+		</>
+	);
+}
+export function HeroV0() {
+	return (
+		<div className={styles.heroV0}>
+			<LocalMenu />
 			<HeroDesktopTop />
 			<Hero />
 			<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
