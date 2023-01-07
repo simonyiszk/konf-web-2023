@@ -37,7 +37,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 				variants={container}
 				animate={variant}
 				initial="closed"
-				className="fixed inset-x-0 top-0 z-10 flex w-full px-3 text-left sm:hidden"
+				className="absolute inset-x-0 top-0 z-10 flex w-full px-3 text-left sm:hidden"
 			>
 				<div className="relative z-20 w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur-md">
 					<p className="mb-4 text-3xl font-medium">
