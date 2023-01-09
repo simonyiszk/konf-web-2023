@@ -70,6 +70,8 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								href="/2022"
 								className="flex flex-col whitespace-nowrap text-center"
 								tabIndex={isOpen ? 0 : -1}
+								target="_blank"
+								rel="noreferrer"
 							>
 								<span className="relative mb-2 inline-block h-16">
 									<Image
@@ -85,7 +87,12 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							</Link>
 						</li>
 						<li className="w-full self-end hover:opacity-75">
-							<Link href="/2021" tabIndex={isOpen ? 0 : -1}>
+							<Link
+								href="/2021"
+								tabIndex={isOpen ? 0 : -1}
+								target="_blank"
+								rel="noreferrer"
+							>
 								<span className="flex flex-col items-end">
 									<span className="relative mb-2 inline-block h-16 w-16">
 										<Image
@@ -109,6 +116,8 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								href="https://vik.bme.hu"
 								className="relative inline-block h-14 w-14"
 								tabIndex={isOpen ? 0 : -1}
+								target="_blank"
+								rel="noreferrer"
 							>
 								<Image src="/assets/logo/vik.svg" fill alt="BME VIK logó" />
 							</a>
@@ -118,6 +127,8 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								href="https://simonyi.bme.hu"
 								className="relative inline-block h-10 w-48"
 								tabIndex={isOpen ? 0 : -1}
+								target="_blank"
+								rel="noreferrer"
 							>
 								<Image
 									src="/assets/logo/simonyi.svg"
@@ -137,6 +148,8 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								href="https://schdesign.hu"
 								className="relative inline-block h-8 text-white hover:opacity-75"
 								tabIndex={isOpen ? 0 : -1}
+								target="_blank"
+								rel="noreferrer"
 							>
 								<Image
 									src="/assets/logo/schdesign.svg"

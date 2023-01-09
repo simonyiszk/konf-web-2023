@@ -19,6 +19,8 @@ function HeroDesktopTop() {
 						<Link
 							className="whitespace-nowrap p-2 pl-0 hover:underline hover:opacity-75"
 							href="/2022"
+							target="_blank"
+							rel="noreferrer"
 						>
 							2022
 							<FiExternalLink className="ml-1 inline-block pb-1" />
@@ -28,6 +30,8 @@ function HeroDesktopTop() {
 						<Link
 							className="whitespace-nowrap p-2 hover:underline hover:opacity-75"
 							href="/2021"
+							target="_blank"
+							rel="noreferrer"
 						>
 							2021
 							<FiExternalLink className="ml-1 inline-block pb-1" />
@@ -40,6 +44,8 @@ function HeroDesktopTop() {
 					<a
 						href="https://vik.bme.hu"
 						className="relative mt-8 inline-block h-12 w-12 hover:opacity-75 xl:mt-16"
+						target="_blank"
+						rel="noreferrer"
 					>
 						<Image src="/assets/logo/vik.svg" alt="BME VIK logó" fill />
 					</a>
@@ -48,6 +54,8 @@ function HeroDesktopTop() {
 					<a
 						href="https://simonyi.bme.hu"
 						className="relative mt-8 inline-block h-12 w-48 hover:opacity-75 xl:mt-16"
+						target="_blank"
+						rel="noreferrer"
 					>
 						<Image
 							src="/assets/logo/simonyi.svg"
@@ -67,8 +75,10 @@ function HeroBottom() {
 			<ul className="m-8 flex flex-row justify-center gap-8 sm:justify-start xl:my-16">
 				<li>
 					<a
-						className="hover:opacity-75"
 						href="https://instagram.com/simonyikonf"
+						className="hover:opacity-75"
+						target="_blank"
+						rel="noreferrer"
 					>
 						<Image
 							src="/assets/icon/ig.svg"
@@ -80,8 +90,10 @@ function HeroBottom() {
 				</li>
 				<li>
 					<a
+						href="https://facebook.com/simonyiszk"
 						className="hover:opacity-75"
-						href="https://instagram.com/simonyikonf"
+						target="_blank"
+						rel="noreferrer"
 					>
 						<Image
 							src="/assets/icon/fb.svg"
@@ -93,8 +105,10 @@ function HeroBottom() {
 				</li>
 				<li>
 					<a
+						href="https://youtu.be/FpFWqHySuVA?list=PLovp3RCdzQGxJ7c0HIpTkgMYuqJj4V4yE"
 						className="hover:opacity-75"
-						href="https://instagram.com/simonyikonf"
+						target="_blank"
+						rel="noreferrer"
 					>
 						<Image
 							src="/assets/icon/yt.svg"
@@ -113,6 +127,8 @@ function HeroBottom() {
 				<a
 					href="https://schdesign.hu"
 					className="relative mx-8 block h-8 w-28 text-white hover:opacity-75"
+					target="_blank"
+					rel="noreferrer"
 				>
 					<Image src="/assets/logo/schdesign.svg" alt="schdesign logó" fill />
 				</a>
