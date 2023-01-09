@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
 
+import styles from "./Menu.module.scss";
+
 type MenuProps = {
 	isOpen?: boolean;
 	closeFn?: () => void;
@@ -22,24 +24,43 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 			translateY: "0%",
 		},
 	};
+	const backdrop = {
+		closed: {
+			backdropFilter: "blur(0px)",
+		},
+		opened: {
+			backdropFilter: "blur(4px)",
+		},
+	};
 	return (
 		<>
-			<div
+			<motion.div
 				className={clsx(
-					isOpen ? "block" : "hidden",
-					"fixed inset-0 h-full w-full bg-konf-overlay-blue/10 backdrop-blur-sm sm:hidden",
+					isOpen
+						? "pointer-events-auto bg-konf-overlay-blue/10"
+						: "pointer-events-none bg-konf-overlay-blue/0",
+					"fixed inset-0 z-10 h-full w-full sm:hidden",
 				)}
+				variants={backdrop}
+				animate={variant}
+				initial="closed"
+				transition={{ easings: ["linear", "linear"] }}
 			>
-				{/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
-				<button className="h-full w-full" type="button" onClick={closeFn} />
-			</div>
+				<button
+					className={clsx(styles.closePortal)}
+					type="button"
+					onClick={closeFn}
+					tabIndex={isOpen ? 0 : -1}
+					aria-label="Menü portál bezárása"
+				/>
+			</motion.div>
 			<motion.div
 				variants={container}
 				animate={variant}
 				initial="closed"
-				className="absolute inset-x-0 top-0 z-10 flex w-full px-3 text-left sm:hidden"
+				className="absolute inset-x-0 top-0 z-20 flex w-full px-3 text-left sm:hidden"
 			>
-				<div className="relative z-20 w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur-md">
+				<div className="relative w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur-md">
 					<p className="mb-4 text-3xl font-medium">
 						Tekintsd meg korábbi konferenciáinkat:
 					</p>
@@ -48,6 +69,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							<Link
 								href="/2022"
 								className="flex flex-col whitespace-nowrap text-center"
+								tabIndex={isOpen ? 0 : -1}
 							>
 								<span className="relative mb-2 inline-block h-16">
 									<Image
@@ -63,7 +85,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							</Link>
 						</li>
 						<li className="w-full self-end hover:opacity-75">
-							<Link href="/2021">
+							<Link href="/2021" tabIndex={isOpen ? 0 : -1}>
 								<span className="flex flex-col items-end">
 									<span className="relative mb-2 inline-block h-16 w-16">
 										<Image
@@ -86,6 +108,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							<a
 								href="https://vik.bme.hu"
 								className="relative inline-block h-14 w-14"
+								tabIndex={isOpen ? 0 : -1}
 							>
 								<Image src="/assets/logo/vik.svg" fill alt="BME VIK logó" />
 							</a>
@@ -94,6 +117,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							<a
 								href="https://simonyi.bme.hu"
 								className="relative inline-block h-10 w-48"
+								tabIndex={isOpen ? 0 : -1}
 							>
 								<Image
 									src="/assets/logo/simonyi.svg"
@@ -103,7 +127,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							</a>
 						</li>
 						<li className="mb-2 flex flex-col text-center text-sm font-light">
-							<p className="mx-8 mb-2 mt-4">
+							<p className="mx-12 mb-2">
 								<span className="inline-block">az arculati elemeket</span>{" "}
 								<span className="inline-block">
 									és a weboldalt készítette:{" "}
@@ -112,6 +136,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							<a
 								href="https://schdesign.hu"
 								className="relative inline-block h-8 text-white hover:opacity-75"
+								tabIndex={isOpen ? 0 : -1}
 							>
 								<Image
 									src="/assets/logo/schdesign.svg"

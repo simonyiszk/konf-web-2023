@@ -168,10 +168,10 @@ function LocalMenu() {
 		<>
 			<div className="fixed top-2 left-2 z-30 sm:hidden">
 				<button
-					role="menu"
 					type="button"
 					className="p-2 hover:opacity-75"
 					onClick={setMenuOpen.toggle}
+					aria-label="Menü megnyitása"
 				>
 					<MenuButton isOpen={isMenuOpen} className="m-2" />
 				</button>
