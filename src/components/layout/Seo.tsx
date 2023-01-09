@@ -36,11 +36,11 @@ export function Seo({ title, description }: SeoProps) {
 			<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
 			<link rel="manifest" href="/site.webmanifest" />
-			<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5cdeac" />
+			<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#77B16A" />
 			<meta name="apple-mobile-web-app-title" content={defaultTitle} />
 			<meta name="application-name" content={defaultTitle} />
-			<meta name="msapplication-TileColor" content="#000f1f" />
-			<meta name="theme-color" content="#5cdeac" />
+			<meta name="msapplication-TileColor" content="#001429" />
+			<meta name="theme-color" content="#77B16A" />
 
 			<meta name="image" content={defaultPreview} />
 			<meta property="og:image" content={defaultPreview} />
