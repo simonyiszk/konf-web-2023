@@ -10,6 +10,7 @@ export function Seo({ title, description }: SeoProps) {
 	const defaultDescription =
 		"Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája.";
 	const defaultPreview = "https://konferencia.simonyi.bme.hu/preview.png";
+	const v0Preview = "https://konferencia.simonyi.bme.hu/previewV0.png";
 
 	return (
 		<Head>
@@ -42,10 +43,10 @@ export function Seo({ title, description }: SeoProps) {
 			<meta name="msapplication-TileColor" content="#001429" />
 			<meta name="theme-color" content="#77B16A" />
 
-			<meta name="image" content={defaultPreview} />
-			<meta property="og:image" content={defaultPreview} />
-			<meta property="twitter:image" content={defaultPreview} />
-			<meta property="thumbnail" content={defaultPreview} />
+			<meta name="image" content={v0Preview} />
+			<meta property="og:image" content={v0Preview} />
+			<meta property="twitter:image" content={v0Preview} />
+			<meta property="thumbnail" content={v0Preview} />
 
 			<meta property="og:url" content="https://konferencia.simonyi.bme.hu" />
 			<meta property="og:type" content="website" />
