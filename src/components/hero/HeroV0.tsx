@@ -119,6 +119,16 @@ function HeroBottom() {
 					</a>
 				</li>
 			</ul>
+			<div className="my-8 mb-2 hidden flex-col text-center text-sm font-light sm:flex xl:my-16">
+				<a
+					href="https://vercel.com/?utm_source=kir-dev&utm_campaign=oss"
+					className="relative inline-block h-8 w-36 text-white hover:opacity-75"
+					target="_blank"
+					rel="noreferrer"
+				>
+					<Image src="/assets/logo/vercel.svg" fill alt="Vercel logó" />
+				</a>
+			</div>
 			<div className="relative mb-2 -mt-6 hidden w-fit flex-col items-end text-sm font-light sm:flex xl:mt-2">
 				<p className="mx-8 mb-2 mt-4 w-fit text-right">
 					<span className="inline-block">az arculati elemeket</span> <br />

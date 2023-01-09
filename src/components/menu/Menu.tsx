@@ -158,6 +158,17 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								/>
 							</a>
 						</li>
+						<li className="mb-2 flex flex-col text-center text-sm font-light">
+							<a
+								href="https://vercel.com/?utm_source=kir-dev&utm_campaign=oss"
+								className="relative inline-block h-8 text-white hover:opacity-75"
+								tabIndex={isOpen ? 0 : -1}
+								target="_blank"
+								rel="noreferrer"
+							>
+								<Image src="/assets/logo/vercel.svg" fill alt="Vercel logó" />
+							</a>
+						</li>
 					</ul>
 				</div>
 			</motion.div>

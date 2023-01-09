@@ -9,7 +9,6 @@ export function Seo({ title, description }: SeoProps) {
 	const defaultTitle = "XX. Simonyi Konferencia";
 	const defaultDescription =
 		"Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája.";
-	const defaultPreview = "https://konferencia.simonyi.bme.hu/preview.png";
 	const v0Preview = "https://konferencia.simonyi.bme.hu/previewV0.png";
 
 	return (
