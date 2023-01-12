@@ -1,6 +1,15 @@
 // Disable old service worker
-if (navigator && "serviceWorker" in navigator) {
-	navigator.serviceWorker.ready.then((registration) => {
-		registration.unregister();
-	});
-}
+self.addEventListener("install", function (e) {
+	self.skipWaiting();
+});
+
+self.addEventListener("activate", function (e) {
+	self.registration
+		.unregister()
+		.then(function () {
+			return self.clients.matchAll();
+		})
+		.then(function (clients) {
+			clients.forEach((client) => client.navigate(client.url));
+		});
+});
