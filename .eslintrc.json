@@ -96,5 +96,6 @@
 				"import/prefer-default-export": "off"
 			}
 		}
-	]
+	],
+	"ignorePatterns": ["public"]
 }

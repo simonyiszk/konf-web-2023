@@ -34,7 +34,5 @@ yarn-error.log*
 .vercel
 
 public/**/*.map
-public/sw.js
-public/workbox-*.js
 
 *.tsbuildinfo
