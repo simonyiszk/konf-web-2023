@@ -1,12 +1,9 @@
-const withPlugins = require("next-compose-plugins");
-const withBundleAnalyzer = require("@next/bundle-analyzer");
 const withMDX = require("@next/mdx")({
 	extension: /\.mdx?$/,
 	options: {
 		providerImportSource: "@mdx-js/react",
 	},
 });
-const withPWA = require("next-pwa");
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -75,24 +72,7 @@ const nextConfig = {
 	},
 };
 
-module.exports = withPlugins(
-	[
-		[withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })],
-		[
-			withMDX,
-			{
-				pageExtensions: ["tsx", "mdx", "ts"],
-			},
-		],
-		[
-			withPWA,
-			{
-				pwa: {
-					dest: "public",
-					disable: process.env.NODE_ENV !== "production",
-				},
-			},
-		],
-	],
-	nextConfig,
-);
+module.exports = withMDX({
+	pageExtensions: ["tsx", "mdx", "ts"],
+	...nextConfig,
+});
