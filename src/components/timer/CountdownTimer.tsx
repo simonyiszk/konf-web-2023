@@ -18,90 +18,70 @@ function timeBetween(d1: number, d2: number) {
 	return { weeks, days, hours, minutes };
 }
 
+type TimerBlockProps = {
+	time: number;
+	unit: string;
+	hasColon?: boolean;
+};
+
+function TimerBlock({ time, unit, hasColon }: TimerBlockProps) {
+	return (
+		<>
+			<span className="flex flex-col justify-center text-center">
+				<span className="gradient-on-text font-black">
+					{`0${time}`.slice(-2)}
+				</span>
+
+				<span className="text-xl font-normal text-white">{unit}</span>
+			</span>
+			{hasColon && (
+				<span className="mx-1 flex flex-col justify-center text-center">
+					<span className="gradient-on-text font-black">:</span>
+					<span className="text-xl font-normal text-white">:</span>
+				</span>
+			)}
+		</>
+	);
+}
+
 export type SeasonTimerProps = {
 	endDate: string;
 };
 
 export function CountdownTimer({ endDate }: SeasonTimerProps) {
-	const { weeks, days, hours, minutes } = timeBetween(
-		Date.now(),
-		Date.parse(endDate),
-	);
 	const [time, setTime] = useState<{
 		weeks: number;
 		days: number;
 		hours: number;
 		minutes: number;
-	}>({ weeks, days, hours, minutes });
+	}>(timeBetween(Date.now(), Date.parse(endDate)));
 
-	// Update the time every minute
+	// Update the time first render and every minute
 	useEffect(() => {
-		const interval = setInterval(() => {
-			const {
-				weeks: w,
-				days: d,
-				hours: h,
-				minutes: m,
-			} = timeBetween(Date.now(), Date.parse(endDate));
+		setTime(timeBetween(Date.now(), Date.parse(endDate)));
 
-			setTime({ weeks: w, days: d, hours: h, minutes: m });
+		const interval = setInterval(() => {
+			const { weeks, days, hours, minutes } = timeBetween(
+				Date.now(),
+				Date.parse(endDate),
+			);
+
+			setTime({ weeks, days, hours, minutes });
 		}, 60000);
+
 		return () => clearInterval(interval);
 	}, [endDate]);
 
 	return (
 		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl">
-			{time.weeks > 0 && (
-				<>
-					<span className="flex flex-col justify-center text-center">
-						<span className="gradient-on-text font-black">
-							{`0${time.weeks}`.slice(-2)}
-						</span>
-
-						<span className="text-xl font-normal text-white">hét</span>
-					</span>
-					<span className="mx-1 flex flex-col justify-center text-center">
-						<span className="gradient-on-text font-black">:</span>
-						<span className="text-xl font-normal text-white">:</span>
-					</span>
-				</>
-			)}
+			{time.weeks > 0 && <TimerBlock time={time.weeks} unit="hét" hasColon />}
 			{time.days + time.weeks > 0 && (
-				<>
-					<span className="flex flex-col justify-center text-center">
-						<span className="gradient-on-text font-black">
-							{`0${time.days}`.slice(-2)}
-						</span>
-
-						<span className="text-xl font-normal text-white">nap</span>
-					</span>
-					<span className="mx-1 flex flex-col justify-center text-center">
-						<span className="gradient-on-text font-black">:</span>
-						<span className="text-xl font-normal text-white">:</span>
-					</span>
-				</>
+				<TimerBlock time={time.days} unit="nap" hasColon />
 			)}
 			{time.hours + time.days + time.weeks > 0 && (
-				<>
-					<span className="flex flex-col justify-center text-center">
-						<span className="gradient-on-text font-black">
-							{`0${time.hours}`.slice(-2)}
-						</span>
-
-						<span className="text-xl font-normal text-white">óra</span>
-					</span>
-					<span className="mx-1 flex flex-col justify-center text-center">
-						<span className="gradient-on-text font-black">:</span>
-						<span className="text-xl font-normal text-white">:</span>
-					</span>
-				</>
+				<TimerBlock time={time.hours} unit="óra" hasColon />
 			)}
-			<span className="flex flex-col justify-center text-center">
-				<span className="gradient-on-text font-black">
-					{`0${time.minutes}`.slice(-2)}
-				</span>
-				<span className="text-xl font-normal text-white">perc</span>
-			</span>
+			<TimerBlock time={time.minutes} unit="perc" />
 		</p>
 	);
 }
