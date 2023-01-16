@@ -18,7 +18,7 @@ class KonfDocument extends Document {
 				<Head>
 					<link
 						rel="preload"
-						href="/assets/fonts/Mona-Sans.woff2"
+						href="/assets/fonts/monasans_var.woff2"
 						as="font"
 						type="font/woff2"
 						crossOrigin="anonymous"
