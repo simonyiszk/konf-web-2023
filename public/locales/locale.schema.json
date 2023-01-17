@@ -1,0 +1,210 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"schdesigncredits": {
+			"type": "object",
+			"properties": {
+				"upper": {
+					"type": "string"
+				},
+				"lower": {
+					"type": "string"
+				}
+			},
+			"required": ["upper", "lower"]
+		},
+		"conferences": {
+			"type": "object",
+			"properties": {
+				"checkout": {
+					"type": "string"
+				}
+			},
+			"required": ["checkout"]
+		},
+		"presentations": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"opening": {
+							"type": "string"
+						},
+						"break": {
+							"type": "string"
+						}
+					},
+					"required": ["opening", "break"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"contact": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object"
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"about": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object"
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"raffle": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object"
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"gallery": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"photo": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"type": "string"
+								}
+							},
+							"required": ["title"]
+						},
+						"video": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								}
+							},
+							"required": ["title", "description"]
+						}
+					},
+					"required": ["photo", "video"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"sponsors": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"main": {
+							"type": "string"
+						},
+						"featured": {
+							"type": "string"
+						},
+						"other": {
+							"type": "string"
+						}
+					},
+					"required": ["main", "featured", "other"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"location": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"address": {
+							"type": "string"
+						},
+						"map": {
+							"type": "string"
+						}
+					},
+					"required": ["address", "map"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"date": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"week": {
+							"type": "string"
+						},
+						"day": {
+							"type": "string"
+						},
+						"hour": {
+							"type": "string"
+						},
+						"minute": {
+							"type": "string"
+						},
+						"second": {
+							"type": "string"
+						},
+						"march": {
+							"type": "string"
+						}
+					},
+					"required": ["week", "day", "hour", "minute", "second"]
+				}
+			},
+			"required": ["title", "items"]
+		}
+	},
+	"required": [
+		"presentations",
+		"contact",
+		"about",
+		"raffle",
+		"gallery",
+		"sponsors",
+		"location",
+		"date",
+		"conferences",
+		"credits"
+	]
+}

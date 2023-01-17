@@ -2,11 +2,12 @@ import "@/styles/global.scss";
 
 import type { AppProps } from "next/app";
 import Script from "next/script";
+import { appWithTranslation } from "next-i18next";
 import React from "react";
 
 import { TRACKING_ID } from "@/utils/track";
 
-export default function KonfApp({ Component, pageProps }: AppProps) {
+function KonfApp({ Component, pageProps }: AppProps) {
 	return (
 		<React.StrictMode>
 			{/* Umami analytics */}
@@ -29,3 +30,4 @@ export default function KonfApp({ Component, pageProps }: AppProps) {
 		</React.StrictMode>
 	);
 }
+export default appWithTranslation(KonfApp);

@@ -1,0 +1,61 @@
+{
+	"$schema": "./../locale.schema.json",
+	"schdesigncredits": {
+		"upper": "design elements",
+		"lower": " and the website were created by"
+	},
+	"conferences": {
+		"checkout": "Check out our previous conferences"
+	},
+	"presentations": {
+		"title": "Presentations",
+		"items": {
+			"opening": "Opening",
+			"break": "Break"
+		}
+	},
+	"contact": {
+		"title": "Contact",
+		"items": {}
+	},
+	"about": { "title": "About", "items": {} },
+	"raffle": { "title": "Raffle", "items": {} },
+	"gallery": {
+		"title": "Gallery",
+		"items": {
+			"photo": {
+				"title": "Highlights from our previous conferences"
+			},
+			"video": {
+				"title": "What can you expect?",
+				"description": "Get a glimpse into the atmosphere of our previous conferences, browse through our photos and join us in 2023!"
+			}
+		}
+	},
+	"sponsors": {
+		"title": "Sponsors",
+		"items": {
+			"main": "Our main sponsor",
+			"featured": "Key sponsors",
+			"other": "Other spobnsors"
+		}
+	},
+	"location": {
+		"title": "Location",
+		"items": {
+			"address": "Budapest, Magyarország",
+			"map": "Map"
+		}
+	},
+	"date": {
+		"title": "Date",
+		"items": {
+			"week": "week",
+			"day": "day",
+			"hour": "hour",
+			"minute": "minute",
+			"second": "second",
+			"march": "march"
+		}
+	}
+}
