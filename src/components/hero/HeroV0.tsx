@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { FiExternalLink } from "react-icons/fi";
 
 import { useBool } from "@/utils/hooks";
@@ -10,10 +11,12 @@ import { CountdownTimer } from "../timer/CountdownTimer";
 import styles from "./HeroV0.module.scss";
 
 function HeroDesktopTop() {
+	// eslint-disable-next-line @typescript-eslint/no-shadow
+	const { t } = useTranslation("common");
 	return (
 		<div className="flex w-full flex-row justify-between sm:self-start">
 			<div className="m-8 hidden self-start sm:block xl:my-16">
-				<p className="">Tekintsd meg a korábbi konferenciáinkat:</p>
+				<p className="">{t("conferences.checkout")}:</p>
 				<ul className="my-2 flex flex-row justify-start gap-1">
 					<li>
 						<Link
@@ -70,6 +73,8 @@ function HeroDesktopTop() {
 }
 
 function HeroBottom() {
+	// eslint-disable-next-line @typescript-eslint/no-shadow
+	const { t } = useTranslation("common");
 	return (
 		<div className="flex w-full flex-row justify-center sm:justify-between sm:self-start">
 			<ul className="m-8 flex flex-row justify-center gap-8 sm:justify-start xl:my-16">
@@ -131,8 +136,9 @@ function HeroBottom() {
 			</div>
 			<div className="relative mb-2 -mt-6 hidden w-fit flex-col items-end text-sm font-light sm:flex xl:mt-2">
 				<p className="mx-8 mb-2 mt-4 w-fit text-right">
-					<span className="inline-block">az arculati elemeket</span> <br />
-					<span className="inline-block">és a weboldalt készítette: </span>
+					<span className="inline-block">{t("schdesigncredits.upper")}</span>{" "}
+					<br />
+					<span className="inline-block">{t("schdesigncredits.lower")}: </span>
 				</p>
 				<a
 					href="https://schdesign.hu"
@@ -148,6 +154,7 @@ function HeroBottom() {
 }
 
 function Hero() {
+	const { t } = useTranslation("common");
 	return (
 		<div className="mx-1 mt-8 flex flex-col justify-center sm:mt-0 xl:-mt-8">
 			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] sm:mx-28 sm:-mb-6 sm:w-[276px]">
@@ -172,7 +179,7 @@ function Hero() {
 						<span className="blue-green-gradient gradient-on-text font-medium">
 							2023
 						</span>
-						<br /> március{" "}
+						<br /> {t("date.items.march")}{" "}
 					</div>
 					<span className="text-[56px] font-black leading-none">21</span>
 				</h2>

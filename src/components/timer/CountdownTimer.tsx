@@ -1,3 +1,4 @@
+import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 
 /** Calculates the time between two dates
@@ -72,16 +73,20 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 		return () => clearInterval(interval);
 	}, [endDate]);
 
+	const { t } = useTranslation("common");
+
 	return (
 		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl">
-			{time.weeks > 0 && <TimerBlock time={time.weeks} unit="hét" hasColon />}
+			{time.weeks > 0 && (
+				<TimerBlock time={time.weeks} unit={t("date.items.week")} hasColon />
+			)}
 			{time.days + time.weeks > 0 && (
-				<TimerBlock time={time.days} unit="nap" hasColon />
+				<TimerBlock time={time.days} unit={t("date.items.day")} hasColon />
 			)}
 			{time.hours + time.days + time.weeks > 0 && (
-				<TimerBlock time={time.hours} unit="óra" hasColon />
+				<TimerBlock time={time.hours} unit={t("date.items.hour")} hasColon />
 			)}
-			<TimerBlock time={time.minutes} unit="perc" />
+			<TimerBlock time={time.minutes} unit={t("date.items.minute")} />
 		</p>
 	);
 }
