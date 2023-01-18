@@ -15,7 +15,7 @@
 		"fix:prettier": "npm run lint:prettier -- --write",
 		"lint": "run-p lint:*",
 		"lint:eslint": "eslint --ext .js,.ts,.tsx --ignore-path ./.gitignore .",
-		"lint:prettier": "prettier --check --ignore-unknown --ignore-path ./.gitignore .",
+		"lint:prettier": "prettier --check --ignore-unknown --ignore-path ./.prettierignore .",
 		"lint:typescript": "tsc --noEmit",
 		"start": "next start",
 		"typegen": "dotenv -e .env.local -- cross-var cf-content-types-generator -s %CONTENTFUL_SPACE_ID% -t %CONTENTFUL_MANAGEMENT_TOKEN% -o src/@types/generated"
