@@ -11,8 +11,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 	return (
 		<footer
 			className={clsx(
-				fill === "pattern" &&
-					"bg-[url('/assets/bg/pattern.svg')] bg-cover bg-bottom bg-no-repeat",
+				fill === "pattern" && "bg-hero-pattern bg-cover bg-bottom bg-no-repeat",
 				"z-20 w-full  p-8",
 			)}
 			id="footer"

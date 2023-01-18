@@ -17,6 +17,7 @@ module.exports = {
 			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+				"hero-pattern": "url('/assets/bg/pattern.svg'",
 			},
 			colors: {
 				konf: {
