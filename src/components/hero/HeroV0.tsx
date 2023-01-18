@@ -154,7 +154,7 @@ function HeroBottom() {
 }
 
 function Hero() {
-	const { t } = useTranslation("common");
+	const { i18n } = useTranslation("common");
 	return (
 		<div className="mx-1 mt-8 flex flex-col justify-center sm:mt-0 xl:-mt-8">
 			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] sm:mx-28 sm:-mb-6 sm:w-[276px]">
@@ -179,7 +179,12 @@ function Hero() {
 						<span className="blue-green-gradient gradient-on-text font-medium">
 							2023
 						</span>
-						<br /> {t("date.items.march")}{" "}
+						<br />{" "}
+						{new Date("2023. 03. 21")
+							.toLocaleString(i18n.language, {
+								month: "long",
+							})
+							.toLowerCase()}{" "}
 					</div>
 					<span className="text-[56px] font-black leading-none">21</span>
 				</h2>

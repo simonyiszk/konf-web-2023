@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 
@@ -78,15 +79,30 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 	return (
 		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl">
 			{time.weeks > 0 && (
-				<TimerBlock time={time.weeks} unit={t("date.items.week")} hasColon />
+				<TimerBlock
+					time={time.weeks}
+					unit={t("date.items.week", { count: time.weeks })}
+					hasColon
+				/>
 			)}
 			{time.days + time.weeks > 0 && (
-				<TimerBlock time={time.days} unit={t("date.items.day")} hasColon />
+				<TimerBlock
+					time={time.days}
+					unit={t("date.items.day", { count: time.days })}
+					hasColon
+				/>
 			)}
 			{time.hours + time.days + time.weeks > 0 && (
-				<TimerBlock time={time.hours} unit={t("date.items.hour")} hasColon />
+				<TimerBlock
+					time={time.hours}
+					unit={t("date.items.hour", { count: time.hours })}
+					hasColon
+				/>
 			)}
-			<TimerBlock time={time.minutes} unit={t("date.items.minute")} />
+			<TimerBlock
+				time={time.minutes}
+				unit={t("date.items.minute", { count: time.minutes })}
+			/>
 		</p>
 	);
 }
