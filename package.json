@@ -27,6 +27,7 @@
 		"@tsconfig/next": "^1.0.4",
 		"autoprefixer": "^10.4.13",
 		"clsx": "^1.2.1",
+		"eslint-plugin-regex": "^1.10.0",
 		"framer-motion": "^8.4.2",
 		"gray-matter": "^4.0.3",
 		"i18next": "^22.4.9",
