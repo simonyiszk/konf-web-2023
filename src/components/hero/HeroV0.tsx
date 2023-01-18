@@ -154,7 +154,7 @@ function HeroBottom() {
 }
 
 function Hero() {
-	const { i18n } = useTranslation("common");
+	const { t, i18n } = useTranslation("common");
 	return (
 		<div className="mx-1 mt-8 flex flex-col justify-center sm:mt-0 xl:-mt-8">
 			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] sm:mx-28 sm:-mb-6 sm:w-[276px]">
@@ -193,7 +193,7 @@ function Hero() {
 					<span className="blue-green-gradient gradient-on-text font-medium">
 						BME
 					</span>
-					<br /> I épület
+					<br /> {t("location.items.building")}
 				</h3>
 			</span>
 		</div>

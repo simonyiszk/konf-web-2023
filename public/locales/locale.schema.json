@@ -166,9 +166,12 @@
 						},
 						"map": {
 							"type": "string"
+						},
+						"building": {
+							"type": "string"
 						}
 					},
-					"required": ["address", "map"]
+					"required": ["address", "map", "building"]
 				}
 			},
 			"required": ["title", "items"]

@@ -48,7 +48,8 @@
 		"title": "Location",
 		"items": {
 			"address": "Budapest, Magyarország",
-			"map": "Map"
+			"map": "Map",
+			"building": "I Building"
 		}
 	},
 	"date": {

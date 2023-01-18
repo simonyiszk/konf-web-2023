@@ -48,7 +48,8 @@
 		"title": "Helyszín",
 		"items": {
 			"address": "Budapest, Magyarország",
-			"map": "Térkép"
+			"map": "Térkép",
+			"building": "I Épület"
 		}
 	},
 	"date": {
