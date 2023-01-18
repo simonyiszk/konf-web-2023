@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import * as React from "react";
+import { Footer } from "../footer/Footer";
 
 type LayoutProps = {
 	buildDate?: number;
@@ -23,6 +24,7 @@ export function Layout({
 			</main>
 
 			{/* <Footer /> */}
+			<Footer fill="pattern" />
 		</div>
 	);
 }
