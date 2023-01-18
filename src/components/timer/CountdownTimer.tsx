@@ -56,12 +56,11 @@ export type SeasonTimerProps = {
 };
 
 export function CountdownTimer({ endDate }: SeasonTimerProps) {
-	const [time, setTime] = useState<{
-		weeks: number;
-		days: number;
-		hours: number;
-		minutes: number;
-	}>(timeBetween(Date.now(), Date.parse(endDate)));
+	const { t } = useTranslation("common");
+
+	const [time, setTime] = useState(
+		timeBetween(Date.now(), Date.parse(endDate)),
+	);
 
 	// Update the time first render and every minute
 	useEffect(() => {
@@ -78,8 +77,6 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 
 		return () => clearInterval(interval);
 	}, [endDate]);
-
-	const { t } = useTranslation("common");
 
 	return (
 		<Suspense fallback={<Loading />}>
