@@ -14,7 +14,7 @@ class KonfDocument extends Document {
 
 	render() {
 		return (
-			<Html lang="hu" className="dark">
+			<Html lang={this.props.locale ?? "hu"} className="dark">
 				<Head>
 					<link
 						rel="preload"

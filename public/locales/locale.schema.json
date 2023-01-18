@@ -2,6 +2,18 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
+		"seo": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			},
+			"required": ["title", "description"]
+		},
 		"schdesigncredits": {
 			"type": "object",
 			"properties": {
@@ -232,6 +244,7 @@
 		"location",
 		"date",
 		"conferences",
-		"schdesigncredits"
+		"schdesigncredits",
+		"seo"
 	]
 }

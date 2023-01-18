@@ -1,5 +1,9 @@
 {
 	"$schema": "./../locale.schema.json",
+	"seo": {
+		"title": "XX. Simonyi Konferencia",
+		"description": "Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája."
+	},
 	"schdesigncredits": {
 		"upper": "az arculati elemeket",
 		"lower": "és a weboldalt készítette"

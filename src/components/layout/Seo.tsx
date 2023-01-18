@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 export type SeoProps = {
 	description?: string;
@@ -6,8 +7,11 @@ export type SeoProps = {
 };
 
 export function Seo({ title, description }: SeoProps) {
-	const defaultTitle = "XX. Simonyi Konferencia";
+	const { t } = useTranslation("common");
+
+	const defaultTitle = t("seo.title") || "XX. Simonyi Konferencia";
 	const defaultDescription =
+		t("seo.description") ||
 		"Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája.";
 	const v0Preview = "https://konferencia.simonyi.bme.hu/previewV0.png";
 

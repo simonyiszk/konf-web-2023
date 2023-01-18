@@ -11,10 +11,7 @@ export default function Index(props: PageProps) {
 	return (
 		// eslint-disable-next-line react/destructuring-assignment
 		<Layout className="" buildDate={props.buildDate}>
-			<Seo
-				title="XX. Simonyi Konferencia | 2023. 03. 21."
-				description="Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája."
-			/>
+			<Seo />
 			<HeroV0 />
 		</Layout>
 	);
