@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { FiExternalLink } from "react-icons/fi";
 
 import styles from "./Menu.module.scss";
@@ -32,6 +33,8 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 			backdropFilter: "blur(4px)",
 		},
 	};
+
+	const { t } = useTranslation("common");
 	return (
 		<>
 			<motion.div
@@ -62,7 +65,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 			>
 				<div className="relative w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur-md">
 					<p className="mb-4 text-3xl font-medium">
-						Tekintsd meg korábbi konferenciáinkat:
+						{t("conferences.checkout")}:
 					</p>
 					<ul className="mx-8 flex flex-row justify-between gap-4 text-lg">
 						<li className="w-full hover:opacity-75">
@@ -78,6 +81,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 										src="/assets/logo/xix.svg"
 										fill
 										alt="XIX. Simonyi Konferencia logó"
+										unoptimized
 									/>
 								</span>
 								<span>
@@ -99,6 +103,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 											src="/assets/logo/18.svg"
 											fill
 											alt="18 Simonyi Konferencia logó"
+											unoptimized
 										/>
 									</span>
 									<span>
@@ -119,7 +124,12 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								target="_blank"
 								rel="noreferrer"
 							>
-								<Image src="/assets/logo/vik.svg" fill alt="BME VIK logó" />
+								<Image
+									src="/assets/logo/vik.svg"
+									alt="BME VIK logó"
+									fill
+									unoptimized
+								/>
 							</a>
 						</li>
 						<li className="mb-2 flex justify-center hover:opacity-75">
@@ -132,16 +142,19 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							>
 								<Image
 									src="/assets/logo/simonyi.svg"
-									fill
 									alt="Simonyi károly szakkollégium logó"
+									fill
+									unoptimized
 								/>
 							</a>
 						</li>
 						<li className="mb-2 flex flex-col text-center text-sm font-light">
 							<p className="mx-12 mb-2">
-								<span className="inline-block">az arculati elemeket</span>{" "}
 								<span className="inline-block">
-									és a weboldalt készítette:{" "}
+									{t("schdesigncredits.upper")}
+								</span>{" "}
+								<span className="inline-block">
+									{t("schdesigncredits.lower")}:{" "}
 								</span>
 							</p>
 							<a
@@ -153,8 +166,9 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							>
 								<Image
 									src="/assets/logo/schdesign.svg"
-									fill
 									alt="schdesign logó"
+									fill
+									unoptimized
 								/>
 							</a>
 						</li>
@@ -166,7 +180,12 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								target="_blank"
 								rel="noreferrer"
 							>
-								<Image src="/assets/logo/vercel.svg" fill alt="Vercel logó" />
+								<Image
+									src="/assets/logo/vercel.svg"
+									alt="Vercel logó"
+									fill
+									unoptimized
+								/>
 							</a>
 						</li>
 					</ul>

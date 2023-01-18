@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useTranslation } from "next-i18next";
+import { Suspense, useEffect, useState } from "react";
 
 /** Calculates the time between two dates
  * @param d1 the first date in number form
@@ -44,17 +45,22 @@ function TimerBlock({ time, unit, hasColon }: TimerBlockProps) {
 	);
 }
 
+function Loading() {
+	return (
+		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl" />
+	);
+}
+
 export type SeasonTimerProps = {
 	endDate: string;
 };
 
 export function CountdownTimer({ endDate }: SeasonTimerProps) {
-	const [time, setTime] = useState<{
-		weeks: number;
-		days: number;
-		hours: number;
-		minutes: number;
-	}>(timeBetween(Date.now(), Date.parse(endDate)));
+	const { t } = useTranslation("common");
+
+	const [time, setTime] = useState(
+		timeBetween(Date.now(), Date.parse(endDate)),
+	);
 
 	// Update the time first render and every minute
 	useEffect(() => {
@@ -73,15 +79,34 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 	}, [endDate]);
 
 	return (
-		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl">
-			{time.weeks > 0 && <TimerBlock time={time.weeks} unit="hét" hasColon />}
-			{time.days + time.weeks > 0 && (
-				<TimerBlock time={time.days} unit="nap" hasColon />
-			)}
-			{time.hours + time.days + time.weeks > 0 && (
-				<TimerBlock time={time.hours} unit="óra" hasColon />
-			)}
-			<TimerBlock time={time.minutes} unit="perc" />
-		</p>
+		<Suspense fallback={<Loading />}>
+			<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl">
+				{time.weeks > 0 && (
+					<TimerBlock
+						time={time.weeks}
+						unit={t("date.items.week", { count: time.weeks })}
+						hasColon
+					/>
+				)}
+				{time.days + time.weeks > 0 && (
+					<TimerBlock
+						time={time.days}
+						unit={t("date.items.day", { count: time.days })}
+						hasColon
+					/>
+				)}
+				{time.hours + time.days + time.weeks > 0 && (
+					<TimerBlock
+						time={time.hours}
+						unit={t("date.items.hour", { count: time.hours })}
+						hasColon
+					/>
+				)}
+				<TimerBlock
+					time={time.minutes}
+					unit={t("date.items.minute", { count: time.minutes })}
+				/>
+			</p>
+		</Suspense>
 	);
 }

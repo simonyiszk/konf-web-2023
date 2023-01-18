@@ -1,0 +1,76 @@
+{
+	"$schema": "./../locale.schema.json",
+	"seo": {
+		"title": "XX. Simonyi Konferencia",
+		"description": "Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája."
+	},
+	"name": {
+		"full": "XX. Simonyi Konferencia",
+		"short": "Simonyi Konferencia",
+		"conference": "Konferencia"
+	},
+	"schdesigncredits": {
+		"upper": "az arculati elemeket",
+		"lower": "és a weboldalt készítette"
+	},
+	"conferences": {
+		"checkout": "Tekintsd meg a korábbi konferenciáinkat"
+	},
+	"presentations": {
+		"title": "Előadások",
+		"items": {
+			"opening": "Megnyitó",
+			"break": "Szünet"
+		}
+	},
+	"contact": {
+		"title": "Kapcsolat",
+		"items": {}
+	},
+	"about": { "title": "Rólunk", "items": {} },
+	"raffle": { "title": "Nyereményjáték", "items": {} },
+	"gallery": {
+		"title": "Galéria",
+		"items": {
+			"photo": {
+				"title": "Életképek korábbi konferenciáinkról"
+			},
+			"video": {
+				"title": "Hogy mire számíthatsz?",
+				"description": "Tekints be a korábbi konferenciáink hangulatába, nézz körül az életképeink között és tarts velünk 2023-ban is!"
+			}
+		}
+	},
+	"sponsors": {
+		"title": "Szponzoraink",
+		"items": {
+			"main": "Főtámogatónk",
+			"featured": "Kiemelt támogatóink",
+			"other": "További támogatóink"
+		}
+	},
+	"location": {
+		"title": "Helyszín",
+		"items": {
+			"address": "Budapest, Magyarország",
+			"map": "Térkép",
+			"building": "I Épület"
+		}
+	},
+	"date": {
+		"title": "Dátum",
+		"items": {
+			"week_one": "hét",
+			"week_other": "hét",
+			"day_one": "nap",
+			"day_other": "nap",
+			"hour_one": "óra",
+			"hour_other": "óra",
+			"minute_one": "perc",
+			"minute_other": "perc",
+			"second_one": "másodperc",
+			"second_other": "másodperc",
+			"march": "március"
+		}
+	}
+}

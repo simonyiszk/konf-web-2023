@@ -1,3 +1,4 @@
+const { i18n } = require("./next-i18next.config");
 const withMDX = require("@next/mdx")({
 	extension: /\.mdx?$/,
 	options: {
@@ -7,6 +8,7 @@ const withMDX = require("@next/mdx")({
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
+	i18n,
 	reactStrictMode: true,
 	swcMinify: true,
 

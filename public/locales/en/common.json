@@ -1,0 +1,76 @@
+{
+	"$schema": "./../locale.schema.json",
+	"seo": {
+		"title": "XX. Simonyi Conference",
+		"description": "The largest annual technology conference for university students in Hungary."
+	},
+	"name": {
+		"full": "XX. Simonyi Conference",
+		"short": "Simonyi Conference",
+		"conference": "Conference"
+	},
+	"schdesigncredits": {
+		"upper": "design elements",
+		"lower": " and the website were created by"
+	},
+	"conferences": {
+		"checkout": "Check out our previous conferences"
+	},
+	"presentations": {
+		"title": "Presentations",
+		"items": {
+			"opening": "Opening",
+			"break": "Break"
+		}
+	},
+	"contact": {
+		"title": "Contact",
+		"items": {}
+	},
+	"about": { "title": "About", "items": {} },
+	"raffle": { "title": "Raffle", "items": {} },
+	"gallery": {
+		"title": "Gallery",
+		"items": {
+			"photo": {
+				"title": "Highlights from our previous conferences"
+			},
+			"video": {
+				"title": "What can you expect?",
+				"description": "Get a glimpse into the atmosphere of our previous conferences, browse through our photos and join us in 2023!"
+			}
+		}
+	},
+	"sponsors": {
+		"title": "Sponsors",
+		"items": {
+			"main": "Our main sponsor",
+			"featured": "Key sponsors",
+			"other": "Other spobnsors"
+		}
+	},
+	"location": {
+		"title": "Location",
+		"items": {
+			"address": "Budapest, Hungary",
+			"map": "Map",
+			"building": "I Building"
+		}
+	},
+	"date": {
+		"title": "Date",
+		"items": {
+			"week_one": "week",
+			"week_other": "weeks",
+			"day_one": "day",
+			"day_other": "days",
+			"hour_one": "hour",
+			"hour_other": "hours",
+			"minute_one": "minute",
+			"minute_other": "minutes",
+			"second_one": "second",
+			"second_other": "seconds",
+			"march": "march"
+		}
+	}
+}

@@ -1,0 +1,268 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"type": "object",
+	"properties": {
+		"seo": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				}
+			},
+			"required": ["title", "description"]
+		},
+		"name": {
+			"type": "object",
+			"properties": {
+				"full": {
+					"type": "string"
+				},
+				"short": {
+					"type": "string"
+				},
+				"conference": {
+					"type": "string"
+				}
+			},
+			"required": ["full", "short", "conference"]
+		},
+		"schdesigncredits": {
+			"type": "object",
+			"properties": {
+				"upper": {
+					"type": "string"
+				},
+				"lower": {
+					"type": "string"
+				}
+			},
+			"required": ["upper", "lower"]
+		},
+		"conferences": {
+			"type": "object",
+			"properties": {
+				"checkout": {
+					"type": "string"
+				}
+			},
+			"required": ["checkout"]
+		},
+		"presentations": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"opening": {
+							"type": "string"
+						},
+						"break": {
+							"type": "string"
+						}
+					},
+					"required": ["opening", "break"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"contact": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object"
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"about": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object"
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"raffle": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object"
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"gallery": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"photo": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"type": "string"
+								}
+							},
+							"required": ["title"]
+						},
+						"video": {
+							"type": "object",
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								}
+							},
+							"required": ["title", "description"]
+						}
+					},
+					"required": ["photo", "video"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"sponsors": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"main": {
+							"type": "string"
+						},
+						"featured": {
+							"type": "string"
+						},
+						"other": {
+							"type": "string"
+						}
+					},
+					"required": ["main", "featured", "other"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"location": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"address": {
+							"type": "string"
+						},
+						"map": {
+							"type": "string"
+						},
+						"building": {
+							"type": "string"
+						}
+					},
+					"required": ["address", "map", "building"]
+				}
+			},
+			"required": ["title", "items"]
+		},
+		"date": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {
+						"week_one": {
+							"type": "string"
+						},
+						"week_other": {
+							"type": "string"
+						},
+						"day_one": {
+							"type": "string"
+						},
+						"day_other": {
+							"type": "string"
+						},
+						"hour_one": {
+							"type": "string"
+						},
+						"hour_other": {
+							"type": "string"
+						},
+						"minute_one": {
+							"type": "string"
+						},
+						"minute_other": {
+							"type": "string"
+						},
+						"second_one": {
+							"type": "string"
+						},
+						"second_other": {
+							"type": "string"
+						},
+						"march": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"week_one",
+						"week_other",
+						"day_one",
+						"day_other",
+						"hour_one",
+						"hour_other",
+						"minute_one",
+						"minute_other",
+						"second_one",
+						"second_other",
+						"march"
+					]
+				}
+			},
+			"required": ["title", "items"]
+		}
+	},
+	"required": [
+		"presentations",
+		"contact",
+		"about",
+		"raffle",
+		"gallery",
+		"sponsors",
+		"location",
+		"date",
+		"conferences",
+		"schdesigncredits",
+		"seo"
+	]
+}
