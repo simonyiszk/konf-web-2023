@@ -5,6 +5,7 @@
 		"paths": { "@/*": ["*"], "*": [""] },
 		"importsNotUsedAsValues": "error",
 		"strict": true,
+		"resolveJsonModule": true,
 		"plugins": [
 			{
 				"name": "typescript-plugin-css-modules"
