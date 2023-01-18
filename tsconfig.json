@@ -23,5 +23,5 @@
 		"*.config.js",
 		"next-env.d.ts"
 	],
-	"exclude": ["node_modules", "public", ".next/"]
+	"exclude": ["node_modules", "public", ".next/", "src/@types/generated/"]
 }
