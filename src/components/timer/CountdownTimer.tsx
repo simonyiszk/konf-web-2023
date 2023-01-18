@@ -1,4 +1,3 @@
-import i18next from "i18next";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
 
