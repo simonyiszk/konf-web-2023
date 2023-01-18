@@ -1,8 +1,13 @@
 {
 	"$schema": "./../locale.schema.json",
 	"seo": {
-		"title": "XX. Simonyi Konferencia",
+		"title": "XX. Simonyi Conference",
 		"description": "The largest annual technology conference for university students in Hungary."
+	},
+	"name": {
+		"full": "XX. Simonyi Conference",
+		"short": "Simonyi Conference",
+		"conference": "Conference"
 	},
 	"schdesigncredits": {
 		"upper": "design elements",
@@ -47,7 +52,7 @@
 	"location": {
 		"title": "Location",
 		"items": {
-			"address": "Budapest, Magyarország",
+			"address": "Budapest, Hungary",
 			"map": "Map",
 			"building": "I Building"
 		}

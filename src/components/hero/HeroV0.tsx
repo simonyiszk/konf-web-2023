@@ -188,7 +188,7 @@ function Hero() {
 				Simonyi
 				<br />
 				<span className="text-[42px] font-light lowercase leading-9 sm:text-[48px]">
-					Konferencia
+					{t("name.conference")}
 				</span>
 			</h1>
 			<span className="mx-1 mb-4 flex flex-row justify-center text-[22px]">

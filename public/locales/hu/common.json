@@ -4,6 +4,11 @@
 		"title": "XX. Simonyi Konferencia",
 		"description": "Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája."
 	},
+	"name": {
+		"full": "XX. Simonyi Konferencia",
+		"short": "Simonyi Konferencia",
+		"conference": "Konferencia"
+	},
 	"schdesigncredits": {
 		"upper": "az arculati elemeket",
 		"lower": "és a weboldalt készítette"
