@@ -11,7 +11,6 @@ import { CountdownTimer } from "../timer/CountdownTimer";
 import styles from "./HeroV0.module.scss";
 
 function HeroDesktopTop() {
-	// eslint-disable-next-line @typescript-eslint/no-shadow
 	const { t } = useTranslation("common");
 	return (
 		<div className="flex w-full flex-row justify-between sm:self-start">
@@ -50,7 +49,12 @@ function HeroDesktopTop() {
 						target="_blank"
 						rel="noreferrer"
 					>
-						<Image src="/assets/logo/vik.svg" alt="BME VIK logó" fill />
+						<Image
+							src="/assets/logo/vik.svg"
+							alt="BME VIK logó"
+							fill
+							unoptimized
+						/>
 					</a>
 				</li>
 				<li className="relative mb-2">
@@ -64,6 +68,7 @@ function HeroDesktopTop() {
 							src="/assets/logo/simonyi.svg"
 							alt="Simonyi károly szakkollégium logó"
 							fill
+							unoptimized
 						/>
 					</a>
 				</li>
@@ -73,7 +78,6 @@ function HeroDesktopTop() {
 }
 
 function HeroBottom() {
-	// eslint-disable-next-line @typescript-eslint/no-shadow
 	const { t } = useTranslation("common");
 	return (
 		<div className="flex w-full flex-row justify-center sm:justify-between sm:self-start">
@@ -90,6 +94,7 @@ function HeroBottom() {
 							alt="Simonyi Konferencia Instagram"
 							width={40}
 							height={40}
+							unoptimized
 						/>
 					</a>
 				</li>
@@ -105,6 +110,7 @@ function HeroBottom() {
 							alt="Simonyi Konferencia Facebook"
 							width={40}
 							height={40}
+							unoptimized
 						/>
 					</a>
 				</li>
@@ -120,6 +126,7 @@ function HeroBottom() {
 							alt="Simonyi Konferencia YouTube"
 							width={40}
 							height={40}
+							unoptimized
 						/>
 					</a>
 				</li>
@@ -131,7 +138,12 @@ function HeroBottom() {
 					target="_blank"
 					rel="noreferrer"
 				>
-					<Image src="/assets/logo/vercel.svg" fill alt="Vercel logó" />
+					<Image
+						src="/assets/logo/vercel.svg"
+						fill
+						alt="Vercel logó"
+						unoptimized
+					/>
 				</a>
 			</div>
 			<div className="relative mb-2 -mt-6 hidden w-fit flex-col items-end text-sm font-light sm:flex xl:mt-2">
@@ -146,7 +158,12 @@ function HeroBottom() {
 					target="_blank"
 					rel="noreferrer"
 				>
-					<Image src="/assets/logo/schdesign.svg" alt="schdesign logó" fill />
+					<Image
+						src="/assets/logo/schdesign.svg"
+						alt="schdesign logó"
+						fill
+						unoptimized
+					/>
 				</a>
 			</div>
 		</div>
@@ -164,6 +181,7 @@ function Hero() {
 					className=""
 					fill
 					priority
+					unoptimized
 				/>
 			</div>
 			<h1 className="mx-1 mb-4 text-center text-[48px] font-black uppercase leading-10 sm:text-[56px] sm:leading-[0.825]">

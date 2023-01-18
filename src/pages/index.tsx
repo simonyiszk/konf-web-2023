@@ -7,9 +7,8 @@ import { Seo } from "@/components/layout/Seo";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Index(props: PageProps) {
+export default function Index({ buildDate, ...props }: PageProps) {
 	return (
-		// eslint-disable-next-line react/destructuring-assignment
 		<Layout className="" buildDate={props.buildDate}>
 			<Seo />
 			<HeroV0 />

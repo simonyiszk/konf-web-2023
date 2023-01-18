@@ -81,6 +81,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 										src="/assets/logo/xix.svg"
 										fill
 										alt="XIX. Simonyi Konferencia logó"
+										unoptimized
 									/>
 								</span>
 								<span>
@@ -102,6 +103,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 											src="/assets/logo/18.svg"
 											fill
 											alt="18 Simonyi Konferencia logó"
+											unoptimized
 										/>
 									</span>
 									<span>
@@ -122,7 +124,12 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								target="_blank"
 								rel="noreferrer"
 							>
-								<Image src="/assets/logo/vik.svg" fill alt="BME VIK logó" />
+								<Image
+									src="/assets/logo/vik.svg"
+									alt="BME VIK logó"
+									fill
+									unoptimized
+								/>
 							</a>
 						</li>
 						<li className="mb-2 flex justify-center hover:opacity-75">
@@ -135,8 +142,9 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							>
 								<Image
 									src="/assets/logo/simonyi.svg"
-									fill
 									alt="Simonyi károly szakkollégium logó"
+									fill
+									unoptimized
 								/>
 							</a>
 						</li>
@@ -158,8 +166,9 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 							>
 								<Image
 									src="/assets/logo/schdesign.svg"
-									fill
 									alt="schdesign logó"
+									fill
+									unoptimized
 								/>
 							</a>
 						</li>
@@ -171,7 +180,12 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 								target="_blank"
 								rel="noreferrer"
 							>
-								<Image src="/assets/logo/vercel.svg" fill alt="Vercel logó" />
+								<Image
+									src="/assets/logo/vercel.svg"
+									alt="Vercel logó"
+									fill
+									unoptimized
+								/>
 							</a>
 						</li>
 					</ul>
