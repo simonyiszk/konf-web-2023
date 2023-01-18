@@ -1,4 +1,4 @@
-import * as Contentful from "contentful";
+import type * as Contentful from "contentful";
 
 export interface TypeSponsorLogoFields {
     name: Contentful.EntryFields.Symbol;
