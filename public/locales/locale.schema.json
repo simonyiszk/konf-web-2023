@@ -170,26 +170,53 @@
 				"items": {
 					"type": "object",
 					"properties": {
-						"week": {
+						"week_one": {
 							"type": "string"
 						},
-						"day": {
+						"week_other": {
 							"type": "string"
 						},
-						"hour": {
+						"day_one": {
 							"type": "string"
 						},
-						"minute": {
+						"day_other": {
 							"type": "string"
 						},
-						"second": {
+						"hour_one": {
+							"type": "string"
+						},
+						"hour_other": {
+							"type": "string"
+						},
+						"minute_one": {
+							"type": "string"
+						},
+						"minute_other": {
+							"type": "string"
+						},
+						"second_one": {
+							"type": "string"
+						},
+						"second_other": {
 							"type": "string"
 						},
 						"march": {
 							"type": "string"
 						}
 					},
-					"required": ["week", "day", "hour", "minute", "second"]
+					"required": [
+						"week_one",
+						"week_other",
+						"day_one",
+						"day_other",
+						"hour_one",
+						"hour_other",
+						"minute_one",
+						"minute_other",
+						"second_one",
+						"second_other",
+						"march"
+					]
 				}
 			},
 			"required": ["title", "items"]
@@ -205,6 +232,6 @@
 		"location",
 		"date",
 		"conferences",
-		"credits"
+		"schdesigncredits"
 	]
 }

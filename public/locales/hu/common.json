@@ -50,11 +50,16 @@
 	"date": {
 		"title": "Dátum",
 		"items": {
-			"week": "hét",
-			"day": "nap",
-			"hour": "óra",
-			"minute": "perc",
-			"second": "másodperc",
+			"week_one": "hét",
+			"week_other": "hét",
+			"day_one": "nap",
+			"day_other": "nap",
+			"hour_one": "óra",
+			"hour_other": "óra",
+			"minute_one": "perc",
+			"minute_other": "perc",
+			"second_one": "másodperc",
+			"second_other": "másodperc",
 			"march": "március"
 		}
 	}

@@ -50,11 +50,16 @@
 	"date": {
 		"title": "Date",
 		"items": {
-			"week": "week",
-			"day": "day",
-			"hour": "hour",
-			"minute": "minute",
-			"second": "second",
+			"week_one": "week",
+			"week_other": "weeks",
+			"day_one": "day",
+			"day_other": "days",
+			"hour_one": "hour",
+			"hour_other": "hours",
+			"minute_one": "minute",
+			"minute_other": "minutes",
+			"second_one": "second",
+			"second_other": "seconds",
 			"march": "march"
 		}
 	}
