@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { FiExternalLink } from "react-icons/fi";
 
 import styles from "./Menu.module.scss";
@@ -32,6 +33,8 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 			backdropFilter: "blur(4px)",
 		},
 	};
+
+	const { t } = useTranslation("common");
 	return (
 		<>
 			<motion.div
@@ -62,7 +65,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 			>
 				<div className="relative w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur-md">
 					<p className="mb-4 text-3xl font-medium">
-						Tekintsd meg korábbi konferenciáinkat:
+						{t("conferences.checkout")}:
 					</p>
 					<ul className="mx-8 flex flex-row justify-between gap-4 text-lg">
 						<li className="w-full hover:opacity-75">
@@ -139,9 +142,11 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 						</li>
 						<li className="mb-2 flex flex-col text-center text-sm font-light">
 							<p className="mx-12 mb-2">
-								<span className="inline-block">az arculati elemeket</span>{" "}
 								<span className="inline-block">
-									és a weboldalt készítette:{" "}
+									{t("schdesigncredits.upper")}
+								</span>{" "}
+								<span className="inline-block">
+									{t("schdesigncredits.lower")}:{" "}
 								</span>
 							</p>
 							<a
