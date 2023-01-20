@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import Image from "next/image";
 
+import { FB_EVENT_LINK } from "@/utils/constants";
+
 import manifest from "../../../package.json";
 
 type FooterProps = {
@@ -43,11 +45,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 							unoptimized
 						/>
 					</a>
-					<a
-						href="https://fb.me/e/myxPUe7JM"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
+					<a href={FB_EVENT_LINK} target="_blank" rel="noopener noreferrer">
 						<Image
 							src="/assets/icon/fb.svg"
 							alt="Simonyi Konferencia Facebook"
