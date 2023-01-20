@@ -23,6 +23,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 						<Image
 							src="/assets/icon/email.svg"
 							alt="Simonyi Konferencia Instagram"
+							className="hover:opacity-75"
 							width={40}
 							height={40}
 							unoptimized
@@ -36,6 +37,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 						<Image
 							src="/assets/icon/ig.svg"
 							alt="Simonyi Konferencia Instagram"
+							className="hover:opacity-75"
 							width={40}
 							height={40}
 							unoptimized
@@ -49,6 +51,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 						<Image
 							src="/assets/icon/fb.svg"
 							alt="Simonyi Konferencia Facebook"
+							className="hover:opacity-75"
 							width={40}
 							height={40}
 							unoptimized
@@ -62,6 +65,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 						<Image
 							src="/assets/icon/yt.svg"
 							alt="Simonyi Konferencia Youtube"
+							className="hover:opacity-75"
 							width={40}
 							height={40}
 							unoptimized
