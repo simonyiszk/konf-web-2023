@@ -1,5 +1,5 @@
-import Image from "next/image";
 import clsx from "clsx";
+import Image from "next/image";
 
 import manifest from "../../../package.json";
 
@@ -126,7 +126,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 				<div className="flex w-full flex-row justify-center">
 					<p className="text-xs">
 						<a
-							href="https://github.com/simonyiszk/konf-2022-web"
+							href={manifest.homepage}
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label="GitHub repo link"
