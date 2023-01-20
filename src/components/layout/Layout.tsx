@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import * as React from "react";
+
 import { Footer } from "../footer/Footer";
 
 type LayoutProps = {
