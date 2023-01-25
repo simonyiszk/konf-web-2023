@@ -7,13 +7,16 @@ export type SeoProps = {
 };
 
 export function Seo({ title, description }: SeoProps) {
-	const { t } = useTranslation("common");
+	const { t, i18n } = useTranslation("common");
 
 	const defaultTitle = t("seo.title") || "XX. Simonyi Konferencia";
 	const defaultDescription =
 		t("seo.description") ||
 		"Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája.";
-	const v0Preview = "https://konferencia.simonyi.bme.hu/previewV0.png";
+	const v0Preview =
+		i18n.language === "hu"
+			? "https://konferencia.simonyi.bme.hu/previewV0.png"
+			: "https://konferencia.simonyi.bme.hu/preview_eng.png";
 
 	return (
 		<Head>
