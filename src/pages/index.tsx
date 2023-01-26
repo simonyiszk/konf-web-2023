@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { HeroV0 } from "@/components/hero/HeroV0";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
+import { VideoSection } from "@/components/video/VideoSection";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -12,6 +13,7 @@ export default function Index({ buildDate, ...props }: PageProps) {
 		<Layout className="" buildDate={props.buildDate}>
 			<Seo />
 			<HeroV0 />
+			<VideoSection videoId="T-0sQXsWn-s" />
 		</Layout>
 	);
 }
