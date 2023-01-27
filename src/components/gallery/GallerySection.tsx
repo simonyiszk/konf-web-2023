@@ -90,7 +90,8 @@ export function GallerySection() {
 						vertical={false}
 						hideScrollbars
 						horizontal
-						className="flex h-full w-full cursor-grab gap-6"
+						className="flex h-full w-full cursor-grab gap-6 px-4 lg:px-20"
+						nativeMobileScroll
 					>
 						{images.map((image, i) => (
 							<ImageTile
