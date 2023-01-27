@@ -11,6 +11,9 @@ const nextConfig = {
 	i18n,
 	reactStrictMode: true,
 	swcMinify: true,
+	images: {
+		domains: ["placekitten.com"],
+	},
 
 	async headers() {
 		const headers = [
