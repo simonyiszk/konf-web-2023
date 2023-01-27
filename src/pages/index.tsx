@@ -13,7 +13,6 @@ export default function Index({ buildDate, ...props }: PageProps) {
 		<Layout className="" buildDate={props.buildDate}>
 			<Seo />
 			<HeroV0 />
-			{/* TODO: Pass sponsors to component */}
 			<SponsorSection />
 		</Layout>
 	);
@@ -23,6 +22,5 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 	props: {
 		...(await serverSideTranslations(locale ?? "hu", ["common"])),
 		buildDate: Date.now(),
-		// paragraphs: await getParagraphs(),
 	},
 });

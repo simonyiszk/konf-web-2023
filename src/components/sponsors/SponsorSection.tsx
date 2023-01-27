@@ -24,11 +24,11 @@ export function SponsorSection({ sponsors }: SponsorSectionProps) {
 	const { t } = useTranslation("common");
 	return (
 		<div className="bg-white">
-			<section className={clsx(styles.section)}>
+			<section className={styles.section}>
 				<h2 className="text-3xl font-bold">{t("sponsors.title")}</h2>
 				<div>
 					<h3 className="text-3xl">{t("sponsors.items.main")}</h3>
-					<div className={clsx(styles.containerOne)}>
+					<div className={styles.containerOne}>
 						{mainSponsor && (
 							<SponsorLogo key={mainSponsor.name} {...mainSponsor} />
 						)}
@@ -36,7 +36,7 @@ export function SponsorSection({ sponsors }: SponsorSectionProps) {
 				</div>
 				<div>
 					<h3 className="text-3xl">{t("sponsors.items.featured")}</h3>
-					<div className={clsx(styles.containerMany)}>
+					<div className={styles.containerMany}>
 						{featuredSponsors.map((sponsor) => (
 							<SponsorLogo key={sponsor.name} {...sponsor} />
 						))}

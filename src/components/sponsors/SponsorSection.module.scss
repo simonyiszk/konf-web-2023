@@ -23,21 +23,11 @@
 	}
 }
 
-.wrap {
-	// @apply flex flex-col items-center justify-center;
-}
-
 .containerOne {
 	@apply flex
 		flex-wrap
 		items-center
 		justify-evenly;
-
-	@screen sm {
-		// height: -moz-available;
-		// height: -webkit-fill-available;
-		// height: fill-available;
-	}
 }
 
 .containerMany {
@@ -53,10 +43,6 @@
 		& :last-child:nth-child(2n + 1) {
 			@apply col-span-2;
 		}
-
-		// height: -moz-available;
-		// height: -webkit-fill-available;
-		// height: fill-available;
 	}
 	@screen md {
 		grid-template-columns: 1fr 1fr 1fr;
