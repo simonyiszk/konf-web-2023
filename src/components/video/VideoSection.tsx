@@ -34,7 +34,7 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 							hl: i18n.language,
 							disablekb: 1,
 						}}
-						iframeClassName="w-full h-auto min-h-[300px] md:min-h-[400px] rounded-lg md:rounded-xl"
+						iframeClassName="w-full h-full rounded-lg md:rounded-xl"
 					/>
 				</div>
 				<div className="flex justify-center py-9 md:hidden">
