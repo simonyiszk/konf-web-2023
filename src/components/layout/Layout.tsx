@@ -20,7 +20,7 @@ export function Layout({
 		>
 			{/* <Navbar /> */}
 
-			<main id="#" className={clsx(className, "w-full")} {...restProps}>
+			<main id="#" className={clsx(className, "w-full px-4")} {...restProps}>
 				{children}
 			</main>
 
