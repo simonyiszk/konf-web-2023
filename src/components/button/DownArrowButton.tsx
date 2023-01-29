@@ -15,13 +15,19 @@ export function DownArrowButton({
 			type="button"
 			className={clsx(
 				className,
-				size === 60 && "h-[60px] w-[60px] rounded-2xl",
-				size === 48 && "h-12 w-12 rounded-2xl",
-				size === 24 && "h-6 w-6 rounded-md",
+				size === 60 && "h-[60px] w-[60px] rounded-[16px]",
+				size === 48 && "h-12 w-12 rounded-[16px]",
+				size === 24 && "h-6 w-6 rounded-[6px]",
 				`relative aspect-1 overflow-hidden bg-gradient-to-r from-konf-primary-blue to-konf-primary-green p-[3px]`,
 			)}
 		>
-			<div className="h-full w-full rounded-2xl bg-konf-overlay-blue">
+			<div
+				className={clsx(
+					(size === 60 || size === 48) && "rounded-[13px]",
+					size === 24 && "rounded-[3px]",
+					"h-full w-full bg-konf-overlay-blue",
+				)}
+			>
 				<Image
 					alt="down arrow"
 					src="/assets/icon/downArrow.svg"
