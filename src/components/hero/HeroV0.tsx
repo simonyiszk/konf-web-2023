@@ -5,6 +5,8 @@ import { FiExternalLink } from "react-icons/fi";
 
 import { useBool } from "@/utils/hooks";
 
+import { DownArrowButton } from "../button/DownArrowButton";
+import { TextButton } from "../button/TextButton";
 import { Menu } from "../menu/Menu";
 import { MenuButton } from "../menu/MenuButton";
 import { CountdownTimer } from "../timer/CountdownTimer";
@@ -236,14 +238,30 @@ function LocalMenu() {
 		</>
 	);
 }
+
+function CTA() {
+	const { t } = useTranslation("common");
+	return (
+		<div className="mt-4 flex flex-col items-center gap-12">
+			<TextButton
+				text={t("cta.register")}
+				href="https://simonyi-konferencia.eventbrite.com"
+				target="_blank"
+			/>
+			<DownArrowButton href="#video" className="block" size={60} />
+		</div>
+	);
+}
+
 export function HeroV0() {
 	return (
 		<div className={styles.heroV0}>
-			<LocalMenu />
-			<HeroDesktopTop />
+			{/* <LocalMenu /> */}
+			{/* <HeroDesktopTop /> */}
 			<Hero />
 			<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
-			<HeroBottom />
+			<CTA />
+			{/* <HeroBottom /> */}
 		</div>
 	);
 }

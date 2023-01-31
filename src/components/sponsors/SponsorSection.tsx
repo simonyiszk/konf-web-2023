@@ -23,8 +23,8 @@ export function SponsorSection({ sponsors }: SponsorSectionProps) {
 
 	const { t } = useTranslation("common");
 	return (
-		<div className="bg-white">
-			<section className={styles.section}>
+		<div className="span bg-white">
+			<section className={styles.section} id="sponsors">
 				<h2 className="text-3xl font-bold">{t("sponsors.title")}</h2>
 				<div>
 					<h3 className="text-3xl">{t("sponsors.items.main")}</h3>

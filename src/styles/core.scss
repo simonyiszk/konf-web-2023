@@ -27,11 +27,24 @@
 		-webkit-text-fill-color: transparent;
 	}
 
+	.no-gradient-on-text {
+		background-clip: unset;
+		-webkit-text-fill-color: unset;
+	}
+
 	.bg-gradient {
 		background: radial-gradient(
 			70.02% 70.02% at 50% 50%,
 			rgba(112, 255, 131, 0) 50%,
 			rgba(46, 192, 243, 0.1) 100%
 		);
+	}
+
+	.span {
+		@apply relative inset-x-1/2 mx-[-50vw] w-screen;
+	}
+
+	.bg-hero-pattern {
+		background: url("/assets/bg/pattern.svg") no-repeat center center/cover;
 	}
 }

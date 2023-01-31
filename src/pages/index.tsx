@@ -1,12 +1,11 @@
 import type { GetStaticProps, InferGetStaticPropsType } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { HeroV0 } from "@/components/hero/HeroV0";
+import { HeroV1 } from "@/components/hero/HeroV1";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
 import { VideoSection } from "@/components/video/VideoSection";
-
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -15,8 +14,8 @@ export default function Index({ buildDate, videoId, ...props }: PageProps) {
 	return (
 		<Layout className="" buildDate={props.buildDate}>
 			<Seo />
-			<HeroV0 />
-      <VideoSection videoId={videoId} />
+			<HeroV1 />
+			<VideoSection videoId={videoId} />
 			<SponsorSection />
 		</Layout>
 	);

@@ -57,6 +57,9 @@
 			"building": "I Épület"
 		}
 	},
+	"cta": {
+		"register": "Regisztálok a konferenciára!"
+	},
 	"date": {
 		"title": "Dátum",
 		"items": {

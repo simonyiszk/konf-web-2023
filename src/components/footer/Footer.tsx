@@ -7,14 +7,26 @@ import manifest from "../../../package.json";
 
 type FooterProps = {
 	fill?: "none" | "pattern";
+	buildDate?: number;
 };
 
-export function Footer({ fill = "pattern" }: FooterProps) {
+export function Footer({ fill = "pattern", buildDate }: FooterProps) {
+	const buildDateFormat = buildDate ? new Date(buildDate) : new Date();
+	const buildDateString = new Intl.DateTimeFormat("hu-HU", {
+		month: "2-digit",
+		day: "2-digit",
+		hour: "2-digit",
+		minute: "2-digit",
+	})
+		.format(buildDateFormat)
+		.match(/\d+/g)
+		?.join("");
+
 	return (
 		<footer
 			className={clsx(
 				fill === "pattern" && "bg-hero-pattern bg-cover bg-bottom bg-no-repeat",
-				"z-20 w-full  p-8",
+				"z-20 w-full p-8",
 			)}
 			id="footer"
 		>
@@ -134,7 +146,7 @@ export function Footer({ fill = "pattern" }: FooterProps) {
 							aria-label="GitHub repo link"
 							className="hover:text-white"
 						>
-							{`v${manifest.version}`}
+							{`v${manifest.version}.${buildDateString}`}
 						</a>{" "}
 						<a
 							href="https://github.com/simonyiszk"

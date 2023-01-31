@@ -107,6 +107,15 @@
 			},
 			"required": ["title", "items"]
 		},
+		"cta": {
+			"type": "object",
+			"properties": {
+				"register": {
+					"type": "string"
+				}
+			},
+			"required": ["register"]
+		},
 		"gallery": {
 			"type": "object",
 			"properties": {
