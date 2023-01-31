@@ -25,6 +25,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 		buildDate: Date.now(),
 		videoId: process.env.YOUTUBE_VIDEO_ID
 			? process.env.YOUTUBE_VIDEO_ID
-			: "nrhn5LkmGeU",
+			: "MD8VGKLklVQ",
 	},
 });
