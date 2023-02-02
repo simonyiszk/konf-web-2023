@@ -7,17 +7,22 @@ import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
 import { VideoSection } from "@/components/video/VideoSection";
+import { getGalleryImages, getParagraphs } from "@/utils/contentful";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Index({ buildDate, videoId, ...props }: PageProps) {
-	console.log(videoId);
+export default function Index({
+	buildDate,
+	videoId,
+	galleryAlbums,
+	...props
+}: PageProps) {
 	return (
 		<Layout className="" buildDate={props.buildDate}>
 			<Seo />
 			<HeroV0 />
 			<VideoSection videoId={videoId} />
-			<GallerySection />
+			<GallerySection albums={galleryAlbums} />
 			<SponsorSection />
 		</Layout>
 	);
@@ -30,5 +35,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => ({
 		videoId: process.env.YOUTUBE_VIDEO_ID
 			? process.env.YOUTUBE_VIDEO_ID
 			: "MD8VGKLklVQ",
+		galleryAlbums: await getGalleryImages(),
 	},
 });

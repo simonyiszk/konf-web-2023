@@ -1,7 +1,10 @@
 import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
-import type { TypeParagraphFields } from "@/@types/generated/index";
+import type {
+	TypeGalleryImagesFields,
+	TypeParagraphFields,
+} from "@/@types/generated/index";
 
 const client = createClient({
 	space: process.env.CONTENTFUL_SPACE_ID ?? "ErrorNoSpaceID",
@@ -29,4 +32,14 @@ export async function getParagraphs() {
 	);
 
 	return renderedParagraphs;
+}
+
+export async function getGalleryImages() {
+	const gallery = await client.getEntries<TypeGalleryImagesFields>({
+		content_type: "galleryImages",
+		order: "-fields.year",
+	});
+	return gallery.items
+		.map((item) => item.fields)
+		.map((item) => ({ ...item, year: item.year ?? 2077 }));
 }
