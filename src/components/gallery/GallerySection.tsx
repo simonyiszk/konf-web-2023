@@ -1,5 +1,6 @@
+import clsx from "clsx";
 import { useTranslation } from "next-i18next";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Lightbox from "react-spring-lightbox";
 
@@ -22,19 +23,27 @@ export function GallerySection({ albums }: GallerySectionProps) {
 
 	const [activeAlbumIndex, setActiveAlbumIndex] = useState(0);
 
-	const handleSelect = (index: number) => {
-		setActiveAlbumIndex(index);
-	};
-
 	const [isOpen, setOpen] = useState(false);
 	const [currentIndex, setCurrentIndex] = useState(0);
+
+	const handleSelect = (index: number) => {
+		setActiveAlbumIndex(index);
+		setCurrentIndex(0);
+	};
+
+	const openModal = useCallback(() => {
+		setOpen(true);
+	}, [setOpen]);
 
 	const gotoPrevious = () =>
 		currentIndex > 0 && setCurrentIndex(currentIndex - 1);
 	const gotoNext = () =>
 		currentIndex + 1 < albums[activeAlbumIndex].images.length &&
 		setCurrentIndex(currentIndex + 1);
-	const closeLightbox = () => setOpen(false);
+
+	const closeLightbox = useCallback(() => {
+		setOpen(false);
+	}, [setOpen]);
 
 	return (
 		<div>
@@ -47,7 +56,10 @@ export function GallerySection({ albums }: GallerySectionProps) {
 						vertical={false}
 						hideScrollbars
 						horizontal
-						className="flex h-full w-full cursor-grab gap-6 px-4 lg:px-20"
+						className={clsx(
+							albums.length < 8 && "container mx-auto",
+							"flex h-full w-full cursor-grab gap-6 px-4 lg:px-20",
+						)}
 						nativeMobileScroll
 					>
 						{albums.map(({ name, thumbnail, year }, i) => (
@@ -58,7 +70,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 								year={year}
 								i={i}
 								handleSelect={handleSelect}
-								setOpen={setOpen}
+								setOpen={openModal}
 							/>
 						))}
 					</ScrollContainer>
@@ -83,7 +95,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 						onNext={gotoNext}
 						onClose={() => {
 							closeLightbox();
-							setCurrentIndex(0);
+							// setCurrentIndex(0);
 						}}
 						// @ts-expect-error: wrong type defs?
 						renderNextButton={({ canNext }) => (
