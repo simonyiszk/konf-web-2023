@@ -11,6 +11,9 @@ const nextConfig = {
 	i18n,
 	reactStrictMode: true,
 	swcMinify: true,
+	images: {
+		domains: ["images.ctfassets.net"],
+	},
 
 	async headers() {
 		const headers = [

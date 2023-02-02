@@ -1,3 +1,5 @@
+import clsx from "clsx";
+import type { Asset } from "contentful";
 import Image from "next/image";
 
 import type { TypeSponsorLogoFields } from "@/@types/generated";
@@ -14,8 +16,16 @@ function ConditionalWrapper({
 	return condition ? wrapper(children) : children;
 }
 
-export function SponsorLogo({ name, image, link }: TypeSponsorLogoFields) {
-	if (!image.fields.file?.url) {
+type SponsorLogoProps = Omit<TypeSponsorLogoFields, "image"> &
+	React.HTMLProps<HTMLDivElement> & { image?: Asset };
+
+export function SponsorLogo({
+	name,
+	image,
+	link,
+	...restProps
+}: SponsorLogoProps) {
+	if (!image?.fields.file?.url) {
 		return null;
 	}
 	return (
@@ -27,11 +37,13 @@ export function SponsorLogo({ name, image, link }: TypeSponsorLogoFields) {
 				</a>
 			)}
 		>
-			<div className="relative p-2">
+			<div className={clsx("relative m-2 p-2", restProps.className)}>
 				<Image
 					src={`https:${image.fields.file.url}`}
 					alt={`${name} logo`}
 					unoptimized
+					width={image.fields.file.details.image?.width}
+					height={image.fields.file.details.image?.height}
 					loading="lazy"
 				/>
 			</div>

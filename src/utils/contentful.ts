@@ -1,7 +1,10 @@
 import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
-import type { TypeParagraphFields } from "@/@types/generated/index";
+import type {
+	TypeParagraphFields,
+	TypeSponsorLogoFields,
+} from "@/@types/generated/index";
 
 const client = createClient({
 	space: process.env.CONTENTFUL_SPACE_ID ?? "ErrorNoSpaceID",
@@ -29,4 +32,26 @@ export async function getParagraphs() {
 	);
 
 	return renderedParagraphs;
+}
+
+export async function getSponsors() {
+	const goldSponsor = (
+		await client.getEntries<TypeSponsorLogoFields>({
+			content_type: "sponsorLogo",
+			"fields.sponsorshipGrade[in]": "főtámogató",
+			limit: 1,
+		})
+	).items[0];
+
+	const silverSponsors = await client.getEntries<TypeSponsorLogoFields>({
+		content_type: "sponsorLogo",
+		"fields.sponsorshipGrade[in]": "kiemelt támogató",
+	});
+
+	const bronzeSponsors = await client.getEntries<TypeSponsorLogoFields>({
+		content_type: "sponsorLogo",
+		"fields.sponsorshipGrade[in]": "támogató",
+	});
+
+	return { goldSponsor, silverSponsors, bronzeSponsors };
 }
