@@ -15,8 +15,4 @@ body {
 	@apply min-h-screen;
 
 	margin: 0 auto;
-
-	& main {
-		background: url("/assets/bg/pattern.svg") no-repeat center center/cover;
-	}
 }

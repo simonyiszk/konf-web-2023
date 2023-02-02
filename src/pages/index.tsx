@@ -32,7 +32,7 @@ export default function Index({
 	...props
 }: PageProps) {
 	return (
-		<Layout className="" buildDate={buildDate}>
+		<Layout className="bg-hero-pattern" buildDate={buildDate}>
 			<Seo />
 			<HeroV1 />
 			<VideoSection videoId={videoId} />
