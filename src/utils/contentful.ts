@@ -39,7 +39,5 @@ export async function getGalleryImages() {
 		content_type: "galleryImages",
 		order: "-fields.year",
 	});
-	return gallery.items
-		.map((item) => item.fields)
-		.map((item) => ({ ...item, year: item.year ?? 2077 }));
+	return gallery.items.map((item) => item.fields);
 }

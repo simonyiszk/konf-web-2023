@@ -7,7 +7,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
 import { VideoSection } from "@/components/video/VideoSection";
-import { getGalleryImages, getParagraphs } from "@/utils/contentful";
+import { getGalleryImages } from "@/utils/contentful";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
