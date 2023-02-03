@@ -1,20 +1,12 @@
 import clsx from "clsx";
-import type {
-	EntryCollectionWithLinkResolutionAndWithoutUnresolvableLinks,
-	EntryWithLinkResolutionAndWithoutUnresolvableLinks,
-} from "contentful";
 import { useTranslation } from "next-i18next";
 
-import type { TypeSponsorLogoFields } from "@/@types/generated";
+import type { ReturnTypeSponsors } from "@/utils/contentful";
 
 import { SponsorLogo } from "./SponsorLogo";
 import styles from "./SponsorSection.module.scss";
 
-type SponsorSectionProps = {
-	goldSponsor: EntryWithLinkResolutionAndWithoutUnresolvableLinks<TypeSponsorLogoFields>;
-	silverSponsors: EntryCollectionWithLinkResolutionAndWithoutUnresolvableLinks<TypeSponsorLogoFields>;
-	bronzeSponsors: EntryCollectionWithLinkResolutionAndWithoutUnresolvableLinks<TypeSponsorLogoFields>;
-};
+type SponsorSectionProps = ReturnTypeSponsors;
 
 export function SponsorSection({
 	goldSponsor,

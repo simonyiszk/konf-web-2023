@@ -2,6 +2,7 @@ import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
 import type {
+	TypeGalleryImagesFields,
 	TypeParagraphFields,
 	TypeSponsorLogoFields,
 } from "@/@types/generated/index";
@@ -34,6 +35,20 @@ export async function getParagraphs() {
 	return renderedParagraphs;
 }
 
+export type ReturnTypeParagraphs = Awaited<ReturnType<typeof getParagraphs>>;
+
+export async function getGalleryImages() {
+	const gallery = await client.getEntries<TypeGalleryImagesFields>({
+		content_type: "galleryImages",
+		order: "-fields.year",
+	});
+	return gallery.items.map((item) => item.fields);
+}
+
+export type ReturnTypeGalleryImages = Awaited<
+	ReturnType<typeof getGalleryImages>
+>;
+
 export async function getSponsors() {
 	const goldSponsor = (
 		await client.getEntries<TypeSponsorLogoFields>({
@@ -55,3 +70,5 @@ export async function getSponsors() {
 
 	return { goldSponsor, silverSponsors, bronzeSponsors };
 }
+
+export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
