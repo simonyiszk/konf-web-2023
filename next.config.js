@@ -11,6 +11,15 @@ const nextConfig = {
 	i18n,
 	reactStrictMode: true,
 	swcMinify: true,
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "images.ctfassets.net",
+			},
+		],
+		domains: ["placekitten.com"],
+	},
 
 	async headers() {
 		const headers = [
