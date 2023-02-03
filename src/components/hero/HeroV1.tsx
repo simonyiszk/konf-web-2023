@@ -82,7 +82,7 @@ function LocalMenu() {
 		<div className="absolute top-2 right-2 z-30 sm:top-4 sm:right-4">
 			<button
 				type="button"
-				className="p-2 hover:opacity-75"
+				className="p-2 hover:underline hover:opacity-75"
 				onClick={() => {
 					const path = router.asPath;
 					if (locale === "en") {
