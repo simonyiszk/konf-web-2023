@@ -20,7 +20,14 @@ export function Layout({
 		>
 			{/* <Navbar /> */}
 
-			<main id="#" className={clsx(className, "w-full px-4")} {...restProps}>
+			<main
+				id="#"
+				className={clsx(
+					className,
+					"relative z-10 w-full overflow-x-hidden px-4",
+				)}
+				{...restProps}
+			>
 				{children}
 			</main>
 

@@ -3,6 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { GallerySection } from "@/components/gallery/GallerySection";
 import { HeroV0 } from "@/components/hero/HeroV0";
+import { BgDecoration } from "@/components/layout/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
@@ -21,6 +22,7 @@ export default function Index({
 		<Layout className="" buildDate={props.buildDate}>
 			<Seo />
 			<HeroV0 />
+			<BgDecoration />
 			<VideoSection videoId={videoId} />
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection />
