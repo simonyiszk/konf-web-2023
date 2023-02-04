@@ -27,8 +27,8 @@
 }
 
 .animateLeft {
-	animation: /* rotate 20s ease-in-out infinite, */ x1 9s
-			cubic-bezier(0.5, -800, 0.5, 800) infinite,
+	animation: rotate 20s ease-in-out infinite,
+		x1 9s cubic-bezier(0.5, -800, 0.5, 800) infinite,
 		y 16s cubic-bezier(0.5, -800, 0.5, 800) infinite;
 }
 
