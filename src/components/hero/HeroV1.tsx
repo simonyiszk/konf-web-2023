@@ -36,7 +36,7 @@ function Hero() {
 							2023
 						</span>
 						<br />{" "}
-						{new Date("2023. 03. 21")
+						{new Date("2023-03-21T08:00:00.000+02:00")
 							.toLocaleString(i18n.language, {
 								month: "long",
 							})
