@@ -47,7 +47,7 @@ function TimerBlock({ time, unit, hasColon }: TimerBlockProps) {
 
 function Loading() {
 	return (
-		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl" />
+		<p className="blue-green-gradient flex flex-row text-4xl font-medium sm:text-5xl" />
 	);
 }
 
