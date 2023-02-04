@@ -25,7 +25,7 @@ function BgElement({
 		<div
 			style={style}
 			className={clsx(
-				"pointer-events-none absolute select-none overflow-hidden",
+				"pointer-events-none absolute -z-20 select-none overflow-hidden",
 				className,
 			)}
 			{...restProps}
