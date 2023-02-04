@@ -3,7 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { GallerySection } from "@/components/gallery/GallerySection";
 import { HeroV1 } from "@/components/hero/HeroV1";
-import { BgDecoration } from "@/components/layout/BgDecoration";
+import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
