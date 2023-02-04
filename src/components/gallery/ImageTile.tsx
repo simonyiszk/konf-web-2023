@@ -5,7 +5,7 @@ import { useTranslation } from "next-i18next";
 type ImageTileProps = {
 	name: string;
 	year: number | string;
-	thumbnail: Asset;
+	thumbnail?: Asset;
 	i: number;
 	handleSelect: (index: number) => void;
 	setOpen: (open: boolean) => void;
@@ -31,7 +31,7 @@ export function ImageTile({
 				}}
 			>
 				<Image
-					src={`https:${thumbnail.fields.file?.url}`}
+					src={`https:${thumbnail?.fields.file?.url}`}
 					width={300}
 					height={300}
 					alt={name}

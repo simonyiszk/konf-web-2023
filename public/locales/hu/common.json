@@ -57,6 +57,9 @@
 			"building": "I Épület"
 		}
 	},
+	"cta": {
+		"register": "Regisztálok!"
+	},
 	"date": {
 		"title": "Dátum",
 		"items": {

@@ -4,6 +4,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import type {
 	TypeGalleryImagesFields,
 	TypeParagraphFields,
+	TypeSponsorLogoFields,
 } from "@/@types/generated/index";
 
 const client = createClient({
@@ -34,6 +35,8 @@ export async function getParagraphs() {
 	return renderedParagraphs;
 }
 
+export type ReturnTypeParagraphs = Awaited<ReturnType<typeof getParagraphs>>;
+
 export async function getGalleryImages() {
 	const gallery = await client.getEntries<TypeGalleryImagesFields>({
 		content_type: "galleryImages",
@@ -41,3 +44,31 @@ export async function getGalleryImages() {
 	});
 	return gallery.items.map((item) => item.fields);
 }
+
+export type ReturnTypeGalleryImages = Awaited<
+	ReturnType<typeof getGalleryImages>
+>;
+
+export async function getSponsors() {
+	const goldSponsor = (
+		await client.getEntries<TypeSponsorLogoFields>({
+			content_type: "sponsorLogo",
+			"fields.sponsorshipGrade[in]": "főtámogató",
+			limit: 1,
+		})
+	).items[0];
+
+	const silverSponsors = await client.getEntries<TypeSponsorLogoFields>({
+		content_type: "sponsorLogo",
+		"fields.sponsorshipGrade[in]": "kiemelt támogató",
+	});
+
+	const bronzeSponsors = await client.getEntries<TypeSponsorLogoFields>({
+		content_type: "sponsorLogo",
+		"fields.sponsorshipGrade[in]": "támogató",
+	});
+
+	return { goldSponsor, silverSponsors, bronzeSponsors };
+}
+
+export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;

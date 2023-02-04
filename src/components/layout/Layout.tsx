@@ -22,17 +22,13 @@ export function Layout({
 
 			<main
 				id="#"
-				className={clsx(
-					className,
-					"relative z-10 w-full overflow-x-hidden px-4",
-				)}
+				className={clsx(className, "relative z-10 w-full overflow-x-hidden")}
 				{...restProps}
 			>
 				{children}
 			</main>
 
-			{/* <Footer /> */}
-			<Footer fill="pattern" />
+			<Footer fill="pattern" buildDate={buildDate} />
 		</div>
 	);
 }

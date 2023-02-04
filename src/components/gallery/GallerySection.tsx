@@ -4,7 +4,7 @@ import { useCallback, useState } from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Lightbox from "react-spring-lightbox";
 
-import type { TypeGalleryImagesFields } from "@/@types/generated";
+import type { ReturnTypeGalleryImages } from "@/utils/contentful";
 
 import { ImageTile } from "./ImageTile";
 import {
@@ -15,7 +15,7 @@ import {
 } from "./LightboxOverlay";
 
 type GallerySectionProps = {
-	albums: TypeGalleryImagesFields[];
+	albums: ReturnTypeGalleryImages;
 };
 
 export function GallerySection({ albums }: GallerySectionProps) {
@@ -38,7 +38,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 	const gotoPrevious = () =>
 		currentIndex > 0 && setCurrentIndex(currentIndex - 1);
 	const gotoNext = () =>
-		currentIndex + 1 < albums[activeAlbumIndex].images.length &&
+		currentIndex + 1 < (albums[activeAlbumIndex].images?.length ?? 0) &&
 		setCurrentIndex(currentIndex + 1);
 
 	const closeLightbox = useCallback(() => {
@@ -85,10 +85,12 @@ export function GallerySection({ albums }: GallerySectionProps) {
 
 					<Lightbox
 						className="bg-black/75 backdrop-blur"
-						images={albums[activeAlbumIndex].images.map(({ fields }) => ({
-							src: fields.file?.url ?? "",
-							alt: fields.title ?? "",
-						}))}
+						images={
+							albums[activeAlbumIndex].images?.map(({ fields }) => ({
+								src: fields.file?.url ?? "",
+								alt: fields.title ?? "",
+							})) ?? []
+						}
 						isOpen={isOpen}
 						currentIndex={currentIndex}
 						onPrev={gotoPrevious}
