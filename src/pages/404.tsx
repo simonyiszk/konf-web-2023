@@ -4,8 +4,8 @@ import { Layout } from "@/components/layout/Layout";
 
 export default function Custom404() {
 	return (
-		<Layout className="relative mx-auto mb-8 flex flex-col font-mona sm:px-4 md:px-8 lg:px-12 xl:px-16">
-			<section className="mt-16 flex min-h-screen flex-col">
+		<Layout className="relative m-auto flex flex-col font-mona sm:px-4 md:px-8 lg:px-12 xl:px-16">
+			<section className="mt-16 flex h-full flex-col">
 				<h1 className="m-4 text-center text-2xl font-semibold lg:text-5xl">
 					404 - Ez az oldal sajnos nem található 😔
 				</h1>

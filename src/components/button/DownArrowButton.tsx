@@ -1,18 +1,20 @@
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 
 type DownArrowButtonProps = {
 	size?: 60 | 48 | 24;
-	className?: string;
-};
+} & React.ComponentProps<typeof Link>;
 
 export function DownArrowButton({
+	href,
 	size = 60,
 	className,
+	...restProps
 }: DownArrowButtonProps) {
 	return (
-		<button
-			type="button"
+		<Link
+			href={href}
 			className={clsx(
 				className,
 				size === 60 && "h-[60px] w-[60px] rounded-[16px]",
@@ -20,6 +22,7 @@ export function DownArrowButton({
 				size === 24 && "h-6 w-6 rounded-[6px]",
 				`relative aspect-1 overflow-hidden bg-gradient-to-r from-konf-primary-blue to-konf-primary-green p-[3px]`,
 			)}
+			{...restProps}
 		>
 			<div
 				className={clsx(
@@ -42,6 +45,6 @@ export function DownArrowButton({
 					)}
 				/>
 			</div>
-		</button>
+		</Link>
 	);
 }

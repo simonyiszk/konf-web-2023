@@ -57,6 +57,9 @@
 			"building": "Building I"
 		}
 	},
+	"cta": {
+		"register": "Register now!"
+	},
 	"date": {
 		"title": "Date",
 		"items": {

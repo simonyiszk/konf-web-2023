@@ -20,12 +20,11 @@ export function Layout({
 		>
 			{/* <Navbar /> */}
 
-			<main id="#" className={clsx(className, "w-full px-4")} {...restProps}>
+			<main id="#" className={clsx(className, "w-full")} {...restProps}>
 				{children}
 			</main>
 
-			{/* <Footer /> */}
-			<Footer fill="pattern" />
+			<Footer fill="pattern" buildDate={buildDate} />
 		</div>
 	);
 }
