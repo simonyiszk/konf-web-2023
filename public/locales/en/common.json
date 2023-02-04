@@ -2,7 +2,7 @@
 	"$schema": "./../locale.schema.json",
 	"seo": {
 		"title": "XX. Simonyi Conference",
-		"description": "The largest annual technology conference for university students in Hungary."
+		"description": "The largest annual technology conference, organized by university students in Hungary."
 	},
 	"name": {
 		"full": "XX. Simonyi Conference",
