@@ -1,5 +1,4 @@
 @keyframes rotate {
-	// Rotate with varying speed trough the animation
 	0% {
 		transform: rotate(0deg);
 	}
@@ -28,14 +27,13 @@
 }
 
 .animateLeft {
-	// Animate the decoration
-	animation: rotate 20s ease-in-out infinite,
-		x1 16s cubic-bezier(0.5, -800, 0.5, 800) infinite,
-		y 8s cubic-bezier(0.5, -800, 0.5, 800) infinite;
+	animation: /* rotate 20s ease-in-out infinite, */ x1 9s
+			cubic-bezier(0.5, -800, 0.5, 800) infinite,
+		y 16s cubic-bezier(0.5, -800, 0.5, 800) infinite;
 }
 
 .animateRight {
 	animation: rotate 20s ease-in-out infinite,
-		x2 16s cubic-bezier(0.5, -800, 0.5, 800) infinite,
-		y 8s cubic-bezier(0.5, -800, 0.5, 800) infinite;
+		x2 9s cubic-bezier(0.5, -800, 0.5, 800) infinite,
+		y 16s cubic-bezier(0.5, -800, 0.5, 800) infinite;
 }

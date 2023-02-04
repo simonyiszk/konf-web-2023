@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -76,7 +77,7 @@ function CTA() {
 
 export function HeroV1() {
 	return (
-		<div className={styles.heroV1}>
+		<div className={clsx(styles.heroV1, "bg-hero-pattern")}>
 			<Hero />
 			<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
 			<CTA />
