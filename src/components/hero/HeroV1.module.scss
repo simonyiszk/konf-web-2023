@@ -1,5 +1,5 @@
 .heroV1 {
-	@apply container relative mx-auto flex min-h-screen flex-col items-center justify-center gap-16;
+	@apply bg-hero-pattern relative mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-4 sm:gap-8 md:gap-16;
 
 	min-height: 100svh;
 }

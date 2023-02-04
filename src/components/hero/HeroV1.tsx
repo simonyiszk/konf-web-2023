@@ -74,40 +74,14 @@ function CTA() {
 	);
 }
 
-function LocalMenu() {
-	const router = useRouter();
-	const { locale } = router;
-
-	return (
-		<div className="absolute top-2 right-2 z-30 sm:top-4 sm:right-4">
-			<button
-				type="button"
-				className="p-2 hover:underline hover:opacity-75"
-				onClick={() => {
-					const path = router.asPath;
-					if (locale === "en") {
-						router.push(path, path, { locale: "hu" });
-					} else {
-						router.push(path, path, { locale: "en" });
-					}
-				}}
-				aria-label="Nyelv váltása"
-			>
-				{locale === "en" ? "HU" : "EN"}
-			</button>
-		</div>
-	);
-}
-
 export function HeroV1() {
 	return (
-		<>
-			<LocalMenu />
-			<div className={styles.heroV1}>
-				<Hero />
-				<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
-				<CTA />
-			</div>
-		</>
+		<div className={styles.heroV1}>
+			<Hero />
+			<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
+			<CTA />
+			<div className="pointer-events-none absolute bottom-0 h-32 w-full bg-gradient-to-b from-transparent to-konf-background-blue" />
+			<div className="pointer-events-none absolute -bottom-16 h-16 w-full bg-gradient-to-t from-transparent to-konf-background-blue" />
+		</div>
 	);
 }

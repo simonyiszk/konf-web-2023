@@ -37,7 +37,7 @@ export default function Index({
 	...props
 }: PageProps) {
 	return (
-		<Layout className="bg-hero-pattern" buildDate={buildDate}>
+		<Layout className="" buildDate={buildDate}>
 			<Seo />
 			<HeroV1 />
 			<BgDecoration />
