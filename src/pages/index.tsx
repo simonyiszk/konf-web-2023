@@ -34,13 +34,14 @@ export default function Index({
 	videoId,
 	galleryAlbums,
 	sponsors,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	...props
 }: PageProps) {
 	return (
 		<Layout className="" buildDate={buildDate}>
 			<Seo />
-			<HeroV1 />
 			<BgDecoration />
+			<HeroV1 />
 			<VideoSection videoId={videoId} />
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection {...sponsors} />

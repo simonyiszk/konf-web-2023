@@ -27,13 +27,15 @@
 }
 
 .animateLeft {
-	animation: rotate 20s ease-in-out infinite,
-		x1 9s cubic-bezier(0.5, -800, 0.5, 800) infinite,
-		y 16s cubic-bezier(0.5, -800, 0.5, 800) infinite;
+	@apply w-[inherit] sm:w-[unset];
+	animation: rotate 44s ease-in-out infinite,
+		x1 19s cubic-bezier(0.5, -800, 0.5, 800) infinite,
+		y 32s cubic-bezier(0.5, -800, 0.5, 800) infinite;
 }
 
 .animateRight {
-	animation: rotate 20s ease-in-out infinite,
-		x2 9s cubic-bezier(0.5, -800, 0.5, 800) infinite,
-		y 16s cubic-bezier(0.5, -800, 0.5, 800) infinite;
+	@apply w-[inherit] sm:w-[unset];
+	animation: rotate 47s ease-in-out infinite,
+		x2 19s cubic-bezier(0.5, -800, 0.5, 800) infinite,
+		y 32s cubic-bezier(0.5, -800, 0.5, 800) infinite;
 }

@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import Image from "next/image";
-import type { CSSProperties } from "react";
 
 import styles from "./BgDecoration.module.scss";
 
@@ -25,7 +24,7 @@ function BgElement({
 		<div
 			style={style}
 			className={clsx(
-				"pointer-events-none absolute -z-20 select-none overflow-hidden",
+				"pointer-events-none absolute -z-20 select-none",
 				className,
 			)}
 			{...restProps}
@@ -42,7 +41,7 @@ function BgElement({
 				unselectable="on"
 				draggable={false}
 				loading="eager"
-				className="object-cover"
+				// className="object-cover"
 			/>
 		</div>
 	);
@@ -50,7 +49,7 @@ function BgElement({
 
 export function BgDecoration() {
 	return (
-		<div className="container -z-10 mx-auto overflow-hidden">
+		<div className="pointer-events-none absolute inset-y-0 mx-auto h-screen w-screen overflow-hidden">
 			<BgElement
 				img="blue"
 				dimensions={{
@@ -122,7 +121,7 @@ export function BgDecoration() {
 						"--x": "100px",
 						top: "400px",
 						"--y": "400px",
-						animationDelay: "-8.5s",
+						animationDelay: "-28.5s",
 					} as React.CSSProperties
 				}
 			/>
@@ -141,7 +140,7 @@ export function BgDecoration() {
 						"--x": "200px",
 						top: "0px",
 						"--y": "0px",
-						animationDelay: "-7.5s",
+						animationDelay: "-17.5s",
 					} as React.CSSProperties
 				}
 			/>
@@ -160,7 +159,7 @@ export function BgDecoration() {
 						"--x": "500px",
 						top: "350px",
 						"--y": "350px",
-						animationDelay: "-10.5s",
+						animationDelay: "-35.5s",
 					} as React.CSSProperties
 				}
 			/>

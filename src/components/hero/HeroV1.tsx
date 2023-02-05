@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
 import { DownArrowButton } from "../button/DownArrowButton";
@@ -12,11 +11,11 @@ function Hero() {
 	const { t, i18n } = useTranslation("common");
 	return (
 		<div className="mx-1 mt-8 flex flex-col justify-center sm:mt-0 xl:-mt-8">
-			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] sm:mx-28 sm:-mb-6 sm:w-[276px]">
+			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] self-center sm:mx-28 sm:-mb-6 sm:w-[276px]">
 				<Image
 					src="/favicon.svg"
 					alt="XX. Simonyi Konferencia logó"
-					className=""
+					className="absolute"
 					fill
 					priority
 					unoptimized
@@ -59,7 +58,7 @@ function Hero() {
 function CTA() {
 	const { t } = useTranslation("common");
 	return (
-		<div className="mt-4 flex flex-col items-center gap-12">
+		<div className="mt-4 flex flex-col items-center gap-8">
 			<TextButton
 				text={t("cta.register")}
 				href="https://simonyi-konferencia.eventbrite.com"
@@ -68,7 +67,7 @@ function CTA() {
 			<DownArrowButton
 				href="#video"
 				scroll={false}
-				className="block"
+				className={clsx("z-10 block", styles.bounce)}
 				size={60}
 			/>
 		</div>

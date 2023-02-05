@@ -39,8 +39,7 @@ export function romanize(num: number) {
 	let i = 3;
 	// eslint-disable-next-line no-plusplus
 	while (i--) {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-expect-error
+		// @ts-expect-error: digits will always have at least one element
 		roman = (key[+digits.pop() + i * 10] || "") + roman;
 	}
 	return Array(+digits.join("") + 1).join("M") + roman;

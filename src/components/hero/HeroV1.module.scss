@@ -3,3 +3,22 @@
 
 	min-height: 100svh;
 }
+
+.bounce {
+	@keyframes bounce {
+		0%,
+		10%,
+		20%,
+		33%,
+		100% {
+			transform: translateY(0);
+		}
+		15% {
+			transform: translateY(-15px);
+		}
+		25% {
+			transform: translateY(-7px);
+		}
+	}
+	animation: bounce 4.5s infinite;
+}

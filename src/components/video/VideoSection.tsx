@@ -24,6 +24,7 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 						scroll={false}
 						size={60}
 						className="hidden md:block"
+						hasBG
 					/>
 				</div>
 				<div className="md:col-span-4">
@@ -44,9 +45,6 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 							}}
 							iframeClassName="w-full h-full rounded-lg md:rounded-xl"
 						/>
-					</div>
-					<div className="flex justify-center py-9 md:hidden">
-						<DownArrowButton href="#sponsors" scroll={false} size={60} />
 					</div>
 				</div>
 			</div>
