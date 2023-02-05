@@ -1,0 +1,41 @@
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(480deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes x1 {
+	to {
+		left: calc(var(--x) + 0.2px);
+	}
+}
+@keyframes x2 {
+	to {
+		right: calc(var(--x) - 0.2px);
+	}
+}
+@keyframes y {
+	to {
+		top: calc(var(--y) + 0.4px);
+	}
+}
+
+.animateLeft {
+	@apply w-[inherit] sm:w-[unset];
+	animation: rotate 44s ease-in-out infinite,
+		x1 19s cubic-bezier(0.5, -800, 0.5, 800) infinite,
+		y 32s cubic-bezier(0.5, -800, 0.5, 800) infinite;
+}
+
+.animateRight {
+	@apply w-[inherit] sm:w-[unset];
+	animation: rotate 47s ease-in-out infinite,
+		x2 19s cubic-bezier(0.5, -800, 0.5, 800) infinite,
+		y 32s cubic-bezier(0.5, -800, 0.5, 800) infinite;
+}

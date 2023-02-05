@@ -3,6 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import { GallerySection } from "@/components/gallery/GallerySection";
 import { HeroV1 } from "@/components/hero/HeroV1";
+import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
@@ -33,11 +34,13 @@ export default function Index({
 	videoId,
 	galleryAlbums,
 	sponsors,
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	...props
 }: PageProps) {
 	return (
-		<Layout className="bg-hero-pattern" buildDate={buildDate}>
+		<Layout className="" buildDate={buildDate}>
 			<Seo />
+			<BgDecoration />
 			<HeroV1 />
 			<VideoSection videoId={videoId} />
 			<GallerySection albums={galleryAlbums} />

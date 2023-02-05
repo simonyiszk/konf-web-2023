@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { FB_EVENT_LINK } from "@/utils/constants";
 
-import manifest from "../../../package.json";
+import manifest from "../../../../package.json";
 
 type FooterProps = {
 	fill?: "none" | "pattern";

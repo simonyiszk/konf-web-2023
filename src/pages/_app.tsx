@@ -5,7 +5,7 @@ import Script from "next/script";
 import { appWithTranslation } from "next-i18next";
 import React from "react";
 
-import { TRACKING_ID } from "@/utils/track";
+import { TRACKING_ID } from "@/utils/constants";
 
 function KonfApp({ Component, pageProps }: AppProps) {
 	return (

@@ -1,5 +1,5 @@
+import clsx from "clsx";
 import Image from "next/image";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
 import { DownArrowButton } from "../button/DownArrowButton";
@@ -11,11 +11,11 @@ function Hero() {
 	const { t, i18n } = useTranslation("common");
 	return (
 		<div className="mx-1 mt-8 flex flex-col justify-center sm:mt-0 xl:-mt-8">
-			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] sm:mx-28 sm:-mb-6 sm:w-[276px]">
+			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] self-center sm:mx-28 sm:-mb-6 sm:w-[276px]">
 				<Image
 					src="/favicon.svg"
 					alt="XX. Simonyi Konferencia logó"
-					className=""
+					className="absolute"
 					fill
 					priority
 					unoptimized
@@ -35,7 +35,7 @@ function Hero() {
 							2023
 						</span>
 						<br />{" "}
-						{new Date("2023. 03. 21")
+						{new Date("2023-03-21T08:00:00.000+02:00")
 							.toLocaleString(i18n.language, {
 								month: "long",
 							})
@@ -58,7 +58,7 @@ function Hero() {
 function CTA() {
 	const { t } = useTranslation("common");
 	return (
-		<div className="mt-4 flex flex-col items-center gap-12">
+		<div className="mt-4 flex flex-col items-center gap-8">
 			<TextButton
 				text={t("cta.register")}
 				href="https://simonyi-konferencia.eventbrite.com"
@@ -67,47 +67,21 @@ function CTA() {
 			<DownArrowButton
 				href="#video"
 				scroll={false}
-				className="block"
+				className={clsx("z-10 block", styles.bounce)}
 				size={60}
 			/>
 		</div>
 	);
 }
 
-function LocalMenu() {
-	const router = useRouter();
-	const { locale } = router;
-
-	return (
-		<div className="absolute top-2 right-2 z-30 sm:top-4 sm:right-4">
-			<button
-				type="button"
-				className="p-2 hover:underline hover:opacity-75"
-				onClick={() => {
-					const path = router.asPath;
-					if (locale === "en") {
-						router.push(path, path, { locale: "hu" });
-					} else {
-						router.push(path, path, { locale: "en" });
-					}
-				}}
-				aria-label="Nyelv váltása"
-			>
-				{locale === "en" ? "HU" : "EN"}
-			</button>
-		</div>
-	);
-}
-
 export function HeroV1() {
 	return (
-		<>
-			<LocalMenu />
-			<div className={styles.heroV1}>
-				<Hero />
-				<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
-				<CTA />
-			</div>
-		</>
+		<div className={clsx(styles.heroV1, "bg-hero-pattern")}>
+			<Hero />
+			<CountdownTimer endDate="2023-03-21T08:00:00.000+02:00" />
+			<CTA />
+			<div className="pointer-events-none absolute bottom-0 h-32 w-full bg-gradient-to-b from-transparent to-konf-background-blue" />
+			<div className="pointer-events-none absolute -bottom-16 h-16 w-full bg-gradient-to-t from-transparent to-konf-background-blue" />
+		</div>
 	);
 }

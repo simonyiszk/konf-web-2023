@@ -33,12 +33,22 @@ function TimerBlock({ time, unit, hasColon }: TimerBlockProps) {
 					{`0${time}`.slice(-2)}
 				</span>
 
-				<span className="text-xl font-normal text-white">{unit}</span>
+				<span
+					className="no-gradient-on-text text-xl font-normal text-white"
+					style={{ WebkitTextFillColor: "white" }}
+				>
+					{unit}
+				</span>
 			</span>
 			{hasColon && (
 				<span className="mx-1 flex flex-col justify-center text-center">
 					<span className="gradient-on-text font-black">:</span>
-					<span className="text-xl font-normal text-white">:</span>
+					<span
+						className="no-gradient-on-text text-xl font-normal text-white"
+						style={{ WebkitTextFillColor: "white" }}
+					>
+						:
+					</span>
 				</span>
 			)}
 		</>
@@ -47,7 +57,7 @@ function TimerBlock({ time, unit, hasColon }: TimerBlockProps) {
 
 function Loading() {
 	return (
-		<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl" />
+		<p className="blue-green-gradient gradient-on-text flex flex-row text-4xl font-medium sm:text-5xl" />
 	);
 }
 
@@ -80,7 +90,7 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 
 	return (
 		<Suspense fallback={<Loading />}>
-			<p className="blue-green-gradient flex flex-row bg-clip-text text-4xl font-medium sm:text-5xl">
+			<p className="blue-green-gradient gradient-on-text flex flex-row text-4xl font-medium sm:text-5xl">
 				{time.weeks > 0 && (
 					<TimerBlock
 						time={time.weeks}

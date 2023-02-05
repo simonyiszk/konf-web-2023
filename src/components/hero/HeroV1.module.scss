@@ -1,5 +1,24 @@
 .heroV1 {
-	@apply container relative mx-auto flex min-h-screen flex-col items-center justify-center gap-16;
+	@apply relative mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-4 sm:gap-8 md:gap-16;
 
 	min-height: 100svh;
+}
+
+.bounce {
+	@keyframes bounce {
+		0%,
+		10%,
+		20%,
+		33%,
+		100% {
+			transform: translateY(0);
+		}
+		15% {
+			transform: translateY(-15px);
+		}
+		25% {
+			transform: translateY(-7px);
+		}
+	}
+	animation: bounce 4.5s infinite;
 }
