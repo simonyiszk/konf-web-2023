@@ -2,6 +2,7 @@ import { useTranslation } from "next-i18next";
 import Youtube from "react-youtube";
 
 import { DownArrowButton } from "../button/DownArrowButton";
+import { BgElement } from "../layout/decorations/BgDecoration";
 
 type VideoSectionProps = {
 	videoId: string;
@@ -27,7 +28,16 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 						hasBG
 					/>
 				</div>
-				<div className="md:col-span-4">
+				<div className="relative md:col-span-4">
+					<BgElement
+						img="blue"
+						dimensions={{
+							height: 1000,
+							width: 1000,
+						}}
+						rotate={0}
+						className="top-[-350px] right-[-470px] z-[0] h-max w-max sm:top-[-250px] sm:right-[-570px]"
+					/>
 					<div
 						style={{
 							backdropFilter: "blur(10px)",

@@ -12,7 +12,7 @@ type BgElementProps = {
 	};
 } & React.HTMLAttributes<HTMLDivElement>;
 
-function BgElement({
+export function BgElement({
 	img = "blue",
 	dimensions,
 	rotate,
