@@ -38,11 +38,11 @@ export function ImageTile({
 					className="aspect-1 object-cover"
 					draggable={false}
 				/>
-				<div className="flex h-16 flex-col items-center justify-center rounded-t lg:h-20">
-					<span className="block text-center text-xl font-black lg:text-3xl">
+				<div className="my-2 flex flex-col items-center justify-center rounded-t lg:h-20">
+					<span className="block text-center text-2xl font-black lg:text-3xl">
 						{name}
 					</span>
-					<span className="block text-center">
+					<span className="block text-center text-lg">
 						{t("name.conference").toLowerCase()}
 					</span>
 				</div>
