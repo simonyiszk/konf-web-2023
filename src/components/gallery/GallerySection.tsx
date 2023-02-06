@@ -97,7 +97,6 @@ export function GallerySection({ albums }: GallerySectionProps) {
 						onNext={gotoNext}
 						onClose={() => {
 							closeLightbox();
-							// setCurrentIndex(0);
 						}}
 						// @ts-expect-error: wrong type defs?
 						renderNextButton={({ canNext }) => (

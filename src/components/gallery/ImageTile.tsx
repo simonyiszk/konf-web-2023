@@ -23,7 +23,7 @@ export function ImageTile({
 	return (
 		<div>
 			<button
-				className="block overflow-hidden rounded-[4px] border-2"
+				className="block w-48 overflow-hidden rounded border-2"
 				type="button"
 				onClick={() => {
 					setOpen(true);
@@ -32,13 +32,13 @@ export function ImageTile({
 			>
 				<Image
 					src={`https:${thumbnail?.fields.file?.url}`}
-					width={300}
-					height={300}
+					width={188}
+					height={188}
 					alt={name}
-					className="h-40 w-40 object-cover"
+					className="aspect-1 object-cover"
 					draggable={false}
 				/>
-				<div className="flex h-16 flex-col items-center justify-center lg:h-20">
+				<div className="flex h-16 flex-col items-center justify-center rounded-t lg:h-20">
 					<span className="block text-center text-xl font-black lg:text-3xl">
 						{name}
 					</span>
