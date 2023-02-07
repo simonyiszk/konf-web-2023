@@ -5,6 +5,8 @@ const withMDX = require("@next/mdx")({
 		providerImportSource: "@mdx-js/react",
 	},
 });
+const withPlugins = require("next-compose-plugins");
+const withTM = require("next-transpile-modules")(["three"]);
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
@@ -81,9 +83,28 @@ const nextConfig = {
 			},
 		];
 	},
+
+	webpack(config, options) {
+		config.module.rules.push({
+			test: /\.(glb|gltf)$/,
+			use: {
+				loader: "file-loader",
+			},
+		});
+
+		return config;
+	},
 };
 
-module.exports = withMDX({
-	pageExtensions: ["tsx", "mdx", "ts"],
-	...nextConfig,
-});
+module.exports = withPlugins(
+	[
+		[withTM],
+		[
+			withMDX,
+			{
+				pageExtensions: ["tsx", "mdx", "ts"],
+			},
+		],
+	],
+	nextConfig,
+);

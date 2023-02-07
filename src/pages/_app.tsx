@@ -16,7 +16,9 @@ function KonfApp({ Component, pageProps }: AppProps) {
 				defer
 				data-website-id={TRACKING_ID}
 				src="https://succ.andrisborbas.com/succ.js"
-				// data-auto-track="false"
+				data-auto-track={
+					process.env.VERCEL_ENV === "production" ? "true" : "false"
+				}
 			/>
 
 			{/* Purge old Gatsby service worker */}

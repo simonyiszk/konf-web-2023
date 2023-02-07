@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { useTranslation } from "next-i18next";
 import { useCallback, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";

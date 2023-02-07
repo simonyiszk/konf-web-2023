@@ -1,6 +1,11 @@
+import { Environment, OrbitControls } from "@react-three/drei";
+import { Canvas, useLoader } from "@react-three/fiber";
 import clsx from "clsx";
 import Image from "next/image";
+import { Suspense } from "react";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+// import asset from "../../../../public/assets/3d/holoasset2.gltf";
 import styles from "./BgDecoration.module.scss";
 
 type BgElementProps = {
@@ -49,7 +54,7 @@ export function BgElement({
 
 export function BgDecoration() {
 	return (
-		<div className="pointer-events-none absolute inset-y-0 mx-auto h-screen w-screen overflow-hidden">
+		<div className="absolute inset-y-0 mx-auto h-screen w-screen overflow-hidden">
 			<BgElement
 				img="blue"
 				dimensions={{
