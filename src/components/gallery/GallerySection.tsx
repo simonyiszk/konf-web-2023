@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useTranslation } from "next-i18next";
 import { useCallback, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -104,7 +105,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 						})}
 					</div>
 
-					<div className="-mt-3.5 h-1 w-full bg-white" />
+					<div className={styles.line} />
 					<div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 select-none bg-gradient-to-l from-transparent via-konf-background-blue/20 to-konf-background-blue" />
 					<div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 select-none bg-gradient-to-r from-transparent via-konf-background-blue/20 to-konf-background-blue" />
 					<button

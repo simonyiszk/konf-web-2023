@@ -13,3 +13,14 @@
 		display: none;
 	}
 }
+
+.line {
+	@apply -mt-3.5 h-1 w-full;
+	background: linear-gradient(
+		90deg,
+		#77b16a 0px,
+		#77b16a 64px,
+		#42b4e5 calc(100% - 64px),
+		#42b4e5 100%
+	);
+}
