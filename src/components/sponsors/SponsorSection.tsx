@@ -18,14 +18,14 @@ export function SponsorSection({
 		<div className="span bg-white">
 			<section className={styles.section} id="sponsors">
 				<h2 className="text-3xl font-bold">{t("sponsors.title")}</h2>
-				<div>
-					<h3 className="text-3xl">{t("sponsors.items.main")}</h3>
+				<div className="flex flex-col justify-center">
+					<h3 className="mb-auto text-3xl">{t("sponsors.items.main")}</h3>
 					<div className={styles.containerOne}>
 						{goldSponsor.fields.image && (
 							<SponsorLogo
 								key={goldSponsor.fields.name}
 								{...goldSponsor.fields}
-								className="h-auto w-[232px]"
+								className="mx-0 h-auto w-72 sm:w-96 2xl:w-80"
 							/>
 						)}
 					</div>

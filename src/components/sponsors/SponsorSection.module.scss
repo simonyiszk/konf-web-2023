@@ -24,10 +24,7 @@
 }
 
 .containerOne {
-	@apply flex
-		flex-wrap
-		items-center
-		justify-evenly;
+	@apply my-auto flex flex-wrap items-center justify-evenly;
 }
 
 .containerMany {

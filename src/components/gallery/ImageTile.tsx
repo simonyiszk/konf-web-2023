@@ -23,21 +23,23 @@ export function ImageTile({
 	return (
 		<div>
 			<button
-				className="block w-48 overflow-hidden rounded border-2"
+				className="block w-56 select-none rounded border-2"
 				type="button"
 				onClick={() => {
 					setOpen(true);
 					handleSelect(i);
 				}}
 			>
-				<Image
-					src={`https:${thumbnail?.fields.file?.url}`}
-					width={188}
-					height={188}
-					alt={name}
-					className="aspect-1 object-cover"
-					draggable={false}
-				/>
+				<div className="aspect-w-1 aspect-h-1 aspect-1 rounded">
+					<Image
+						src={`https:${thumbnail?.fields.file?.url}`}
+						width={220}
+						height={220}
+						alt={name}
+						className="object-cover"
+						draggable={false}
+					/>
+				</div>
 				<div className="my-2 flex flex-col items-center justify-center rounded-t lg:h-20">
 					<span className="block text-center text-2xl font-black lg:text-3xl">
 						{name}

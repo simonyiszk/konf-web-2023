@@ -1,11 +1,11 @@
-import clsx from "clsx";
 import { useTranslation } from "next-i18next";
-import { useCallback, useState } from "react";
-import ScrollContainer from "react-indiana-drag-scroll";
+import { useCallback, useRef, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Lightbox from "react-spring-lightbox";
 
 import type { ReturnTypeGalleryImages } from "@/utils/contentful";
 
+import styles from "./GallerySection.module.scss";
 import { ImageTile } from "./ImageTile";
 import {
 	OverlayFooter,
@@ -20,6 +20,10 @@ type GallerySectionProps = {
 
 export function GallerySection({ albums }: GallerySectionProps) {
 	const { t } = useTranslation("common");
+
+	const scrollRef = useRef<HTMLDivElement>(null);
+	const [pos, setPos] = useState({ left: 0, top: 0, x: 0, y: 0 });
+	const [isScrolling, setScrolling] = useState(false);
 
 	const [activeAlbumIndex, setActiveAlbumIndex] = useState(0);
 
@@ -51,37 +55,86 @@ export function GallerySection({ albums }: GallerySectionProps) {
 				<h2 className="mb-16 text-center text-4xl">
 					{t("gallery.items.photo.title")}
 				</h2>
-				<div className="relative h-full w-full">
-					<ScrollContainer
-						vertical={false}
-						hideScrollbars
-						horizontal
-						className={clsx(
-							albums.length < 8 && "container mx-auto",
-							"flex h-full w-full cursor-grab gap-6 px-4 lg:px-20",
-						)}
-						nativeMobileScroll
-					>
-						{albums.map(({ name, thumbnail, year }, i) => (
-							<ImageTile
-								key={name + year}
-								name={name}
-								thumbnail={thumbnail}
-								year={year}
-								i={i}
-								handleSelect={handleSelect}
-								setOpen={openModal}
-							/>
-						))}
-					</ScrollContainer>
+				<div className="relative h-max w-full">
+					{/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+					<div
+						ref={scrollRef}
+						className={styles.scrollContainer}
+						onMouseMove={(e) => {
+							if (scrollRef.current && isScrolling) {
+								scrollRef.current.scrollLeft = pos.left - (e.clientX - pos.x);
+								scrollRef.current.scrollTop = pos.top - (e.clientY - pos.y);
+							}
+						}}
+						onMouseDown={(e) => {
+							if (scrollRef.current) {
+								setPos({
+									left: scrollRef.current.scrollLeft,
+									top: scrollRef.current.scrollTop,
+									x: e.clientX,
+									y: e.clientY,
+								});
+								setScrolling(true);
 
-					{albums.length > 0 && (
-						<>
-							<div className="-mt-3.5 h-1 w-full bg-white" />
-							<div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 select-none bg-gradient-to-l from-transparent via-konf-background-blue/20 to-konf-background-blue" />
-							<div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 select-none bg-gradient-to-r from-transparent via-konf-background-blue/20 to-konf-background-blue" />
-						</>
-					)}
+								scrollRef.current.style.cursor = "grabbing";
+								scrollRef.current.style.userSelect = "none";
+							}
+						}}
+						onMouseUp={() => {
+							setScrolling(false);
+
+							if (scrollRef.current) {
+								scrollRef.current.style.cursor = "grab";
+								scrollRef.current.style.userSelect = "auto";
+							}
+						}}
+					>
+						{albums.map(({ name, thumbnail, year }, i) => {
+							return (
+								<ImageTile
+									key={name + year}
+									name={name}
+									thumbnail={thumbnail}
+									year={year}
+									i={i}
+									handleSelect={handleSelect}
+									setOpen={openModal}
+								/>
+							);
+						})}
+					</div>
+
+					<div className="-mt-3.5 h-1 w-full bg-white" />
+					<div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 select-none bg-gradient-to-l from-transparent via-konf-background-blue/20 to-konf-background-blue" />
+					<div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 select-none bg-gradient-to-r from-transparent via-konf-background-blue/20 to-konf-background-blue" />
+					<button
+						className="absolute top-[40%] left-2 z-20 inline-block p-2 transition-all active:scale-75 disabled:opacity-50"
+						type="button"
+						onClick={() => {
+							if (scrollRef.current) {
+								scrollRef.current.scrollTo({
+									left: scrollRef.current.scrollLeft - 248,
+									behavior: "smooth",
+								});
+							}
+						}}
+					>
+						<FaChevronLeft className="h-8 w-8 text-white drop-shadow-md transition-all hover:scale-125 sm:h-12 sm:w-12" />
+					</button>
+					<button
+						className="absolute top-[40%] right-2 z-20 inline-block p-2 transition-all active:scale-75 disabled:opacity-50"
+						type="button"
+						onClick={() => {
+							if (scrollRef.current) {
+								scrollRef.current.scrollTo({
+									left: scrollRef.current.scrollLeft + 248,
+									behavior: "smooth",
+								});
+							}
+						}}
+					>
+						<FaChevronRight className="h-8 w-8 text-white drop-shadow-md transition-all hover:scale-125 sm:h-12 sm:w-12" />
+					</button>
 
 					<Lightbox
 						className="bg-black/75 backdrop-blur"
