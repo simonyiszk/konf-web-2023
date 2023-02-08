@@ -8,7 +8,7 @@ import {
 } from "@react-three/fiber";
 import { useControls } from "leva";
 import { useRef } from "react";
-import { Group, TextureLoader } from "three";
+import { Group, Mesh, TextureLoader } from "three";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { UnrealBloomPass } from "three-stdlib";
 
@@ -21,7 +21,7 @@ type ThreeBlobProps = {
 /* eslint-disable react/no-unknown-property */
 
 function ThreeBlob({ object, position, scale, ...restProps }: ThreeBlobProps) {
-	const ref = useRef(null);
+	const ref = useRef<Mesh>(null);
 	// console.log(position);
 	// console.log(object.nodes.Projection1);
 
@@ -38,7 +38,9 @@ function ThreeBlob({ object, position, scale, ...restProps }: ThreeBlobProps) {
 
 	return (
 		<mesh
+			// @ts-expect-error: asd
 			ref={ref}
+			// @ts-expect-error: asd
 			geometry={object.nodes.Projection1.geometry}
 			position={position}
 			scale={scale}
@@ -62,7 +64,7 @@ export function ThreeBlobs({ ...restProps }) {
 		</group>
 	);
 }
-
+// @ts-expect-error: asd
 function Shape({ children, color, ...props }) {
 	return (
 		<mesh {...props}>
@@ -85,6 +87,7 @@ export function Scene() {
 		<Canvas style={{ width: "100vw", height: "100vh" }}>
 			<Effects disableGamma>
 				{/* threshhold has to be 1, so nothing at all gets bloom by default */}
+				{/* @ts-expect-error: asd */}
 				<unrealBloomPass threshold={1} strength={intensity} radius={radius} />
 			</Effects>
 			<Shape color={[4, 0.1, 1]} position={[-2, 0, 0]}>
@@ -106,4 +109,4 @@ export function Scene() {
 	);
 }
 
-/* eslint-enable react/no-unknown-property */
+/* eslint-enable */
