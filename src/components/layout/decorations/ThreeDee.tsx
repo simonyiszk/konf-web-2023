@@ -79,7 +79,8 @@ function Shape({ children, color, ...props }) {
 }
 
 export function Scene() {
-	const { intensity, radius } = useControls({
+	const { threshold, intensity, radius } = useControls({
+		threshold: { value: 1, min: 0, max: 1, step: 0.1 },
 		intensity: { value: 1, min: 0, max: 10, step: 0.1 },
 		radius: { value: 1, min: 0, max: 10, step: 0.1 },
 	});
@@ -88,7 +89,11 @@ export function Scene() {
 			<Effects disableGamma>
 				{/* threshhold has to be 1, so nothing at all gets bloom by default */}
 				{/* @ts-expect-error: asd */}
-				<unrealBloomPass threshold={1} strength={intensity} radius={radius} />
+				<unrealBloomPass
+					threshold={threshold}
+					strength={intensity}
+					radius={radius}
+				/>
 			</Effects>
 			<Shape color={[4, 0.1, 1]} position={[-2, 0, 0]}>
 				<planeGeometry args={[1.5, 1.5]} />
