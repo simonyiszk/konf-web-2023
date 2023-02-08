@@ -6,7 +6,7 @@ const withMDX = require("@next/mdx")({
 	},
 });
 const withPlugins = require("next-compose-plugins");
-const withTM = require("next-transpile-modules")(["three"]);
+const withTM = require("next-transpile-modules")(["three", "three-stdlib"]);
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
