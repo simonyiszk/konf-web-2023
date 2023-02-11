@@ -6,6 +6,7 @@ import { HeroV1 } from "@/components/hero/HeroV1";
 import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
+import { PresentationSection } from "@/components/presentations/PresentationSection";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
 import { VideoSection } from "@/components/video/VideoSection";
 import { getGalleryImages, getSponsors } from "@/utils/contentful";
@@ -42,6 +43,7 @@ export default function Index({
 			<Seo />
 			<BgDecoration />
 			<HeroV1 />
+			<PresentationSection />
 			<VideoSection videoId={videoId} />
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection {...sponsors} />
