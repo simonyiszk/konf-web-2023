@@ -81,6 +81,16 @@ const nextConfig = {
 			},
 		];
 	},
+
+	async rewrites() {
+		return [
+			{
+				source: "/hu/eloadasok",
+				destination: "/hu/presentations",
+				locale: false,
+			},
+		];
+	},
 };
 
 module.exports = withMDX({
