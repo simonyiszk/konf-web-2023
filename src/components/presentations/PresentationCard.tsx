@@ -21,6 +21,7 @@ type PresentationCardProps = {
 	presenter: string;
 	title: string;
 	description: string;
+	PREVIEW?: boolean;
 };
 
 // TODO: remove PARTIAL
@@ -28,12 +29,13 @@ export function PresentationCard({
 	title = mock.title,
 	presenter = "Dr. Dudás Levente",
 	description = mock.description,
+	PREVIEW,
 }: Partial<PresentationCardProps>) {
 	const slicedDescription = sliceString(description, 200);
 
 	return (
-		<div className="relative w-[350px] overflow-hidden rounded bg-konf-overlay-blue">
-			<div className="relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
+		<div className="relative w-full max-w-[360px] overflow-hidden rounded bg-konf-overlay-blue">
+			<div className=" relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src="http://placekitten.com/350/200"
 					fill
@@ -49,12 +51,24 @@ export function PresentationCard({
 				</span>
 			</div>
 			<div className="my-10 px-5">
-				<h2 className={clsx("mb-5 text-xl font-bold text-white")}>{title}</h2>
+				<Link href="/presentations/asd">
+					<h2
+						className={clsx(
+							"mb-5 text-xl font-bold text-white",
+							"transition duration-300 ease-in-out hover:text-konf-accent-yellow",
+						)}
+					>
+						{title}
+					</h2>
+				</Link>
 				<p className="text-base">{slicedDescription}</p>
 			</div>
 			<Link
-				className="inline-block w-full bg-konf-primary-green py-2 text-center text-xl font-bold text-konf-background-blue                "
-				href="/"
+				className={clsx(
+					PREVIEW ? "bg-konf-primary-green" : "bg-konf-primary-white",
+					"inline-block w-full  py-2 text-center text-xl font-bold text-konf-background-blue",
+				)}
+				href="/presentations/asd"
 			>
 				Részletek
 			</Link>

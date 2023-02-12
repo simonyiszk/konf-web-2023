@@ -1,44 +1,47 @@
 import clsx from "clsx";
-import type { GetStaticPropsContext } from "next";
+import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import { BgElement } from "@/components/layout/decorations/BgDecoration";
+import { Layout } from "@/components/layout/Layout";
+import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { PresentationCard } from "@/components/presentations/PresentationCard";
 
-export default function Presentations() {
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+export default function Presentations({ buildDate }: PageProps) {
 	const { t } = useTranslation("common");
 	return (
-		<>
+		<Layout buildDate={buildDate}>
 			<Seo title={t("presentations.title")} />
 
-			<div>
-				<main className="mx-auto my-16 max-w-6xl px-4">
-					<h1
-						className={clsx(
-							"text-center text-4xl font-black sm:text-5xl md:text-7xl lg:text-9xl",
-							"gradient-on-text blue-green-gradient",
-						)}
-					>
-						{t("presentations.title")}
-					</h1>
-					<section
-						style={{
-							gridTemplateColumns: "repeat(auto-fill,minmax(360px,1fr))",
-						}}
-						className="my-32 mx-auto grid place-items-center gap-x-4 gap-y-8"
-					>
-						<PresentationCard />
-						<PresentationCard />
-						<PresentationCard />
-						<PresentationCard />
-						<PresentationCard />
-						<PresentationCard />
-					</section>
-				</main>
-			</div>
-		</>
+			<LayoutContent maxWidth="max-w-8xl">
+				<h1
+					className={clsx(
+						"text-center text-5xl font-black md:text-7xl lg:text-9xl",
+						"bg-gradient-to-r bg-clip-text text-transparent",
+						"from-konf-primary-blue to-konf-primary-green",
+						"animate-text",
+					)}
+				>
+					{t("presentations.title")}
+				</h1>
+				<section
+					style={{
+						gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
+					}}
+					className="my-32 mx-auto grid place-items-center gap-x-4 gap-y-8"
+				>
+					<PresentationCard PREVIEW />
+					<PresentationCard PREVIEW />
+					<PresentationCard />
+					<PresentationCard />
+					<PresentationCard />
+					<PresentationCard />
+				</section>
+			</LayoutContent>
+		</Layout>
 	);
 }
 
