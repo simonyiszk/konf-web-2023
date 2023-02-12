@@ -64,9 +64,15 @@
 						},
 						"break": {
 							"type": "string"
+						},
+						"more": {
+							"type": "string"
+						},
+						"back": {
+							"type": "string"
 						}
 					},
-					"required": ["opening", "break"]
+					"required": ["opening", "break", "more", "back"]
 				}
 			},
 			"required": ["title", "items"]

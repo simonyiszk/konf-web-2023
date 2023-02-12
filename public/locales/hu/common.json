@@ -20,7 +20,9 @@
 		"title": "Előadások",
 		"items": {
 			"opening": "Megnyitó",
-			"break": "Szünet"
+			"break": "Szünet",
+			"more": "További izgalmas előadások",
+			"back": "Vissza az előadásokhoz"
 		}
 	},
 	"contact": {
