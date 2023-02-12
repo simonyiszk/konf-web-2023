@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 
 const mock = {
 	title: "Lorem ipsum dolor sit amet, consectetur no se mas en la",
@@ -32,6 +33,8 @@ export function PresentationCard({
 	PREVIEW,
 }: Partial<PresentationCardProps>) {
 	const slicedDescription = sliceString(description, 200);
+
+	const { t } = useTranslation("common");
 
 	return (
 		<div className="relative w-full max-w-[360px] overflow-hidden rounded bg-konf-overlay-blue">
@@ -70,7 +73,7 @@ export function PresentationCard({
 				)}
 				href="/presentations/asd"
 			>
-				Részletek
+				{t("presentations.items.details")}
 			</Link>
 		</div>
 	);

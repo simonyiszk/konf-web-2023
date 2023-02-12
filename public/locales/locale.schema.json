@@ -70,9 +70,12 @@
 						},
 						"back": {
 							"type": "string"
+						},
+						"details": {
+							"type": "string"
 						}
 					},
-					"required": ["opening", "break", "more", "back"]
+					"required": ["opening", "break", "more", "back", "details"]
 				}
 			},
 			"required": ["title", "items"]
