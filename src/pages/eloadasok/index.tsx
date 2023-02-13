@@ -33,8 +33,8 @@ export default function Presentations({ buildDate }: PageProps) {
 					}}
 					className="my-32 mx-auto grid place-items-center gap-x-4 gap-y-8"
 				>
-					<PresentationCard PREVIEW />
-					<PresentationCard PREVIEW />
+					<PresentationCard />
+					<PresentationCard />
 					<PresentationCard />
 					<PresentationCard />
 					<PresentationCard />

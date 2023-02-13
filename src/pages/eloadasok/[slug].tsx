@@ -1,6 +1,7 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FaArrowLeft } from "react-icons/fa";
 
@@ -66,15 +67,17 @@ function Speaker() {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Presentation({ buildDate }: PageProps) {
+	const { t } = useTranslation("common");
 	return (
 		<Layout buildDate={buildDate}>
 			<Seo title={mock.title} description={mock.description} />
 			<LayoutContent>
 				<Link
-					href="/presentations"
+					href="/eloadasok"
 					className="mb-8 text-lg opacity-70 transition duration-300 hover:opacity-100"
 				>
-					<FaArrowLeft className="inline" /> vissza az előadókhoz
+					<FaArrowLeft className="inline" />{" "}
+					{t("presentations.items.back").toLowerCase()}
 				</Link>
 				<div className="mt-8 rounded bg-konf-overlay-blue px-4">
 					<section className="mx-auto grid max-w-5xl gap-8 py-16 sm:grid-cols-3">
@@ -100,7 +103,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 
 export async function getStaticPaths() {
 	return {
-		paths: ["/presentations/asd"],
+		paths: ["/eloadasok/asd", "/en/eloadasok/asd"],
 		fallback: false,
 	};
 }
