@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { useTranslation } from "next-i18next";
 import { useCallback, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -52,7 +51,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 
 	return (
 		<div>
-			<section className="mx-auto w-full py-16">
+			<section className="mx-auto w-full py-16" id="gallery">
 				<h2 className="mb-16 text-center text-4xl">
 					{t("gallery.items.photo.title")}
 				</h2>

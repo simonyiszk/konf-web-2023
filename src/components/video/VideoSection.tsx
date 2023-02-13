@@ -30,7 +30,7 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 						className="top-[770px] left-[-370px] z-[0] hidden h-max w-max xl:block"
 					/>
 					<DownArrowButton
-						href="#sponsors"
+						href="#gallery"
 						scroll={false}
 						size={60}
 						className="hidden md:block"
