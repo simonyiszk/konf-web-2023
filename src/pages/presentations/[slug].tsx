@@ -1,5 +1,7 @@
+import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FaArrowLeft } from "react-icons/fa";
 
 import { Layout } from "@/components/layout/Layout";
@@ -61,13 +63,12 @@ function Speaker() {
 	);
 }
 
-export default function Presentation() {
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+export default function Presentation({ buildDate }: PageProps) {
 	return (
-		<Layout>
-			<Seo
-				title="Kicsiben is nagyok: budapesti fejlesztésű MEMS-érzékelők és
-							méréstechnikai kihívások"
-			/>
+		<Layout buildDate={buildDate}>
+			<Seo title={mock.title} description={mock.description} />
 			<LayoutContent>
 				<Link
 					href="/presentations"
@@ -84,4 +85,22 @@ export default function Presentation() {
 			</LayoutContent>
 		</Layout>
 	);
+}
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
+
+	return {
+		props: {
+			...i18n,
+			buildDate: Date.now(),
+		},
+	};
+}
+
+export async function getStaticPaths() {
+	return {
+		paths: ["/presentations/asd"],
+		fallback: false,
+	};
 }
