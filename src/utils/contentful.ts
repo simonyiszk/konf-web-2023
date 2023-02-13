@@ -71,4 +71,11 @@ export async function getSponsors() {
 	return { goldSponsor, silverSponsors, bronzeSponsors };
 }
 
+export async function getPresentations() {
+	const presentations = await client.getEntries({
+		content_type: "presentation",
+	});
+	return presentations.items.map((item) => item.fields);
+}
+
 export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
