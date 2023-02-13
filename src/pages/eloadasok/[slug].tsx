@@ -45,6 +45,7 @@ function Speaker() {
 					src="http://placekitten.com/200/300"
 					fill
 					alt="asd"
+					unoptimized
 				/>
 			</div>
 			<div className="relative flex flex-row justify-center">
@@ -58,6 +59,7 @@ function Speaker() {
 					alt="asd"
 					fill
 					className="object-cover"
+					unoptimized
 				/>
 			</div>
 		</div>
@@ -67,13 +69,15 @@ function Speaker() {
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Presentation({ buildDate }: PageProps) {
-	const { t } = useTranslation("common");
+	const { t, i18n } = useTranslation("common");
+
+	const href = i18n.language === "hu" ? "/eloadasok" : "/en/presentations";
 	return (
 		<Layout buildDate={buildDate}>
 			<Seo title={mock.title} description={mock.description} />
 			<LayoutContent>
 				<Link
-					href="/eloadasok"
+					href={href}
 					className="mb-8 text-lg opacity-70 transition duration-300 hover:opacity-100"
 				>
 					<FaArrowLeft className="inline" />{" "}

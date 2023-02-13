@@ -83,7 +83,18 @@ const nextConfig = {
 	},
 
 	async rewrites() {
-		return [];
+		return [
+			{
+				source: "/en/presentations",
+				destination: "/en/eloadasok",
+				locale: false,
+			},
+			{
+				source: "/en/presentations/:slug*",
+				destination: "/en/eloadasok/:slug*",
+				locale: false,
+			},
+		];
 	},
 };
 

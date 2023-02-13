@@ -12,9 +12,13 @@ export function Header() {
 				onClick={() => {
 					const path = router.asPath;
 					if (locale === "en") {
-						router.push(path, path, { locale: "hu" });
+						router.push(path, path.replace("presentations", "eloadasok"), {
+							locale: "hu",
+						});
 					} else {
-						router.push(path, path, { locale: "en" });
+						router.push(path, path.replace("eloadasok", "presentations"), {
+							locale: "en",
+						});
 					}
 				}}
 				aria-label="Nyelv váltása"

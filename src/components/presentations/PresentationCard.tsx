@@ -32,11 +32,14 @@ export function PresentationCard({
 }: Partial<PresentationCardProps>) {
 	const slicedDescription = sliceString(description, 200);
 
-	const { t } = useTranslation("common");
+	const { t, i18n } = useTranslation("common");
+
+	const href =
+		i18n.language === "hu" ? "/eloadasok/asd" : "/en/presentations/asd";
 
 	return (
 		<Link
-			href="/eloadasok/asd"
+			href={href}
 			className="relative w-full max-w-[360px] overflow-hidden rounded bg-konf-overlay-blue transition duration-200 ease-in-out hover:drop-shadow-[0_12px_12px_rgba(255,255,255,0.25)]"
 		>
 			<div className="relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
