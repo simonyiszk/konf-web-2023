@@ -1,7 +1,7 @@
 import type * as Contentful from "contentful";
 
 export interface TypePresentationFields {
-    room: Contentful.EntryFields.Symbol;
+    room: "IB025" | "IB028";
     title: Contentful.EntryFields.Symbol;
     name: Contentful.EntryFields.Symbol;
     profession: Contentful.EntryFields.Symbol;
