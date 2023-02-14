@@ -8,41 +8,36 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
+import { getPresentation, getPresentations } from "@/utils/contentful";
 
-const mock = {
-	title: `Kicsiben is nagyok: budapesti fejlesztésű MEMS-érzékelők és
-	méréstechnikai kihívások`,
-	description: `Menetstabilizáló rendszer, okostelefon, earbud, gamer controller és
-	a marsi helicopter. Mi ezekben a közös? Valamennyi rendszer lelke a
-	MEMS-alapú érzékelés: gyorsulás, szögelfordulás, légnyomás, mágneses
-	térerősség. Ezek az emberi hajszál átmérőjénél is kisebb
-	mikrostruktúrák pár év alatt a hétköznapjaink észrevétlen és
-	nélkülözhetetlen részévé váltak, milliószámra kerülnek okos
-	eszközökbe és járművekbe, mégis nagyon kevesen ismerik működésük
-	fizikai alapjait, ASIC-jük komplexitását és a gyártásuk során
-	alkalmazott gépi tanulási algoritumusok rejtelmeit. Előadásunkban a
-	Bosch mérnökei hozzák közelebb a MEMS-érzékelők bonyolult világát és
-	adnak betekintést a Budapesti Innovációs Kampuszban zajló
-	fejlesztések mérnöki kihívásaiba.`,
+type TextContentProps = {
+	title: string;
+	description: string;
 };
 
-function TextContent() {
+function TextContent({ title, description }: TextContentProps) {
 	return (
 		<div className="sm:col-span-2">
-			<h1 className="text-3xl font-semibold lg:text-5xl">{mock.title}</h1>
+			<h1 className="text-3xl font-semibold lg:text-5xl">{title}</h1>
 			{/* <p className="my-1 text-lg tracking-wider ">IB026 | 16:00 - 17:00</p> */}
-			<p className="mt-4 text-lg">{mock.description}</p>
+			<p className="mt-4 text-lg">{description}</p>
 		</div>
 	);
 }
 
-function Speaker() {
+type SpeakerProps = {
+	name: string;
+	image: string;
+	sponsorImage?: string;
+};
+
+function Speaker({ image, name, sponsorImage }: SpeakerProps) {
 	return (
 		<div>
 			<div className="relative aspect-1 h-auto w-full">
 				<Image
 					className="rounded-lg object-cover"
-					src="http://placekitten.com/200/300"
+					src={image}
 					fill
 					alt="asd"
 					unoptimized
@@ -50,31 +45,36 @@ function Speaker() {
 			</div>
 			<div className="relative flex flex-row justify-center">
 				<p className="absolute mx-auto -mt-4 bg-konf-accent-yellow px-2 text-center text-2xl font-bold text-konf-background-blue">
-					Borda Péter
+					{name}
 				</p>
 			</div>
-			<div className="relative mt-8 h-16 w-full">
-				<Image
-					src="http://placekitten.com/200/300"
-					alt="asd"
-					fill
-					className="object-cover"
-					unoptimized
-				/>
-			</div>
+			{sponsorImage && (
+				<div className="relative mt-8 h-12 w-full rounded bg-white sm:mt-16 md:mt-8">
+					<Image
+						src={sponsorImage}
+						alt="asd"
+						fill
+						className="object-contain p-2"
+						unoptimized
+					/>
+				</div>
+			)}
 		</div>
 	);
 }
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Presentation({ buildDate }: PageProps) {
+export default function Presentation({ buildDate, presentation }: PageProps) {
 	const { t, i18n } = useTranslation("common");
 
 	const href = i18n.language === "hu" ? "/eloadasok" : "/en/presentations";
+
+	const { title, name, image, description, sponsorLogo } = presentation.fields;
+
 	return (
 		<Layout buildDate={buildDate}>
-			<Seo title={mock.title} description={mock.description} />
+			<Seo title={title} description={description} />
 			<LayoutContent>
 				<Link
 					href={href}
@@ -85,8 +85,18 @@ export default function Presentation({ buildDate }: PageProps) {
 				</Link>
 				<div className="mt-8 rounded bg-konf-overlay-blue px-4">
 					<section className="mx-auto grid max-w-5xl gap-8 py-16 sm:grid-cols-3">
-						<Speaker />
-						<TextContent />
+						<Speaker
+							name={name}
+							sponsorImage={
+								sponsorLogo?.fields.image.fields.file?.url ?? undefined
+							}
+							image={
+								image?.fields.file
+									? `https:${image.fields.file.url}`
+									: "http://placekitten.com/200/300"
+							}
+						/>
+						<TextContent title={title} description={description} />
 					</section>
 				</div>
 			</LayoutContent>
@@ -94,20 +104,36 @@ export default function Presentation({ buildDate }: PageProps) {
 	);
 }
 
-export async function getStaticProps({ locale }: GetStaticPropsContext) {
+export async function getStaticProps({
+	locale,
+	params,
+}: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
+	const presentation = await getPresentation(params?.slug as string);
 
 	return {
 		props: {
 			...i18n,
+			presentation,
 			buildDate: Date.now(),
 		},
 	};
 }
 
 export async function getStaticPaths() {
+	const lang = ["/eloadasok", "/en/eloadasok"];
+	const presentationSlugs = (await getPresentations()).items.map(
+		({ fields }) => fields.slug,
+	);
+
+	const paths = lang.flatMap((l) => {
+		return presentationSlugs.map((presentation) => {
+			return `${l}/${presentation}`;
+		});
+	});
+
 	return {
-		paths: ["/eloadasok/asd", "/en/eloadasok/asd"],
+		paths,
 		fallback: false,
 	};
 }

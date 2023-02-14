@@ -6,16 +6,28 @@ import { HeroV1 } from "@/components/hero/HeroV1";
 import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
+import type { PresentationPreviewType } from "@/components/presentations";
 import { PresentationSection } from "@/components/presentations/PresentationSection";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
 import { VideoSection } from "@/components/video/VideoSection";
-import { getGalleryImages, getSponsors } from "@/utils/contentful";
+import {
+	getGalleryImages,
+	getPresentations,
+	getSponsors,
+	ReturnTypePresentations,
+} from "@/utils/contentful";
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
 	const sponsors = await getSponsors();
 	const videoId = process.env.YOUTUBE_VIDEO_ID ?? "MD8VGKLklVQ";
 	const galleryAlbums = await getGalleryImages();
+	const presentations: PresentationPreviewType[] = (
+		(await getPresentations()) as ReturnTypePresentations
+	).items.map(({ fields }) => ({
+		title: fields.title,
+		href: fields.slug,
+	}));
 
 	return {
 		props: {
@@ -24,6 +36,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 			videoId,
 			galleryAlbums,
 			buildDate: Date.now(),
+			presentations,
 		},
 	};
 }
@@ -35,6 +48,7 @@ export default function Index({
 	videoId,
 	galleryAlbums,
 	sponsors,
+	presentations,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	...props
 }: PageProps) {
@@ -43,7 +57,7 @@ export default function Index({
 			<Seo />
 			<BgDecoration />
 			<HeroV1 />
-			<PresentationSection />
+			<PresentationSection presentations={presentations} />
 			<VideoSection videoId={videoId} />
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection {...sponsors} />

@@ -1,4 +1,5 @@
 import type * as Contentful from "contentful";
+import type { TypeSponsorLogoFields } from "./TypeSponsorLogo";
 
 export interface TypePresentationFields {
     room?: "IB025" | "IB028";
@@ -11,6 +12,7 @@ export interface TypePresentationFields {
     description: Contentful.EntryFields.Text;
     videoLink?: Contentful.EntryFields.Symbol;
     slug: Contentful.EntryFields.Symbol;
+    sponsorLogo?: Contentful.Entry<TypeSponsorLogoFields>;
 }
 
 export type TypePresentation = Contentful.Entry<TypePresentationFields>;

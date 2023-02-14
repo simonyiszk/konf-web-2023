@@ -4,6 +4,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import type {
 	TypeGalleryImagesFields,
 	TypeParagraphFields,
+	TypePresentationFields,
 	TypeSponsorLogoFields,
 } from "@/@types/generated/index";
 
@@ -71,11 +72,25 @@ export async function getSponsors() {
 	return { goldSponsor, silverSponsors, bronzeSponsors };
 }
 
+export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
+
 export async function getPresentations() {
-	const presentations = await client.getEntries({
+	const presentations = await client.getEntries<TypePresentationFields>({
 		content_type: "presentation",
 	});
-	return presentations.items.map((item) => item.fields);
+	return presentations;
 }
 
-export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
+export type ReturnTypePresentations = Awaited<
+	ReturnType<typeof getPresentations>
+>;
+
+export async function getPresentation(slug: string) {
+	const presentation = await client.getEntries<TypePresentationFields>({
+		content_type: "presentation",
+		"fields.slug": slug,
+		limit: 1,
+	});
+
+	return presentation.items[0] ?? null;
+}

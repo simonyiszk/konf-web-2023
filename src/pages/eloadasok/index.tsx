@@ -7,10 +7,11 @@ import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { PresentationCard } from "@/components/presentations/PresentationCard";
+import { getPresentations, ReturnTypePresentations } from "@/utils/contentful";
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Presentations({ buildDate }: PageProps) {
+export default function Presentations({ buildDate, presentations }: PageProps) {
 	const { t } = useTranslation("common");
 	return (
 		<Layout buildDate={buildDate}>
@@ -33,12 +34,9 @@ export default function Presentations({ buildDate }: PageProps) {
 					}}
 					className="my-32 mx-auto grid place-items-center gap-x-4 gap-y-8"
 				>
-					<PresentationCard />
-					<PresentationCard />
-					<PresentationCard />
-					<PresentationCard />
-					<PresentationCard />
-					<PresentationCard />
+					{presentations.items.map(({ fields }) => (
+						<PresentationCard key={fields.title + fields.name} {...fields} />
+					))}
 				</section>
 			</LayoutContent>
 		</Layout>
@@ -47,10 +45,11 @@ export default function Presentations({ buildDate }: PageProps) {
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
-
+	const presentations = (await getPresentations()) as ReturnTypePresentations;
 	return {
 		props: {
 			...i18n,
+			presentations,
 			buildDate: Date.now(),
 		},
 	};

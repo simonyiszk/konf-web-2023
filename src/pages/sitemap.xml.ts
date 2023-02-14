@@ -1,12 +1,20 @@
 import type { GetServerSidePropsContext } from "next";
 
+import { getPresentations } from "@/utils/contentful";
+
 type SitemapParams = {
 	host: string;
-	presentations?: unknown[];
+	presentationSlugs: string[];
 };
 
+const presentationPrefixes = [
+	"/eloadasok/",
+	"/en/presentations/",
+	"/hu/eloadasok/",
+];
+
 // https://developers.google.com/search/blog/2012/05/multilingual-and-multinational-site
-function generateSiteMap({ host }: SitemapParams) {
+function generateSiteMap({ host, presentationSlugs }: SitemapParams) {
 	return `<?xml version="1.0" encoding="UTF-8"?>
     <urlset
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -83,6 +91,26 @@ function generateSiteMap({ host }: SitemapParams) {
           hreflang="hu"
           href="https://${host}/en/presentations" />
    </url>
+
+   ${presentationPrefixes
+			.map((prefix) => {
+				return presentationSlugs.map((slug) => {
+					const tempPrefixes = presentationPrefixes.filter((e) => e !== prefix);
+					return `<url>
+                    <loc>https://${host}${prefix}${slug}</loc>
+                    ${tempPrefixes
+											.map((tempPrefix) => {
+												return `<xhtml:link
+                            rel="alternate"
+                            hreflang="hu"
+                            href="https://${host}${tempPrefix}${slug}" />`;
+											})
+											.join("")}
+                    </url>
+            `;
+				});
+			})
+			.join("")}
     
 
 
@@ -98,8 +126,13 @@ export async function getServerSideProps({
 	req,
 	res,
 }: GetServerSidePropsContext) {
+	const presentations = await (
+		await getPresentations()
+	).items.map((e) => e.fields.slug);
+
 	const sitemap = generateSiteMap({
 		host: req.headers.host ?? "localhost:3000",
+		presentationSlugs: presentations,
 	});
 
 	res.setHeader("Content-Type", "text/xml");

@@ -1,9 +1,9 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-type PresentationPreviewTileProps = {
-	title: string;
-	href?: string;
+import type { PresentationPreviewType } from "./PresentationTypes";
+
+type PresentationPreviewTileProps = PresentationPreviewType & {
 	className?: string;
 };
 
@@ -14,7 +14,7 @@ export function PresentationPreviewTile({
 }: PresentationPreviewTileProps) {
 	return (
 		<Link
-			href={href ?? "#"}
+			href={href}
 			className={clsx(
 				"min-h-[120px]",
 				"relative flex w-full flex-col justify-center rounded-lg bg-black/25 py-4",

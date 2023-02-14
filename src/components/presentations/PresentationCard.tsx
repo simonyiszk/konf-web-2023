@@ -1,13 +1,13 @@
 import clsx from "clsx";
+import type {
+	AssetFields,
+	EntryWithLinkResolutionAndWithoutUnresolvableLinks,
+} from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
-const mock = {
-	title: "Lorem ipsum dolor sit amet, consectetur no se mas en la",
-	description:
-		"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sagittis nisl vitae malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sagittis nisl vitae Curabitur sagittis nisl vitae malesuada. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sagittis nisl vitae",
-};
+import type { TypePresentationFields } from "@/@types/generated";
 
 function sliceString(str: string, length: number) {
 	if (str.length > length) {
@@ -18,24 +18,25 @@ function sliceString(str: string, length: number) {
 	return str.slice(0, length);
 }
 
-type PresentationCardProps = {
-	presenter: string;
-	title: string;
-	description: string;
+type PresentationCardProps = Omit<TypePresentationFields, "image"> & {
+	image:
+		| EntryWithLinkResolutionAndWithoutUnresolvableLinks<AssetFields>
+		| undefined;
 };
 
-// TODO: remove PARTIAL
 export function PresentationCard({
-	title = mock.title,
-	presenter = "Dr. Dudás Levente",
-	description = mock.description,
-}: Partial<PresentationCardProps>) {
+	name,
+	description,
+	image,
+	title,
+	slug,
+}: PresentationCardProps) {
 	const slicedDescription = sliceString(description, 200);
 
 	const { t, i18n } = useTranslation("common");
 
 	const href =
-		i18n.language === "hu" ? "/eloadasok/asd" : "/en/presentations/asd";
+		i18n.language === "hu" ? `/eloadasok/${slug}` : `/en/presentations/${slug}`;
 
 	return (
 		<Link
@@ -44,17 +45,21 @@ export function PresentationCard({
 		>
 			<div className="relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
-					src="http://placekitten.com/350/200"
+					src={
+						image?.fields.file?.url
+							? `https:${image.fields.file.url}`
+							: "http://placekitten.com/350/200"
+					}
 					fill
 					className="object-cover object-bottom"
-					alt={presenter}
+					alt={name}
 					draggable={false}
 					unoptimized
 				/>
 			</div>
 			<div className="absolute mx-auto -mt-3 flex w-full flex-row justify-center">
 				<span className="inline-block w-2/3 bg-konf-accent-yellow text-center text-xl font-bold text-konf-background-blue">
-					{presenter}
+					{name}
 				</span>
 			</div>
 			<div className="my-10 px-5">
