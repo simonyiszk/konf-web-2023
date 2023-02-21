@@ -1,13 +1,12 @@
 import clsx from "clsx";
-import type {
-	AssetFields,
-	EntryWithLinkResolutionAndWithoutUnresolvableLinks,
-} from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
-import type { TypePresentationFields } from "@/@types/generated";
+import type {
+	LocalizedTypePresentationFields,
+	TypePresentationFields,
+} from "@/@types/generated";
 
 function sliceString(str: string, length: number) {
 	if (str.length > length) {
@@ -18,23 +17,21 @@ function sliceString(str: string, length: number) {
 	return str.slice(0, length);
 }
 
-type PresentationCardProps = Omit<TypePresentationFields, "image"> & {
-	image:
-		| EntryWithLinkResolutionAndWithoutUnresolvableLinks<AssetFields>
-		| undefined;
-};
-
-export function PresentationCard({
-	name,
-	description,
-	image,
-	title,
-	slug,
-}: PresentationCardProps) {
-	const slicedDescription = sliceString(description, 200);
-
+export function PresentationCard(
+	props: LocalizedTypePresentationFields<"en" | "hu">,
+) {
 	const { t, i18n } = useTranslation("common");
 
+	const localized = Object.fromEntries(
+		Object.entries(props).map(([key, value]) => [
+			key,
+			value[i18n.language as "en" | "hu"] ?? value.hu,
+		]),
+	) as unknown as TypePresentationFields;
+
+	const { description, title, name, slug, image } = localized;
+
+	const slicedDescription = sliceString(description ?? "", 200);
 	const href =
 		i18n.language === "hu" ? `/eloadasok/${slug}` : `/en/presentations/${slug}`;
 
@@ -46,13 +43,13 @@ export function PresentationCard({
 			<div className="relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
-						image?.fields.file?.url
+						image.fields?.file?.url
 							? `https:${image.fields.file.url}`
 							: "http://placekitten.com/350/200"
 					}
 					fill
 					className="object-cover object-bottom"
-					alt={name}
+					alt="asd"
 					draggable={false}
 					unoptimized
 				/>

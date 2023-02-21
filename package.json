@@ -19,7 +19,7 @@
 		"lint:prettier": "prettier --check --ignore-unknown --ignore-path ./.prettierignore .",
 		"lint:typescript": "tsc --noEmit",
 		"start": "next start",
-		"typegen": "dotenv -e .env.local -- cross-var cf-content-types-generator -s %CONTENTFUL_SPACE_ID% -t %CONTENTFUL_MANAGEMENT_TOKEN% -o src/@types/generated"
+		"typegen": "dotenv -e .env.local -- cross-var cf-content-types-generator -l -s %CONTENTFUL_SPACE_ID% -t %CONTENTFUL_MANAGEMENT_TOKEN% -o src/@types/generated"
 	},
 	"dependencies": {
 		"@mdx-js/loader": "^2.3.0",

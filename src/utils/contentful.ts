@@ -2,6 +2,7 @@ import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
 import type {
+	LocalizedTypePresentation,
 	TypeGalleryImagesFields,
 	TypeParagraphFields,
 	TypePresentationFields,
@@ -75,9 +76,10 @@ export async function getSponsors() {
 export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
 
 export async function getPresentations() {
-	const presentations = await client.getEntries<TypePresentationFields>({
-		content_type: "presentation",
-	});
+	const presentations =
+		await client.withAllLocales.getEntries<TypePresentationFields>({
+			content_type: "presentation",
+		});
 	return presentations;
 }
 
@@ -86,11 +88,21 @@ export type ReturnTypePresentations = Awaited<
 >;
 
 export async function getPresentation(slug: string) {
-	const presentation = await client.getEntries<TypePresentationFields>({
-		content_type: "presentation",
-		"fields.slug": slug,
-		limit: 1,
-	});
+	const presentation =
+		await client.withAllLocales.getEntries<TypePresentationFields>({
+			content_type: "presentation",
+			"fields.slug": slug,
+			limit: 1,
+		});
+
+	console.log(slug);
+	console.log(presentation);
+
+	/* return (
+		(presentation.items as LocalizedTypePresentation<"hu" | "en">[]).find(
+			(e) => e.fields.slug?.hu === slug,
+		) ?? null
+	); */
 
 	return presentation.items[0] ?? null;
 }

@@ -1,3 +1,4 @@
+import type * as Contentful from "contentful";
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,6 +6,12 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { FaArrowLeft } from "react-icons/fa";
 
+import type {
+	LocalizedEntry,
+	LocalizedTypeSponsorLogo,
+	LocalizedTypeSponsorLogoFields,
+	TypePresentationFields,
+} from "@/@types/generated";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
@@ -72,9 +79,26 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 
 	const { title, name, image, description, sponsorLogo } = presentation.fields;
 
+	const localized = Object.fromEntries(
+		Object.entries(presentation.fields).map(([key, value]) => [
+			key,
+			value[i18n.language as "en" | "hu"] ?? value.hu,
+		]),
+	) as unknown as TypePresentationFields;
+
+	const presenterImage = (
+		localized.image as unknown as LocalizedEntry<Contentful.Asset, "hu">
+	).fields.file?.hu?.url;
+
+	const sponsor = (
+		localized.sponsorLogo as unknown as LocalizedTypeSponsorLogo<"hu">
+	).fields;
+
+	// const presenterImageUrl;
+
 	return (
 		<Layout buildDate={buildDate}>
-			<Seo title={title} description={description} />
+			<Seo title={localized.title} description={localized.description} />
 			<LayoutContent>
 				<Link
 					href={href}
@@ -86,17 +110,21 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 				<div className="mt-8 rounded bg-konf-overlay-blue px-4">
 					<section className="mx-auto grid max-w-5xl gap-8 py-16 sm:grid-cols-3">
 						<Speaker
-							name={name}
+							name={localized.name}
 							sponsorImage={
-								sponsorLogo?.fields.image.fields.file?.url ?? undefined
-							}
-							image={
-								image?.fields.file
-									? `https:${image.fields.file.url}`
+								sponsor.image?.hu?.fields.file
+									? `https:${
+											// @ts-expect-error asdf
+											(sponsor.image.hu.fields.file as unknown).hu.url as string
+									  }`
 									: "http://placekitten.com/200/300"
 							}
+							image={presenterImage ?? "http://placekitten.com/200/300"}
 						/>
-						<TextContent title={title} description={description} />
+						<TextContent
+							title={localized.title}
+							description={localized.description}
+						/>
 					</section>
 				</div>
 			</LayoutContent>
@@ -111,6 +139,8 @@ export async function getStaticProps({
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
 	const presentation = await getPresentation(params?.slug as string);
 
+	console.log(params.slug);
+
 	return {
 		props: {
 			...i18n,
@@ -121,19 +151,18 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-	const lang = ["/eloadasok", "/en/eloadasok"];
+	const lang = ["/eloadasok/", "/en/eloadasok/"];
 	const presentationSlugs = (await getPresentations()).items.map(
 		({ fields }) => fields.slug,
-	);
+	) as { hu: string; en: string }[];
 
-	const paths = lang.flatMap((l) => {
-		return presentationSlugs.map((presentation) => {
-			return `${l}/${presentation}`;
-		});
-	});
+	const pathHu = presentationSlugs.map((slug) => `${lang[0]}${slug.hu}`);
+	const pathEn = presentationSlugs.map((slug) => `${lang[1]}${slug.hu}`);
+
+	console.log(pathEn, pathHu);
 
 	return {
-		paths,
+		paths: [...pathHu, ...pathEn],
 		fallback: false,
 	};
 }
