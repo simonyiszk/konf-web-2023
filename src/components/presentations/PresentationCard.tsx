@@ -31,7 +31,7 @@ export function PresentationCard(
 
 	const { description, title, name, slug, image } = localized;
 
-	const slicedDescription = sliceString(description ?? "", 200);
+	const slicedDescription = sliceString(description, 200);
 	const href =
 		i18n.language === "hu" ? `/eloadasok/${slug}` : `/en/presentations/${slug}`;
 
@@ -43,7 +43,7 @@ export function PresentationCard(
 			<div className="relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
-						image.fields?.file?.url
+						image.fields.file?.url
 							? `https:${image.fields.file.url}`
 							: "http://placekitten.com/350/200"
 					}

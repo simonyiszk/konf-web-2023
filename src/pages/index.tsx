@@ -2,10 +2,7 @@ import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import type {
-	LocalizedTypePresentation,
-	TypePresentationFields,
-} from "@/@types/generated";
+import type { TypePresentationFields } from "@/@types/generated";
 import { GallerySection } from "@/components/gallery/GallerySection";
 import { HeroV1 } from "@/components/hero/HeroV1";
 import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
@@ -28,8 +25,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const videoId = process.env.YOUTUBE_VIDEO_ID ?? "MD8VGKLklVQ";
 	const galleryAlbums = await getGalleryImages();
 	const presentations = (await getPresentations()) as ReturnTypePresentations;
-
-	console.log(presentations);
 
 	return {
 		props: {

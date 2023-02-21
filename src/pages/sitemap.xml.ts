@@ -126,9 +126,9 @@ export async function getServerSideProps({
 	req,
 	res,
 }: GetServerSidePropsContext) {
-	const presentations = await (
+	const presentations = (await (
 		await getPresentations()
-	).items.map((e) => e.fields.slug);
+	).items.map((e) => e.fields.slug.hu)) as string[];
 
 	const sitemap = generateSiteMap({
 		host: req.headers.host ?? "localhost:3000",

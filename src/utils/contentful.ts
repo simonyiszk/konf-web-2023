@@ -2,7 +2,6 @@ import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
 import type {
-	LocalizedTypePresentation,
 	TypeGalleryImagesFields,
 	TypeParagraphFields,
 	TypePresentationFields,
@@ -94,15 +93,6 @@ export async function getPresentation(slug: string) {
 			"fields.slug": slug,
 			limit: 1,
 		});
-
-	console.log(slug);
-	console.log(presentation);
-
-	/* return (
-		(presentation.items as LocalizedTypePresentation<"hu" | "en">[]).find(
-			(e) => e.fields.slug?.hu === slug,
-		) ?? null
-	); */
 
 	return presentation.items[0] ?? null;
 }

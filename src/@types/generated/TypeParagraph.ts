@@ -1,5 +1,5 @@
-import * as Contentful from "contentful";
-import { LocalizedEntry, LocalizedFields } from "./Localized";
+import type * as Contentful from "contentful";
+import type { LocalizedEntry, LocalizedFields } from "./Localized";
 
 export interface TypeParagraphFields {
     name: Contentful.EntryFields.Symbol;

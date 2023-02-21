@@ -9,7 +9,6 @@ import { FaArrowLeft } from "react-icons/fa";
 import type {
 	LocalizedEntry,
 	LocalizedTypeSponsorLogo,
-	LocalizedTypeSponsorLogoFields,
 	TypePresentationFields,
 } from "@/@types/generated";
 import { Layout } from "@/components/layout/Layout";
@@ -77,8 +76,6 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 
 	const href = i18n.language === "hu" ? "/eloadasok" : "/en/presentations";
 
-	const { title, name, image, description, sponsorLogo } = presentation.fields;
-
 	const localized = Object.fromEntries(
 		Object.entries(presentation.fields).map(([key, value]) => [
 			key,
@@ -93,8 +90,6 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 	const sponsor = (
 		localized.sponsorLogo as unknown as LocalizedTypeSponsorLogo<"hu">
 	).fields;
-
-	// const presenterImageUrl;
 
 	return (
 		<Layout buildDate={buildDate}>
@@ -139,8 +134,6 @@ export async function getStaticProps({
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
 	const presentation = await getPresentation(params?.slug as string);
 
-	console.log(params.slug);
-
 	return {
 		props: {
 			...i18n,
@@ -158,8 +151,6 @@ export async function getStaticPaths() {
 
 	const pathHu = presentationSlugs.map((slug) => `${lang[0]}${slug.hu}`);
 	const pathEn = presentationSlugs.map((slug) => `${lang[1]}${slug.hu}`);
-
-	console.log(pathEn, pathHu);
 
 	return {
 		paths: [...pathHu, ...pathEn],
