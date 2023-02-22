@@ -10,8 +10,10 @@ import { FaArrowLeft } from "react-icons/fa";
 
 import type {
 	LocalizedEntry,
+	LocalizedFields,
 	LocalizedTypeSponsorLogo,
 	TypePresentationFields,
+	TypeSponsorLogoFields,
 } from "@/@types/generated";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
@@ -37,18 +39,18 @@ function TextContent({ title, description }: TextContentProps) {
 type SpeakerProps = {
 	name: string;
 	image: string;
-	sponsorImage?: string;
+	sponsor: LocalizedFields<TypeSponsorLogoFields, "hu">;
 };
 
-function Speaker({ image, name, sponsorImage }: SpeakerProps) {
+function Speaker({ image, name, sponsor }: SpeakerProps) {
 	return (
 		<div>
 			<div className="relative aspect-1 h-auto w-full">
 				<Image
-					className="rounded-lg object-cover"
+					className="rounded-lg object-cover object-top"
 					src={image}
 					fill
-					alt="asd"
+					alt={name}
 					unoptimized
 				/>
 			</div>
@@ -57,16 +59,26 @@ function Speaker({ image, name, sponsorImage }: SpeakerProps) {
 					{name}
 				</p>
 			</div>
-			{sponsorImage && (
-				<div className="relative mt-8 h-12 w-full rounded bg-white sm:mt-16 md:mt-8">
-					<Image
-						src={sponsorImage}
-						alt="asd"
-						fill
-						className="object-contain p-2"
-						unoptimized
-					/>
-				</div>
+			{sponsor.image?.hu && (
+				<a href={sponsor.link?.hu ?? "#"} target="_blank" rel="noreferrer">
+					<div className="relative mt-8 h-12 w-full rounded bg-white sm:mt-16 md:mt-8">
+						<Image
+							src={
+								sponsor.image.hu.fields.file
+									? `https:${
+											// @ts-expect-error too lazy to remap types recursively
+											(sponsor.image.hu.fields.file as unknown).hu.url as string
+									  }`
+									: "http://placekitten.com/200/300"
+							}
+							alt={sponsor.name?.hu ?? ""}
+							fill
+							className="object-contain p-2"
+							unoptimized
+							draggable={false}
+						/>
+					</div>
+				</a>
 			)}
 		</div>
 	);
@@ -114,14 +126,7 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 					<section className="mx-auto grid max-w-5xl gap-8 py-16 sm:grid-cols-3">
 						<Speaker
 							name={localized.name}
-							sponsorImage={
-								sponsor.image?.hu?.fields.file
-									? `https:${
-											// @ts-expect-error asdf
-											(sponsor.image.hu.fields.file as unknown).hu.url as string
-									  }`
-									: "http://placekitten.com/200/300"
-							}
+							sponsor={sponsor}
 							image={presenterImage ?? "http://placekitten.com/200/300"}
 						/>
 						<TextContent title={localized.title} description={localizedMdx} />
