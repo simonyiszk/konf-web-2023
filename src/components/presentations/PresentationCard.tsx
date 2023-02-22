@@ -1,9 +1,11 @@
 import clsx from "clsx";
+import type { Asset } from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
 import type {
+	LocalizedEntry,
 	LocalizedTypePresentationFields,
 	TypePresentationFields,
 } from "@/@types/generated";
@@ -27,7 +29,9 @@ export function PresentationCard(
 			key,
 			value[i18n.language as "en" | "hu"] ?? value.hu,
 		]),
-	) as unknown as TypePresentationFields;
+	) as unknown as Omit<TypePresentationFields, "image"> & {
+		image: LocalizedEntry<Asset, "en" | "hu">;
+	};
 
 	const { description, title, name, slug, image } = localized;
 
@@ -43,8 +47,8 @@ export function PresentationCard(
 			<div className="relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
-						image.fields.file?.url
-							? `https:${image.fields.file.url}`
+						image.fields.file?.hu?.url
+							? `https:${image.fields.file.hu.url}`
 							: "http://placekitten.com/350/200"
 					}
 					fill
