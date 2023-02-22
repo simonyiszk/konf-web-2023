@@ -1,6 +1,12 @@
 import clsx from "clsx";
 import Image from "next/image";
 
+import {
+	EmailIcon,
+	FacebookIcon,
+	InstagramIcon,
+	YoutubeIcon,
+} from "@/components/icon";
 import { FB_EVENT_LINK } from "@/utils/constants";
 
 import manifest from "../../../../package.json";
@@ -34,52 +40,24 @@ export function Footer({ fill = "pattern", buildDate }: FooterProps) {
 				{/* social icons */}
 				<div className="flex w-full items-center justify-center gap-10 lg:w-1/3 lg:gap-16">
 					<a href="mailto:konferencia@simonyi.bme.hu">
-						<Image
-							src="/assets/icon/email.svg"
-							alt="Simonyi Konferencia Instagram"
-							className="hover:opacity-75"
-							width={40}
-							height={40}
-							unoptimized
-						/>
+						<EmailIcon className="h-10 w-10 hover:opacity-75" />
 					</a>
 					<a
 						href="https://www.instagram.com/simonyikonf/"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<Image
-							src="/assets/icon/ig.svg"
-							alt="Simonyi Konferencia Instagram"
-							className="hover:opacity-75"
-							width={40}
-							height={40}
-							unoptimized
-						/>
+						<InstagramIcon className="h-10 w-10 hover:opacity-75" />
 					</a>
 					<a href={FB_EVENT_LINK} target="_blank" rel="noopener noreferrer">
-						<Image
-							src="/assets/icon/fb.svg"
-							alt="Simonyi Konferencia Facebook"
-							className="hover:opacity-75"
-							width={40}
-							height={40}
-							unoptimized
-						/>
+						<FacebookIcon className="h-10 w-10 hover:opacity-75" />
 					</a>
 					<a
 						href="https://www.youtube.com/user/SimonyiSzakkoli/"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<Image
-							src="/assets/icon/yt.svg"
-							alt="Simonyi Konferencia Youtube"
-							className="hover:opacity-75"
-							width={40}
-							height={40}
-							unoptimized
-						/>
+						<YoutubeIcon className="h-10 w-10 hover:opacity-75" />
 					</a>
 				</div>
 				<div className="grid w-full grid-cols-1 items-center justify-items-center gap-4 lg:w-auto lg:grid-cols-3">
