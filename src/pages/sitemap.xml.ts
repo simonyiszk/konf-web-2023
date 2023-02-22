@@ -126,9 +126,10 @@ export async function getServerSideProps({
 	req,
 	res,
 }: GetServerSidePropsContext) {
-	const presentations = (await (
-		await getPresentations()
-	).items.map((e) => e.fields.slug.hu)) as string[];
+	const presentations = (await getPresentations())
+		.map(({ fields }) => fields.slug.hu)
+		// pepega typescript
+		.flatMap((f) => (f ? [f] : []));
 
 	const sitemap = generateSiteMap({
 		host: req.headers.host ?? "localhost:3000",

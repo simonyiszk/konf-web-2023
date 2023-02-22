@@ -14,6 +14,7 @@ import type {
 
 import { components } from "../mdx/MDXComponents";
 
+/* 
 function sliceString(str: string, length: number) {
 	if (str.length > length) {
 		const slicedString = str.slice(0, 200);
@@ -21,7 +22,8 @@ function sliceString(str: string, length: number) {
 		return `${slicedString.slice(0, nearestWhiteSpace)}...`;
 	}
 	return str.slice(0, length);
-}
+} 
+*/
 
 export type PresentationCardProps = {
 	presentation: LocalizedTypePresentationFields<"en" | "hu">;
@@ -46,10 +48,10 @@ export function PresentationCard({
 		image: LocalizedEntry<Asset, "en" | "hu">;
 	};
 
-	const { description, title, name, slug, image } = localized;
+	const { title, name, slug, image } = localized;
 	const localizedMdxSource = mdxSource[i18n.language as "en" | "hu"];
 
-	const slicedDescription = sliceString(description, 200);
+	// const slicedDescription = sliceString(description, 200);
 	const href =
 		i18n.language === "hu" ? `/eloadasok/${slug}` : `/en/presentations/${slug}`;
 
