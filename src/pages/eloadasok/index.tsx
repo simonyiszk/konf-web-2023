@@ -34,8 +34,12 @@ export default function Presentations({ buildDate, presentations }: PageProps) {
 					}}
 					className="my-32 mx-auto grid place-items-center gap-x-4 gap-y-8"
 				>
-					{presentations.items.map(({ fields }) => (
-						<PresentationCard key={fields.title.hu ?? ""} {...fields} />
+					{presentations.map((presentation) => (
+						<PresentationCard
+							key={presentation.fields.title.hu ?? ""}
+							presentation={presentation.fields}
+							mdxSource={presentation.mdxSource}
+						/>
 					))}
 				</section>
 			</LayoutContent>

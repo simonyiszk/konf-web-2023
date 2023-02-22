@@ -3,12 +3,16 @@ import type { Asset } from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote";
 
 import type {
 	LocalizedEntry,
 	LocalizedTypePresentationFields,
 	TypePresentationFields,
 } from "@/@types/generated";
+
+import { components } from "../mdx/MDXComponents";
 
 function sliceString(str: string, length: number) {
 	if (str.length > length) {
@@ -19,13 +23,22 @@ function sliceString(str: string, length: number) {
 	return str.slice(0, length);
 }
 
-export function PresentationCard(
-	props: LocalizedTypePresentationFields<"en" | "hu">,
-) {
+export type PresentationCardProps = {
+	presentation: LocalizedTypePresentationFields<"en" | "hu">;
+	mdxSource: {
+		en: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
+		hu: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
+	};
+};
+
+export function PresentationCard({
+	presentation,
+	mdxSource,
+}: PresentationCardProps) {
 	const { t, i18n } = useTranslation("common");
 
 	const localized = Object.fromEntries(
-		Object.entries(props).map(([key, value]) => [
+		Object.entries(presentation).map(([key, value]) => [
 			key,
 			value[i18n.language as "en" | "hu"] ?? value.hu,
 		]),
@@ -34,6 +47,7 @@ export function PresentationCard(
 	};
 
 	const { description, title, name, slug, image } = localized;
+	const localizedMdxSource = mdxSource[i18n.language as "en" | "hu"];
 
 	const slicedDescription = sliceString(description, 200);
 	const href =
@@ -63,7 +77,7 @@ export function PresentationCard(
 					{name}
 				</span>
 			</div>
-			<div className="my-10 px-5">
+			<div className="mt-8 mb-4 px-5">
 				<h2
 					className={clsx(
 						"mb-5 text-xl font-bold text-white",
@@ -72,7 +86,8 @@ export function PresentationCard(
 				>
 					{title}
 				</h2>
-				<p className="text-base">{slicedDescription}</p>
+				{/* <p className="text-base">{slicedDescription}</p> */}
+				<MDXRemote {...localizedMdxSource} components={components} />
 			</div>
 			<div
 				className={clsx(

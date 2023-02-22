@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote";
 import { FaArrowLeft } from "react-icons/fa";
 
 import type {
@@ -14,19 +16,20 @@ import type {
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
+import { components } from "@/components/mdx/MDXComponents";
 import { getPresentation, getPresentations } from "@/utils/contentful";
 
 type TextContentProps = {
 	title: string;
-	description: string;
+	description: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
 };
 
 function TextContent({ title, description }: TextContentProps) {
 	return (
 		<div className="sm:col-span-2">
-			<h1 className="text-3xl font-semibold lg:text-5xl">{title}</h1>
+			<h1 className="mb-4 text-3xl font-semibold lg:text-5xl">{title}</h1>
 			{/* <p className="my-1 text-lg tracking-wider ">IB026 | 16:00 - 17:00</p> */}
-			<p className="mt-4 text-lg">{description}</p>
+			<MDXRemote {...description} components={components} />
 		</div>
 	);
 }
@@ -83,6 +86,11 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 		]),
 	) as unknown as TypePresentationFields;
 
+	const localizedMdx =
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+		presentation.mdxSource[i18n.language as "en" | "hu"] ??
+		presentation.mdxSource.hu;
+
 	const presenterImage = (
 		localized.image as unknown as LocalizedEntry<Contentful.Asset, "hu">
 	).fields.file?.hu?.url;
@@ -116,10 +124,7 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 							}
 							image={presenterImage ?? "http://placekitten.com/200/300"}
 						/>
-						<TextContent
-							title={localized.title}
-							description={localized.description}
-						/>
+						<TextContent title={localized.title} description={localizedMdx} />
 					</section>
 				</div>
 			</LayoutContent>
@@ -145,7 +150,7 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
 	const lang = ["/eloadasok/", "/en/eloadasok/"];
-	const presentationSlugs = (await getPresentations()).items.map(
+	const presentationSlugs = (await getPresentations()).map(
 		({ fields }) => fields.slug,
 	) as { hu: string; en: string }[];
 

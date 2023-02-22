@@ -51,7 +51,7 @@ export default function Index({
 }: PageProps) {
 	const { i18n } = useTranslation("common");
 
-	const localizedPresentations: PresentationPreviewType[] = presentations.items
+	const localizedPresentations: PresentationPreviewType[] = presentations
 		.map((p) => {
 			return Object.fromEntries(
 				Object.entries(p.fields).map(([key, value]) => [
