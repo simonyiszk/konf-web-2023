@@ -45,7 +45,7 @@ type SpeakerProps = {
 function Speaker({ image, name, sponsor }: SpeakerProps) {
 	return (
 		<div>
-			<div className="relative aspect-1 h-auto w-full">
+			<div className="relative aspect-1 h-auto w-full rounded bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					className="rounded-lg object-cover object-top"
 					src={image}

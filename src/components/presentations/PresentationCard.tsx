@@ -68,10 +68,10 @@ export function PresentationCard({
 							: "http://placekitten.com/350/200"
 					}
 					fill
-					className="object-cover object-bottom"
-					alt="asd"
+					className="object-cover"
+					alt={name}
 					draggable={false}
-					unoptimized
+					sizes="(max-width: 640px) 100vw, 640px"
 				/>
 			</div>
 			<div className="absolute mx-auto -mt-3 flex w-full flex-row justify-center">
