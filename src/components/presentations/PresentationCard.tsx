@@ -60,7 +60,7 @@ export function PresentationCard({
 			href={href}
 			className="relative w-full max-w-[360px] overflow-hidden rounded bg-konf-overlay-blue transition duration-200 ease-in-out hover:drop-shadow-[0_12px_12px_rgba(255,255,255,0.25)]"
 		>
-			<div className="relative h-[300px] w-full bg-gradient-to-b from-konf-primary-green to-transparent">
+			<div className="relative mx-auto h-[300px] w-[350px] bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
 						image.fields.file?.hu?.url
@@ -68,7 +68,7 @@ export function PresentationCard({
 							: "http://placekitten.com/350/200"
 					}
 					fill
-					className="object-cover"
+					className="object-cover object-top"
 					alt={name}
 					draggable={false}
 					sizes="(max-width: 640px) 100vw, 640px"

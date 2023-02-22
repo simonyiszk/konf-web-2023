@@ -12,6 +12,7 @@ import type {
 	LocalizedEntry,
 	LocalizedFields,
 	LocalizedTypeSponsorLogo,
+	LocalizedTypeSponsorLogoFields,
 	TypePresentationFields,
 	TypeSponsorLogoFields,
 } from "@/@types/generated";
@@ -39,7 +40,7 @@ function TextContent({ title, description }: TextContentProps) {
 type SpeakerProps = {
 	name: string;
 	image: string;
-	sponsor: LocalizedFields<TypeSponsorLogoFields, "hu">;
+	sponsor?: LocalizedFields<TypeSponsorLogoFields, "hu">;
 };
 
 function Speaker({ image, name, sponsor }: SpeakerProps) {
@@ -59,7 +60,7 @@ function Speaker({ image, name, sponsor }: SpeakerProps) {
 					{name}
 				</p>
 			</div>
-			{sponsor.image?.hu && (
+			{sponsor?.image?.hu && (
 				<a href={sponsor.link?.hu ?? "#"} target="_blank" rel="noreferrer">
 					<div className="relative mt-8 h-12 w-full rounded bg-white sm:mt-16 md:mt-8">
 						<Image
@@ -107,10 +108,9 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 		localized.image as unknown as LocalizedEntry<Contentful.Asset, "hu">
 	).fields.file?.hu?.url;
 
-	const sponsor = (
-		localized.sponsorLogo as unknown as LocalizedTypeSponsorLogo<"hu">
-	).fields;
-
+	const sponsor = localized.sponsorLogo?.fields as unknown as
+		| LocalizedTypeSponsorLogoFields<"hu">
+		| undefined;
 	return (
 		<Layout buildDate={buildDate}>
 			<Seo title={localized.title} description={localized.description} />

@@ -73,6 +73,12 @@ export async function getSponsors() {
 }
 export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
 
+type OptionalMagicContentfulProperty =
+	| {
+			[key: string]: string | undefined;
+	  }
+	| undefined;
+
 export async function getPresentations() {
 	const presentations =
 		await client.withAllLocales.getEntries<TypePresentationFields>({
@@ -82,10 +88,12 @@ export async function getPresentations() {
 	const renderedPresentations = await Promise.all(
 		presentations.items.map(async (presentation) => {
 			const mdxSourceHu = await serialize(
-				presentation.fields.description.hu ?? "",
+				(presentation.fields.description as OptionalMagicContentfulProperty)
+					?.hu ?? "",
 			);
 			const mdxSourceEn = await serialize(
-				presentation.fields.description.en ?? "",
+				(presentation.fields.description as OptionalMagicContentfulProperty)
+					?.en ?? "",
 			);
 			return {
 				mdxSource: { hu: mdxSourceHu, en: mdxSourceEn },
