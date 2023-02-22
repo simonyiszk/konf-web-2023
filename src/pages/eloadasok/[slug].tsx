@@ -52,7 +52,7 @@ function Speaker({ image, name, sponsor }: SpeakerProps) {
 					src={image}
 					fill
 					alt={name}
-					unoptimized
+					sizes="(max-width: 640px) 100vw, 640px"
 				/>
 			</div>
 			<div className="relative flex flex-row justify-center">
@@ -127,7 +127,11 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 						<Speaker
 							name={localized.name}
 							sponsor={sponsor}
-							image={presenterImage ?? "http://placekitten.com/200/300"}
+							image={
+								presenterImage
+									? `https:${presenterImage}`
+									: "http://placekitten.com/200/300"
+							}
 						/>
 						<TextContent title={localized.title} description={localizedMdx} />
 					</section>
