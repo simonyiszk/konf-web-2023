@@ -84,7 +84,7 @@ export function GiveawaySection() {
 
 	const incrementCounter = () => {
 		setCounter(counter + 1);
-		if (counter % 3 === 0 && counter !== 0) {
+		if (counter % 3 === 0) {
 			setIsAnimating(true);
 		}
 	};
