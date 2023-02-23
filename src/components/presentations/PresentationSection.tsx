@@ -16,7 +16,7 @@ export function PresentationSection({
 	return (
 		<section className="mx-auto w-full px-4 py-16 xl:max-w-6xl">
 			<div className="grid grid-cols-1 place-items-center gap-8 md:grid-cols-2 xl:grid-cols-3">
-				{presentations.slice(0, 3).map((p) => (
+				{presentations.map((p) => (
 					<PresentationPreviewTile key={p.href} title={p.title} href={p.href} />
 				))}
 			</div>
