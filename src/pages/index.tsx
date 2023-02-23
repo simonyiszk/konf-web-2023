@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 import type { TypePresentationFields } from "@/@types/generated";
 import { GallerySection } from "@/components/gallery/GallerySection";
+import { GiveawaySection } from "@/components/giveaway/GiveawaySection";
 import { HeroV1 } from "@/components/hero/HeroV1";
 import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
@@ -75,6 +76,7 @@ export default function Index({
 			<HeroV1 />
 			<PresentationSection presentations={localizedPresentations} />
 			<VideoSection videoId={videoId} />
+			<GiveawaySection />
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection {...sponsors} />
 		</Layout>

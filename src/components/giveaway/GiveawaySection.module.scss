@@ -1,0 +1,14 @@
+.rotate-once {
+	animation: rotate-once 1.2s ease-in-out;
+}
+
+@keyframes rotate-once {
+	0% {
+		transform: rotate(0deg);
+		scale: 1.25;
+	}
+	100% {
+		transform: rotate(360deg);
+		scale: 1.25;
+	}
+}

@@ -31,7 +31,14 @@
 		"items": {}
 	},
 	"about": { "title": "Rólunk", "items": {} },
-	"raffle": { "title": "Nyereményjáték", "items": {} },
+	"raffle": {
+		"title": "Nyereményjáték",
+		"items": {
+			"title": "Regisztrálj és nyerj!",
+			"registrated": "A regisztrált résztvevők között az esemény végén kisorsolunk egy Samsung Galaxy Buds 2 Pro vezetéknélküli fülhallgatót!",
+			"attendance": "Az előadásokon való aktív részvételért és kérdezésért pedig kisebb nyereményekre tehetnek szert a résztvevők!"
+		}
+	},
 	"gallery": {
 		"title": "Galéria",
 		"items": {

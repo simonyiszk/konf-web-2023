@@ -31,7 +31,14 @@
 		"items": {}
 	},
 	"about": { "title": "About", "items": {} },
-	"raffle": { "title": "Raffle", "items": {} },
+	"raffle": {
+		"title": "Raffle",
+		"items": {
+			"title": "Register and win!",
+			"registrated": "Registered participants will be entered into a draw at the end of the event to win a Samsung Galaxy Buds 2 Pro wireless headset!",
+			"attendance": "And for actively participating in the presentations and asking questions, participants can win small prizes!"
+		}
+	},
 	"gallery": {
 		"title": "Gallery",
 		"items": {
