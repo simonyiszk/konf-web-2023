@@ -69,7 +69,10 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 	const { t } = useTranslation("common");
 
 	const [time, setTime] = useState(
-		timeBetween(Date.now(), Date.parse(endDate)),
+		timeBetween(
+			Date.parse("2023-01-01T08:00:00.000+02:00"),
+			Date.parse(endDate),
+		),
 	);
 
 	// Update the time first render and every minute
