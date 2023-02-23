@@ -1,4 +1,5 @@
 const aspectRatio = require("@tailwindcss/aspect-ratio");
+const lineClamp = require("@tailwindcss/line-clamp");
 const {
 	fontFamily,
 	transitionTimingFunction,
@@ -55,5 +56,5 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [aspectRatio],
+	plugins: [aspectRatio, lineClamp],
 };

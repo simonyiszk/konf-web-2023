@@ -9,6 +9,8 @@ import { Seo } from "@/components/layout/Seo";
 import { PresentationCard } from "@/components/presentations/PresentationCard";
 import { getPresentations, ReturnTypePresentations } from "@/utils/contentful";
 
+import styles from "./index.module.scss";
+
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Presentations({ buildDate, presentations }: PageProps) {
@@ -28,12 +30,7 @@ export default function Presentations({ buildDate, presentations }: PageProps) {
 				>
 					{t("presentations.title")}
 				</h1>
-				<section
-					style={{
-						gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
-					}}
-					className="my-32 mx-auto grid place-items-center gap-x-4 gap-y-8"
-				>
+				<section className={clsx(styles.presentationContainer)}>
 					{presentations.map((presentation) => (
 						<PresentationCard
 							key={presentation.fields.title.hu ?? ""}

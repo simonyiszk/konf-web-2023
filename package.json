@@ -26,6 +26,7 @@
 		"@mdx-js/react": "^2.3.0",
 		"@next/mdx": "^13.1.6",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
+		"@tailwindcss/line-clamp": "^0.4.2",
 		"@tsconfig/next": "^1.0.5",
 		"autoprefixer": "^10.4.13",
 		"cf-content-types-generator": "^2.8.0",

@@ -13,8 +13,9 @@ import type {
 } from "@/@types/generated";
 
 import { components } from "../mdx/MDXComponents";
+import styles from "./PresentationCard.module.scss";
 
-/* 
+/*
 function sliceString(str: string, length: number) {
 	if (str.length > length) {
 		const slicedString = str.slice(0, 200);
@@ -22,7 +23,7 @@ function sliceString(str: string, length: number) {
 		return `${slicedString.slice(0, nearestWhiteSpace)}...`;
 	}
 	return str.slice(0, length);
-} 
+}
 */
 
 export type PresentationCardProps = {
@@ -58,9 +59,9 @@ export function PresentationCard({
 	return (
 		<Link
 			href={href}
-			className="relative w-full max-w-[360px] overflow-hidden rounded bg-konf-overlay-blue transition duration-200 ease-in-out hover:drop-shadow-[0_12px_12px_rgba(255,255,255,0.25)]"
+			className="group relative block w-full overflow-hidden rounded bg-konf-overlay-blue transition duration-200 ease-in-out hover:drop-shadow-[0_12px_12px_rgba(255,255,255,0.25)]"
 		>
-			<div className="relative mx-auto h-[300px] w-[350px] bg-gradient-to-b from-konf-primary-green to-transparent">
+			<div className="relative mx-auto h-[300px] bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
 						image.fields.file?.hu?.url
@@ -68,7 +69,7 @@ export function PresentationCard({
 							: "http://placekitten.com/350/200"
 					}
 					fill
-					className="object-cover object-top"
+					className="w-[280px] object-cover object-top"
 					alt={name}
 					draggable={false}
 					sizes="(max-width: 640px) 100vw, 640px"
@@ -79,22 +80,30 @@ export function PresentationCard({
 					{name}
 				</span>
 			</div>
-			<div className="mt-8 mb-4 px-5">
+			<div className="mt-8 mb-16 px-5">
 				<h2
 					className={clsx(
 						"mb-5 text-xl font-bold text-white",
-						"transition duration-300 ease-in-out hover:text-konf-accent-yellow",
+						"transition duration-300 ease-in-out group-hover:text-konf-accent-yellow",
 					)}
 				>
 					{title}
 				</h2>
 				{/* <p className="text-base">{slicedDescription}</p> */}
-				<MDXRemote {...localizedMdxSource} components={components} />
+				<div
+					className={clsx(
+						"mb-4 max-h-52 overflow-y-hidden text-justify line-clamp-6",
+						styles.mdxContainer,
+					)}
+				>
+					<MDXRemote {...localizedMdxSource} components={components} />
+				</div>
 			</div>
 			<div
 				className={clsx(
+					"absolute bottom-0 w-full",
 					"bg-gradient-to-r from-konf-primary-green to-konf-primary-blue",
-					"inline-block w-full  py-2 text-center text-xl font-bold text-konf-background-blue",
+					"inline-block py-2 text-center text-xl font-bold text-konf-background-blue transition duration-300 ease-in-out group-hover:text-white",
 				)}
 			>
 				{t("presentations.items.details")}

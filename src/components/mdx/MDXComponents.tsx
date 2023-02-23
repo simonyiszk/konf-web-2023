@@ -6,12 +6,12 @@ export const components = {
 			HTMLAttributes<HTMLParagraphElement>,
 			HTMLParagraphElement
 		>,
-	) => <p className="text-lg" {...props} />,
+	) => <p className="text-base" {...props} />,
 	code: (
 		props: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>,
 	) => (
 		<code
-			className="rounded bg-slate-900 px-1 text-lg text-gray-300"
+			className="rounded bg-slate-900 px-1 text-base text-gray-300"
 			{...props}
 		/>
 	),
@@ -21,7 +21,7 @@ export const components = {
 			HTMLHeadingElement
 		>,
 	) => (
-		<h1 className="text-xl font-semibold" {...props}>
+		<h1 className="text-lg font-semibold" {...props}>
 			{props.children}
 		</h1>
 	),

@@ -1,0 +1,8 @@
+.presentationContainer {
+	@apply my-32 mx-auto grid items-stretch justify-center justify-items-center gap-8;
+	grid-template-columns: repeat(1, minmax(0, 360px));
+
+	@screen sm {
+		grid-template-columns: repeat(auto-fill, minmax(340px, 360px));
+	}
+}
