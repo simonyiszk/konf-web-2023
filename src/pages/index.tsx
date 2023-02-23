@@ -1,6 +1,7 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useEffect, useState } from "react";
 
 import type { TypePresentationFields } from "@/@types/generated";
 import { GallerySection } from "@/components/gallery/GallerySection";
@@ -51,22 +52,36 @@ export default function Index({
 }: PageProps) {
 	const { i18n } = useTranslation("common");
 
-	const localizedPresentations: PresentationPreviewType[] = presentations
-		.map((p) => {
-			return Object.fromEntries(
-				Object.entries(p.fields).map(([key, value]) => [
-					key,
-					value[i18n.language as "en" | "hu"] ?? value.hu,
-				]),
-			) as unknown as TypePresentationFields;
-		})
-		.map((p) => ({
-			title: p.title,
-			href:
-				i18n.language === "hu"
-					? `/eloadasok/${p.slug}`
-					: `/en/presentations/${p.slug}`,
-		}));
+	const [localizedPresentations, setLocalizedPresentations] = useState<
+		{
+			title: string;
+			href: string;
+		}[]
+	>([]);
+
+	// Needs to be client side because of the randomization
+	// eslint-disable-next-line react-etc/prefer-usememo
+	useEffect(() => {
+		const start = Math.floor(Math.random() * presentations.length - 3);
+		const selected = presentations.slice(start, start + 3);
+		const localized = selected
+			.map((p) => {
+				return Object.fromEntries(
+					Object.entries(p.fields).map(([key, value]) => [
+						key,
+						value[i18n.language as "en" | "hu"] ?? value.hu,
+					]),
+				) as unknown as TypePresentationFields;
+			})
+			.map((p) => ({
+				title: p.title,
+				href:
+					i18n.language === "hu"
+						? `/eloadasok/${p.slug}`
+						: `/en/presentations/${p.slug}`,
+			}));
+		setLocalizedPresentations(localized);
+	}, [i18n.language, presentations]);
 
 	return (
 		<Layout className="" buildDate={buildDate}>
