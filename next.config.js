@@ -11,6 +11,7 @@ const nextConfig = {
 	i18n,
 	reactStrictMode: true,
 	swcMinify: true,
+	eslint: { ignoreDuringBuilds: process.env.VERCEL_ENV !== "production" },
 	images: {
 		remotePatterns: [
 			{
