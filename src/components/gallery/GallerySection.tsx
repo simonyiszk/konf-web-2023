@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useCallback, useRef, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -23,8 +24,13 @@ export function GallerySection({ albums }: GallerySectionProps) {
 	const { t } = useTranslation("common");
 
 	const scrollRef = useRef<HTMLDivElement>(null);
+	const cic = useRef<HTMLDivElement>(null);
 	const [pos, setPos] = useState({ left: 0, top: 0, x: 0, y: 0 });
 	const [isScrolling, setScrolling] = useState(false);
+
+	const [clicks, setClicks] = useState(0);
+	const [bom, setBom] = useState(false);
+	const [once, setOnce] = useState(true);
 
 	const [activeAlbumIndex, setActiveAlbumIndex] = useState(0);
 
@@ -57,6 +63,24 @@ export function GallerySection({ albums }: GallerySectionProps) {
 					{t("gallery.items.photo.title")}
 				</h2>
 				<div className="relative h-max w-full">
+					<div
+						ref={cic}
+						className={clsx(
+							"absolute -bottom-3 -z-40 h-20 w-20",
+							once ? "block" : "hidden",
+						)}
+						style={{ left: `${clicks * 10 - 256}px` }}
+					>
+						<Image src="/assets/bg/Macska1.svg" alt="Cicæ" fill />
+					</div>
+					<div
+						className={clsx(
+							"absolute -bottom-0 right-0 -z-40 h-14 w-20",
+							bom ? "block" : "hidden",
+						)}
+					>
+						<Image src="/assets/bg/bom.gif" alt="Bom" fill />
+					</div>
 					{/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
 					<div
 						ref={scrollRef}
@@ -131,6 +155,17 @@ export function GallerySection({ albums }: GallerySectionProps) {
 									left: scrollRef.current.scrollLeft + 248,
 									behavior: "smooth",
 								});
+							}
+							setClicks(clicks + 1);
+							if (cic.current) {
+								const { x, width } = cic.current.getBoundingClientRect();
+								if (once && window.innerWidth - (x + width + 32) < 0) {
+									setOnce(false);
+									setBom(true);
+									setTimeout(() => {
+										setBom(false);
+									}, 5000);
+								}
 							}
 						}}
 					>

@@ -4,6 +4,7 @@ import { serialize } from "next-mdx-remote/serialize";
 import type {
 	TypeGalleryImagesFields,
 	TypeParagraphFields,
+	TypePresentationFields,
 	TypeSponsorLogoFields,
 } from "@/@types/generated/index";
 
@@ -70,5 +71,64 @@ export async function getSponsors() {
 
 	return { goldSponsor, silverSponsors, bronzeSponsors };
 }
-
 export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
+
+type OptionalMagicContentfulProperty =
+	| {
+			[key: string]: string | undefined;
+	  }
+	| undefined;
+
+export async function getPresentations() {
+	const presentations =
+		await client.withAllLocales.getEntries<TypePresentationFields>({
+			content_type: "presentation",
+		});
+
+	const renderedPresentations = await Promise.all(
+		presentations.items.map(async (presentation) => {
+			const mdxSourceHu = await serialize(
+				(presentation.fields.description as OptionalMagicContentfulProperty)
+					?.hu ?? "",
+			);
+			const mdxSourceEn = await serialize(
+				(presentation.fields.description as OptionalMagicContentfulProperty)
+					?.en ?? "",
+			);
+			return {
+				mdxSource: { hu: mdxSourceHu, en: mdxSourceEn },
+				...presentation,
+			};
+		}),
+	);
+
+	return renderedPresentations;
+}
+export type ReturnTypePresentations = Awaited<
+	ReturnType<typeof getPresentations>
+>;
+
+export async function getPresentation(slug: string) {
+	const presentation =
+		await client.withAllLocales.getEntries<TypePresentationFields>({
+			content_type: "presentation",
+			"fields.slug": slug,
+			limit: 1,
+		});
+
+	const renderedPresentation = await Promise.all(
+		presentation.items.map(async (p) => {
+			const mdxSourceHu = await serialize(p.fields.description.hu ?? "");
+			const mdxSourceEn = await serialize(p.fields.description.en ?? "");
+			return {
+				mdxSource: { hu: mdxSourceHu, en: mdxSourceEn },
+				...p,
+			};
+		}),
+	);
+
+	return renderedPresentation[0] ?? undefined;
+}
+export type ReturnTypePresentation = Awaited<
+	ReturnType<typeof getPresentation>
+>;

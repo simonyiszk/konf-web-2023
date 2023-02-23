@@ -20,7 +20,10 @@
 		"title": "Presentations",
 		"items": {
 			"opening": "Opening",
-			"break": "Break"
+			"break": "Break",
+			"more": "Other exciting presentations",
+			"back": "Back to the presentations",
+			"details": "Details"
 		}
 	},
 	"contact": {

@@ -1,10 +1,13 @@
-import type * as Contentful from "contentful";
+import type { Asset, Entry, EntryFields } from "contentful";
+import type { LocalizedEntry, LocalizedFields } from "./Localized";
 
 export interface TypeGalleryImagesFields {
-    name: Contentful.EntryFields.Symbol;
-    images: Contentful.Asset[];
-    thumbnail: Contentful.Asset;
-    year: Contentful.EntryFields.Symbol;
+    name: EntryFields.Symbol;
+    images: Asset[];
+    thumbnail: Asset;
+    year: EntryFields.Symbol;
 }
 
-export type TypeGalleryImages = Contentful.Entry<TypeGalleryImagesFields>;
+export type TypeGalleryImages = Entry<TypeGalleryImagesFields>;
+export type LocalizedTypeGalleryImagesFields<Locales extends keyof any> = LocalizedFields<TypeGalleryImagesFields, Locales>;
+export type LocalizedTypeGalleryImages<Locales extends keyof any> = LocalizedEntry<TypeGalleryImages, Locales>;

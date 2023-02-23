@@ -16,7 +16,9 @@ function KonfApp({ Component, pageProps }: AppProps) {
 				defer
 				data-website-id={TRACKING_ID}
 				src="https://succ.andrisborbas.com/succ.js"
-				// data-auto-track="false"
+				data-auto-track={
+					process.env.VERCEL_ENV === "production" ? "true" : "false"
+				}
 			/>
 
 			{/* Purge old Gatsby service worker */}
@@ -26,6 +28,7 @@ function KonfApp({ Component, pageProps }: AppProps) {
 					__html: `if(window.navigator && navigator.serviceWorker){navigator.serviceWorker.getRegistrations().then(function(registrations){for(let registration of registrations){registration.unregister();}});}`,
 				}}
 			/>
+
 			<Component {...pageProps} />
 		</React.StrictMode>
 	);
