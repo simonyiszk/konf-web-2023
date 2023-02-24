@@ -111,7 +111,19 @@
 					"type": "string"
 				},
 				"items": {
-					"type": "object"
+					"type": "object",
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"registrated": {
+							"type": "string"
+						},
+						"attendance": {
+							"type": "string"
+						}
+					},
+					"required": ["title", "registrated", "attendance"]
 				}
 			},
 			"required": ["title", "items"]
