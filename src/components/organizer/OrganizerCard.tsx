@@ -13,7 +13,7 @@ type OrganizerCardProps = {
 };
 
 export function OrganizerCard({ organizer }: OrganizerCardProps) {
-	const { t, i18n } = useTranslation("common");
+	const { i18n } = useTranslation("common");
 
 	const localized = Object.fromEntries(
 		Object.entries(organizer).map(([key, value]) => [
