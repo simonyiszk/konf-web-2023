@@ -30,7 +30,7 @@ export default function Contact({
 				</h1>
 				<section className="contentGridContainer">
 					{organizers.map((o) => (
-						<OrganizerCard organizer={o} />
+						<OrganizerCard key={o.name?.hu} organizer={o} />
 					))}
 				</section>
 				<LocationCard />
