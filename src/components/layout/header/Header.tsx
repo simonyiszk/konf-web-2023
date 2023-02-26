@@ -10,7 +10,7 @@ export function Header() {
 	const { locale } = router;
 
 	return (
-		<header className="sticky top-0 z-20 -mb-14 w-full bg-konf-primary-blue/10 py-2 backdrop-blur">
+		<header className="sticky top-0 z-20 mx-auto -mb-14 w-full max-w-6xl rounded-lg bg-white/10 py-2 px-5 backdrop-blur">
 			<div className="container mx-auto flex w-full flex-row items-center justify-between">
 				<nav className="relative flex gap-8">
 					<Link className="relative block h-7 w-16" href="/">
@@ -20,19 +20,19 @@ export function Header() {
 						href={i18n.language === "hu" ? "/eloadasok" : "/presentations"}
 						className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
 					>
-						Előadások
+						{t("presentations.title")}
 					</Link>
 					<Link
 						href="/kapcsolat"
 						className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
 					>
-						Kapcsolat
+						{t("contact.title")}
 					</Link>
 					<Link
 						href="/nyeremenyjatek"
 						className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
 					>
-						Nyereményjáték
+						{t("raffle.title")}
 					</Link>
 				</nav>
 				<div>
