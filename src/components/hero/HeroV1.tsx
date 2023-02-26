@@ -56,7 +56,8 @@ function Hero() {
 }
 
 function CTA() {
-	const { t } = useTranslation("common");
+	const { t, i18n } = useTranslation("common");
+	const href = i18n.language === "hu" ? "#eloadasok" : "#presentations";
 	return (
 		<div className="mt-4 flex flex-col items-center gap-8">
 			<TextButton
@@ -65,7 +66,7 @@ function CTA() {
 				target="_blank"
 			/>
 			<DownArrowButton
-				href="#video"
+				href={href}
 				scroll={false}
 				className={clsx("z-10 block", styles.bounce)}
 				size={60}
