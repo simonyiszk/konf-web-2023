@@ -63,22 +63,17 @@ const nextConfig = {
 			},
 			{
 				source: "/2019",
-				destination: "https://2019.konferencia.simonyi.bme.hu",
+				destination: "https://regi.konferencia.simonyi.bme.hu",
 				permanent: true,
 			},
 			{
 				source: "/2018",
-				destination: "https://2018.konferencia.simonyi.bme.hu",
+				destination: "https://regi.konferencia.simonyi.bme.hu/2018",
 				permanent: true,
 			},
 			{
 				source: "/2017",
-				destination: "https://2017.konferencia.simonyi.bme.hu",
-				permanent: true,
-			},
-			{
-				source: "/2016",
-				destination: "https://2016.konferencia.simonyi.bme.hu",
+				destination: "https://regi.konferencia.simonyi.bme.hu/2017",
 				permanent: true,
 			},
 		];
