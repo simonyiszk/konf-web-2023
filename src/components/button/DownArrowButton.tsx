@@ -33,7 +33,7 @@ export function DownArrowButton({
 					(size === 60 || size === 48) && "rounded-[13px]",
 					size === 24 && "rounded-[3px]",
 					hasBG && "bg-konf-overlay-blue",
-					"h-full w-full",
+					"relative h-full w-full",
 				)}
 			>
 				<Image

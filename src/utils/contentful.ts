@@ -84,6 +84,7 @@ export async function getPresentations() {
 	const presentations =
 		await client.withAllLocales.getEntries<TypePresentationFields>({
 			content_type: "presentation",
+			order: "fields.name",
 		});
 
 	const renderedPresentations = await Promise.all(

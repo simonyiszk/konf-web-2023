@@ -11,7 +11,6 @@ import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
-import type { PresentationPreviewType } from "@/components/presentations";
 import { PresentationSection } from "@/components/presentations/PresentationSection";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
 import { VideoSection } from "@/components/video/VideoSection";
