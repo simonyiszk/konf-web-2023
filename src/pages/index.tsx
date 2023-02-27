@@ -89,11 +89,11 @@ export default function Index({
 			<Seo />
 			<BgDecoration />
 			<HeroV1 />
-			<LayoutContent maxWidth="max-w-6xl">
-				<PresentationSection presentations={localizedPresentations} />
-				<VideoSection videoId={videoId} />
-				<GiveawaySection />
-			</LayoutContent>
+
+			<PresentationSection presentations={localizedPresentations} />
+			<VideoSection videoId={videoId} />
+			<GiveawaySection />
+
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection {...sponsors} />
 		</Layout>

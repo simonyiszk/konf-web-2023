@@ -97,8 +97,8 @@ export function GiveawaySection() {
 	};
 
 	return (
-		<div className="mx-auto px-4">
-			<section className="flex w-full flex-col items-center justify-between gap-8 rounded-2xl bg-white/10 px-8 py-10 sm:flex-row">
+		<section id="nyeremenyjatek" className="container mx-auto px-4">
+			<div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-8 rounded-2xl bg-white/10 px-8 py-10 sm:flex-row">
 				<div
 					className={clsx(
 						"aspect-1 w-full shrink-0 rounded-full sm:h-[250px] sm:w-[250px] lg:h-[350px] lg:w-[350px]",
@@ -140,7 +140,7 @@ export function GiveawaySection() {
 					</p>
 					<p className="text-2xl">{t("raffle.items.attendance")}</p>
 				</div>
-			</section>
-		</div>
+			</div>
+		</section>
 	);
 }

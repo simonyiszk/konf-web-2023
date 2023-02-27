@@ -69,7 +69,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 							"absolute -bottom-3 -z-40 h-20 w-20",
 							once ? "block" : "hidden",
 						)}
-						style={{ left: `${clicks * 10 - 256}px` }}
+						style={{ left: `${clicks * 10 - 136}px` }}
 					>
 						<Image src="/assets/bg/Macska1.svg" alt="Cicæ" fill />
 					</div>

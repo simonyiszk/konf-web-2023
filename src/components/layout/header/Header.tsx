@@ -1,8 +1,13 @@
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
+import { useEffect } from "react";
+
+import { MenuButton } from "@/components/menu/MenuButton";
+import { useBool, useWindowSize } from "@/utils/hooks";
 
 const routeSwitcher = {
 	presentations: "eloadasok",
@@ -28,75 +33,105 @@ const localeSwitcher = (current: string) => {
 export function Header() {
 	const router = useRouter();
 	const { t, i18n } = useTranslation("common");
-	const { locale } = router;
+
+	const [isMenuOpen, setMenuOpen] = useBool(false);
+
+	const size = useWindowSize();
+
+	useEffect(() => {
+		if (size.width) {
+			if (size.width >= 640 && !isMenuOpen) {
+				setMenuOpen.setTrue();
+			}
+			if (size.width < 640 && isMenuOpen) {
+				setMenuOpen.setFalse();
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [size, size.width]);
 
 	return (
-		<header className="container sticky top-2 z-20 mx-auto -mb-14 w-full rounded-lg bg-white/10 py-2 px-5 backdrop-blur">
-			<div className="container mx-auto flex w-full flex-row items-center justify-between">
-				<nav className="relative flex gap-8">
-					<Link className="relative block h-7 w-16" href="/">
-						<Image src="/favicon.svg" alt="XX. Simonyi Konferencia logó" fill />
-					</Link>
-					<Link
-						href={i18n.language === "hu" ? "/eloadasok" : "/presentations"}
-						className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
-					>
-						{t("presentations.title")}
-					</Link>
-					<Link
-						href="/kapcsolat"
-						className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
-					>
-						{t("contact.title")}
-					</Link>
-					<Link
-						href="/nyeremenyjatek"
-						className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
-					>
-						{t("raffle.title")}
-					</Link>
-				</nav>
-				<div>
-					<button
-						type="button"
-						className="group p-2"
-						onClick={() => {
-							const path = router.asPath;
-							if (locale === "en") {
-								router.push(path, path.replace("presentations", "eloadasok"), {
-									locale: "hu",
-								});
-							} else {
-								router.push(path, path.replace("eloadasok", "presentations"), {
-									locale: "en",
-								});
-							}
-						}}
-						aria-label="Nyelv váltása"
-					>
-						<span
-							className={clsx(
-								locale === "hu" && "text-konf-accent-yellow",
-								locale === "hu" &&
-									"group-hover:text-white group-hover:opacity-60",
-								locale !== "hu" && "group-hover:text-konf-accent-yellow",
-							)}
-						>
-							HU
-						</span>{" "}
-						|{" "}
-						<span
-							className={clsx(
-								locale === "en" && "text-konf-accent-yellow",
-								locale === "en" &&
-									"group-hover:text-white group-hover:opacity-60",
-								locale !== "en" && "group-hover:text-konf-accent-yellow",
-							)}
-						>
-							EN
-						</span>
-					</button>
+		<header className="fixed top-2 z-20 mx-auto flex w-full items-center px-2">
+			<div className="flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur sm:flex-row">
+				<div className="mx-auto flex w-full flex-row items-center justify-between">
+					<div className="flex w-full items-center justify-between gap-8">
+						<Link className="p-1" href="/">
+							<div className="relative block h-7 w-16">
+								<Image
+									src="/favicon.svg"
+									alt="XX. Simonyi Konferencia logó"
+									fill
+								/>
+							</div>
+						</Link>
+						<div className="z-30 sm:hidden">
+							<button
+								type="button"
+								className="z-30 p-2 hover:opacity-75"
+								onClick={setMenuOpen.toggle}
+								aria-label="Menü megnyitása"
+							>
+								<MenuButton isOpen={isMenuOpen} className="m-2" />
+							</button>
+						</div>
+					</div>
 				</div>
+				<motion.nav
+					className="flex w-full flex-col sm:flex sm:flex-row sm:justify-end sm:gap-4 sm:opacity-100"
+					variants={{
+						open: {
+							opacity: 1,
+							y: 0,
+							display: "flex",
+							transition: { staggerChildren: 0.077 },
+							height: "auto",
+						},
+						closed: {
+							opacity: 0,
+							y: -20,
+							display: "flex",
+							transition: { staggerChildren: 0.02, staggerDirection: -1 },
+							height: 0,
+							transitionEnd: { display: "none" },
+						},
+					}}
+					defaultValue={(size.width ?? 0) >= 640 ? "open" : "closed"}
+					animate={isMenuOpen ? "open" : "closed"}
+				>
+					<motion.div
+						variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
+						className="py-2 pl-1 pr-4"
+					>
+						<Link
+							href={i18n.language === "hu" ? "/eloadasok" : "/presentations"}
+							className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
+						>
+							{t("presentations.title")}
+						</Link>
+					</motion.div>
+					<motion.div
+						variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
+						className="py-2 pl-1 pr-4"
+					>
+						<Link
+							href="/kapcsolat"
+							className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
+						>
+							{t("contact.title")}
+						</Link>
+					</motion.div>
+					<motion.div
+						variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
+						className="py-2 pl-1 pr-4"
+					>
+						<Link
+							href="/#nyeremenyjatek"
+							className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
+						>
+							{t("raffle.title")}
+						</Link>
+					</motion.div>
+				</motion.nav>
 			</div>
 		</header>
 	);

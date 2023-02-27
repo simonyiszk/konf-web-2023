@@ -11,8 +11,8 @@ type VideoSectionProps = {
 export function VideoSection({ videoId }: VideoSectionProps) {
 	const { t, i18n } = useTranslation("common");
 	return (
-		<section id="video" className="w-full py-16 px-4">
-			<div className="container mx-auto grid w-full grid-cols-1 gap-9 md:grid-cols-6 md:gap-20">
+		<section id="video" className="mx-auto w-full py-16 px-4">
+			<div className="container mx-auto grid w-full max-w-6xl grid-cols-1 gap-9 md:grid-cols-6 md:gap-20">
 				<div className="col-span-1 flex flex-col gap-9 md:col-span-2 md:items-end">
 					<h2 className="text-center text-4xl md:text-right">
 						{t("gallery.items.video.title")}
