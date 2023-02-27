@@ -31,7 +31,7 @@ export function Header() {
 	const { locale } = router;
 
 	return (
-		<header className="sticky top-0 z-20 mx-auto -mb-14 w-full max-w-6xl rounded-lg bg-white/10 py-2 px-5 backdrop-blur">
+		<header className="container sticky top-2 z-20 mx-auto -mb-14 w-full rounded-lg bg-white/10 py-2 px-5 backdrop-blur">
 			<div className="container mx-auto flex w-full flex-row items-center justify-between">
 				<nav className="relative flex gap-8">
 					<Link className="relative block h-7 w-16" href="/">
