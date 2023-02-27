@@ -4,6 +4,27 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 
+const routeSwitcher = {
+	presentations: "eloadasok",
+	eloadasok: "presentations",
+	contact: "kapcsolat",
+	kapcsolat: "contact",
+};
+
+const localeSwitcher = (current: string) => {
+	const found = Object.entries(routeSwitcher).find((v) =>
+		current.includes(v[0]),
+	);
+	if (found) {
+		return current.replace(found[0], found[1]);
+	}
+	if (process.env.VERCEL_ENV !== "production") {
+		// eslint-disable-next-line no-console
+		console.warn("No route found for", current);
+	}
+	return current;
+};
+
 export function Header() {
 	const router = useRouter();
 	const { t, i18n } = useTranslation("common");

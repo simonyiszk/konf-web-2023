@@ -2,6 +2,7 @@ import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
 import type {
+	LocalizedTypeOrganizer,
 	TypeGalleryImagesFields,
 	TypeParagraphFields,
 	TypePresentationFields,
@@ -132,3 +133,12 @@ export async function getPresentation(slug: string) {
 export type ReturnTypePresentation = Awaited<
 	ReturnType<typeof getPresentation>
 >;
+
+export async function getOrganizers() {
+	const organizers = await client.withAllLocales.getEntries({
+		content_type: "organizer",
+		order: "fields.order",
+	});
+
+	return organizers.items as unknown as LocalizedTypeOrganizer<"hu" | "en">[];
+}

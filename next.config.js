@@ -91,6 +91,11 @@ const nextConfig = {
 				destination: "/en/eloadasok/:slug*",
 				locale: false,
 			},
+			{
+				source: "/en/contact",
+				destination: "/en/kapcsolat",
+				locale: false,
+			},
 		];
 	},
 };
