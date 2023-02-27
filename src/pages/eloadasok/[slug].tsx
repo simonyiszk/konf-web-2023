@@ -158,16 +158,16 @@ export async function getStaticProps({
 }
 
 export async function getStaticPaths() {
-	const lang = ["/eloadasok/", "/en/eloadasok/"];
+	const lang = ["/eloadasok/"];
 	const presentationSlugs = (await getPresentations()).map(
 		({ fields }) => fields.slug,
 	) as { hu: string; en: string }[];
 
 	const pathHu = presentationSlugs.map((slug) => `${lang[0]}${slug.hu}`);
-	const pathEn = presentationSlugs.map((slug) => `${lang[1]}${slug.hu}`);
+	// const pathEn = presentationSlugs.map((slug) => `${lang[1]}${slug.hu}`);
 
 	return {
-		paths: [...pathHu, ...pathEn],
+		paths: [...pathHu],
 		fallback: false,
 	};
 }
