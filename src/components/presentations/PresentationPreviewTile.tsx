@@ -23,7 +23,7 @@ export function PresentationPreviewTile({
 				className,
 			)}
 		>
-			<p className={clsx("mb-2 px-2 text-center text-[28px] leading-9")}>
+			<p className={clsx("mb-2 px-2 text-center text-xl font-semibold")}>
 				{title}
 			</p>
 			<figure className="absolute bottom-0 mb-3 h-2 w-full bg-gradient-to-r from-konf-primary-blue to-konf-primary-green" />

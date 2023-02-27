@@ -63,8 +63,8 @@ export default function Index({
 	// Needs to be client side because of the randomization
 	// eslint-disable-next-line react-etc/prefer-usememo
 	useEffect(() => {
-		const start = Math.floor(Math.random() * presentations.length - 3);
-		const selected = presentations.slice(start, start + 3);
+		const start = Math.floor(Math.random() * (presentations.length - 4));
+		const selected = presentations.slice(start, start + 4);
 		const localized = selected
 			.map((p) => {
 				return Object.fromEntries(
@@ -82,7 +82,10 @@ export default function Index({
 						: `/en/presentations/${p.slug}`,
 			}));
 		setLocalizedPresentations(localized);
+		console.log(start, presentations.length, selected);
 	}, [i18n.language, presentations]);
+
+	// console.log(localizedPresentations);
 
 	return (
 		<Layout className="" buildDate={buildDate}>
