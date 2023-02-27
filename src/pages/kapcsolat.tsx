@@ -12,6 +12,7 @@ import { getOrganizers } from "@/utils/contentful";
 
 export default function Contact({
 	organizers,
+	sortedOrganizers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 	const { t } = useTranslation("common");
 	return (
@@ -28,11 +29,16 @@ export default function Contact({
 				>
 					{t("contact.title")}
 				</h1>
-				<section className="contentGridContainer">
-					{organizers.map((o) => (
-						<OrganizerCard key={o.name?.hu} organizer={o} />
-					))}
-				</section>
+
+				{sortedOrganizers.map((level) => (
+					<section className="contentGridContainer" key={level[0].order?.hu}>
+						{level.map((o) => (
+							<OrganizerCard key={o.name?.hu} organizer={o} />
+						))}
+					</section>
+				))}
+			</LayoutContent>
+			<LayoutContent>
 				<LocationCard />
 			</LayoutContent>
 		</Layout>
@@ -42,10 +48,25 @@ export default function Contact({
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
 	const organizers = (await getOrganizers()).map((o) => o.fields);
+
+	const levels = (
+		Array.from(new Set(organizers.map((o) => o.order?.hu))) as number[]
+	).sort((a, b) => a - b);
+
+	const sortedOrganizers = levels.map((l) => {
+		return (
+			organizers
+				.filter((o) => o.order?.hu === l)
+				// @ts-expect-error localized optional
+				.sort((a, b) => a.name?.hu.localeCompare(b.name?.hu))
+		);
+	});
+
 	return {
 		props: {
 			...i18n,
 			organizers,
+			sortedOrganizers,
 			buildDate: Date.now(),
 		},
 	};

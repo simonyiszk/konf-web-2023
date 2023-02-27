@@ -27,8 +27,8 @@ export function OrganizerCard({ organizer }: OrganizerCardProps) {
 	const { name, title, email, image } = localized;
 
 	return (
-		<div className="w-[350px] overflow-hidden rounded-lg bg-white/10">
-			<div className="relative mx-auto h-[300px] bg-gradient-to-b from-konf-primary-green to-transparent">
+		<div className="w-full min-w-[320px] overflow-hidden rounded-lg bg-white/10">
+			<div className="relative mx-auto aspect-1 bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
 						image.fields.file?.hu?.url
@@ -42,11 +42,11 @@ export function OrganizerCard({ organizer }: OrganizerCardProps) {
 					sizes="(max-width: 640px) 100vw, 640px"
 				/>
 			</div>
-			<div className="flex flex-col gap-2 p-5">
+			<div className="flex shrink grow flex-col gap-2 p-5">
 				<h2 className="text-center text-3xl font-bold">{name}</h2>
 				<span className="block text-center text-2xl">{title}</span>
 				<a
-					className="inline text-center text-base text-konf-accent-yellow"
+					className="inline break-words text-center text-base text-konf-accent-yellow"
 					href={`mailto:${email}`}
 				>
 					{email}
