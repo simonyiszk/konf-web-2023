@@ -11,7 +11,6 @@ import { FaArrowLeft } from "react-icons/fa";
 import type {
 	LocalizedEntry,
 	LocalizedFields,
-	LocalizedTypeSponsorLogo,
 	LocalizedTypeSponsorLogoFields,
 	TypePresentationFields,
 	TypeSponsorLogoFields,

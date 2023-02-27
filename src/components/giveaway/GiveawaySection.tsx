@@ -43,7 +43,14 @@ function Highlighted({
 				);
 
 				if (isMatched && wrapper) {
-					return React.createElement(wrapper, {}, content);
+					return React.createElement(
+						wrapper,
+						{
+							// eslint-disable-next-line react/no-array-index-key
+							key: i,
+						},
+						content,
+					);
 				}
 
 				return content;
