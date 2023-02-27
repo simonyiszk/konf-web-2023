@@ -90,7 +90,7 @@ export function GiveawaySection() {
 	};
 
 	return (
-		<div className="mx-auto max-w-6xl px-4">
+		<div className="mx-auto px-4">
 			<section className="flex w-full flex-col items-center justify-between gap-8 rounded-2xl bg-white/10 px-8 py-10 sm:flex-row">
 				<div
 					className={clsx(
