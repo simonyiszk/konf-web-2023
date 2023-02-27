@@ -9,6 +9,7 @@ import { GiveawaySection } from "@/components/giveaway/GiveawaySection";
 import { HeroV1 } from "@/components/hero/HeroV1";
 import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
+import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import type { PresentationPreviewType } from "@/components/presentations";
 import { PresentationSection } from "@/components/presentations/PresentationSection";
@@ -89,9 +90,11 @@ export default function Index({
 			<Seo />
 			<BgDecoration />
 			<HeroV1 />
-			<PresentationSection presentations={localizedPresentations} />
-			<VideoSection videoId={videoId} />
-			<GiveawaySection />
+			<LayoutContent maxWidth="max-w-6xl">
+				<PresentationSection presentations={localizedPresentations} />
+				<VideoSection videoId={videoId} />
+				<GiveawaySection />
+			</LayoutContent>
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection {...sponsors} />
 		</Layout>

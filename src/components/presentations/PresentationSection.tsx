@@ -14,10 +14,7 @@ export function PresentationSection({
 	const { t, i18n } = useTranslation("common");
 	const href = i18n.language === "hu" ? "/eloadasok" : "/presentations";
 	return (
-		<section
-			id={href.split("/")[1]}
-			className="mx-auto w-full px-4 py-16 xl:max-w-6xl"
-		>
+		<section id={href.split("/")[1]} className="mx-auto w-full px-4 py-16">
 			<div className="grid grid-cols-1 place-items-center gap-8 md:grid-cols-2 xl:grid-cols-3">
 				{presentations.map((p) => (
 					<PresentationPreviewTile key={p.href} title={p.title} href={p.href} />

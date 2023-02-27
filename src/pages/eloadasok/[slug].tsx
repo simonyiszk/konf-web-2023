@@ -114,7 +114,7 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 	return (
 		<Layout buildDate={buildDate}>
 			<Seo title={localized.title} description={localized.description} />
-			<LayoutContent>
+			<LayoutContent maxWidth="max-w-6xl">
 				<Link
 					href={href}
 					className="mb-8 text-lg opacity-70 transition duration-300 hover:opacity-100"
