@@ -11,7 +11,6 @@ import { OrganizerCard } from "@/components/organizer/OrganizerCard";
 import { getOrganizers } from "@/utils/contentful";
 
 export default function Contact({
-	organizers,
 	sortedOrganizers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 	const { t } = useTranslation("common");
@@ -65,7 +64,6 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	return {
 		props: {
 			...i18n,
-			organizers,
 			sortedOrganizers,
 			buildDate: Date.now(),
 		},
