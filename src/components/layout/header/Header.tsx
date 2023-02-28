@@ -51,7 +51,7 @@ export function Header() {
 	}, [size, size.width]);
 
 	return (
-		<header className="fixed top-2 z-20 mx-auto flex w-full items-center px-2">
+		<header className="fixed top-2 z-30 mx-auto flex w-full items-center px-2">
 			<div className="flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur sm:flex-row">
 				<div className="mx-auto flex w-full flex-row items-center justify-between">
 					<div className="flex w-full items-center justify-between gap-8">
@@ -64,10 +64,10 @@ export function Header() {
 								/>
 							</div>
 						</Link>
-						<div className="z-30 sm:hidden">
+						<div className="z-40 sm:hidden">
 							<button
 								type="button"
-								className="z-30 p-2 hover:opacity-75"
+								className="z-40 p-2 hover:opacity-75"
 								onClick={setMenuOpen.toggle}
 								aria-label="Menü megnyitása"
 							>

@@ -1,6 +1,7 @@
 .heroV1 {
 	@apply relative mx-auto flex min-h-screen w-full flex-col items-center justify-center gap-4 sm:gap-8 md:gap-16;
 
+	min-height: 100vh;
 	min-height: 100svh;
 }
 

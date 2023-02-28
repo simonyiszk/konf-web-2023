@@ -7,11 +7,13 @@ import { Header } from "./header/Header";
 
 type LayoutProps = {
 	buildDate?: number;
+	hero?: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export function Layout({
 	buildDate,
 	className,
+	hero,
 	children,
 	...restProps
 }: LayoutProps) {
@@ -22,10 +24,12 @@ export function Layout({
 		>
 			<Header />
 
+			{hero}
+
 			{/* @ts-expect-error: Framer Motion types */}
 			<motion.main
 				id="#"
-				className={clsx(className, "relative z-10 w-full overflow-x-hidden")}
+				className={clsx(className, "relative w-full overflow-x-hidden")}
 				{...restProps}
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}

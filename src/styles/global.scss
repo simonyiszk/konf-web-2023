@@ -18,3 +18,16 @@ body {
 
 	margin: 0 auto;
 }
+
+main {
+	background-image: url("/assets/bg/mobile_small.png");
+	background-image: url("/assets/bg/mobile_small.webp");
+	background-size: 100% auto;
+	background-repeat: repeat-y;
+	background-position: 0 100vh;
+	@screen md {
+		background-image: url("/assets/bg/desktop_small.png");
+		background-image: url("/assets/bg/desktop_small.webp");
+		background-position: 0 75vh;
+	}
+}

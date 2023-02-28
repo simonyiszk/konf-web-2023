@@ -88,10 +88,17 @@ export default function Index({
 	// console.log(localizedPresentations);
 
 	return (
-		<Layout className="" buildDate={buildDate}>
+		<Layout
+			className=""
+			buildDate={buildDate}
+			hero={
+				<>
+					<BgDecoration />
+					<HeroV1 />
+				</>
+			}
+		>
 			<Seo />
-			<BgDecoration />
-			<HeroV1 />
 
 			<PresentationSection presentations={localizedPresentations} />
 			<VideoSection videoId={videoId} />

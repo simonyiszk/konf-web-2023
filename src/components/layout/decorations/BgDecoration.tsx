@@ -49,7 +49,7 @@ export function BgElement({
 
 export function BgDecoration() {
 	return (
-		<div className="pointer-events-none absolute inset-y-0 mx-auto h-screen w-screen overflow-hidden">
+		<div className="pointer-events-none absolute inset-y-0 mx-auto h-full w-full overflow-hidden">
 			<BgElement
 				img="blue"
 				dimensions={{
