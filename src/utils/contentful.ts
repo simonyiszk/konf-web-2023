@@ -63,11 +63,13 @@ export async function getSponsors() {
 	const silverSponsors = await client.getEntries<TypeSponsorLogoFields>({
 		content_type: "sponsorLogo",
 		"fields.sponsorshipGrade[in]": "kiemelt támogató",
+		order: "fields.name",
 	});
 
 	const bronzeSponsors = await client.getEntries<TypeSponsorLogoFields>({
 		content_type: "sponsorLogo",
 		"fields.sponsorshipGrade[in]": "támogató",
+		order: "fields.name",
 	});
 
 	return { goldSponsor, silverSponsors, bronzeSponsors };
