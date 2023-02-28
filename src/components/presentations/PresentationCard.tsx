@@ -59,7 +59,7 @@ export function PresentationCard({
 	return (
 		<Link
 			href={href}
-			className="group relative block w-full overflow-hidden rounded bg-konf-overlay-blue transition duration-200 ease-in-out hover:drop-shadow-[0_12px_12px_rgba(255,255,255,0.25)]"
+			className="group relative block w-full overflow-hidden rounded bg-konf-overlay-blue backdrop-blur transition duration-200 ease-in-out hover:drop-shadow-[0_12px_12px_rgba(255,255,255,0.25)]"
 		>
 			<div className="relative mx-auto h-[300px] bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image

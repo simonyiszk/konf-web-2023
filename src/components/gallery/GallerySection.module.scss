@@ -15,7 +15,8 @@
 }
 
 .line {
-	@apply -mt-3.5 h-1 w-full;
+	@apply relative -mt-3.5 h-1 w-full;
+	z-index: 2;
 	background: linear-gradient(
 		90deg,
 		#77b16a 0px,

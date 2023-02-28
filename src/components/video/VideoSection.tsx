@@ -13,7 +13,7 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 	return (
 		<section id="video" className="mx-auto w-full py-16 px-4">
 			<div className="container mx-auto grid w-full max-w-6xl grid-cols-1 gap-9 md:grid-cols-6 md:gap-20">
-				<div className="col-span-1 flex flex-col gap-9 md:col-span-2 md:items-end">
+				<div className="relative col-span-1 flex flex-col gap-9 md:col-span-2 md:items-end">
 					<h2 className="text-center text-4xl md:text-right">
 						{t("gallery.items.video.title")}
 					</h2>
@@ -27,7 +27,7 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 							width: 1200,
 						}}
 						rotate={115}
-						className="top-[770px] left-[-370px] z-[0] hidden h-max w-max xl:block"
+						className="top-[-170px] left-[-570px] -z-20 hidden h-max w-max xl:block"
 					/>
 					<DownArrowButton
 						href="#gallery"

@@ -66,7 +66,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 					<div
 						ref={cic}
 						className={clsx(
-							"absolute -bottom-3 -z-40 h-20 w-20",
+							"absolute -bottom-3 z-[1] h-20 w-20",
 							once ? "block" : "hidden",
 						)}
 						style={{ left: `${clicks * 10 - 136}px` }}
@@ -75,7 +75,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 					</div>
 					<div
 						className={clsx(
-							"absolute -bottom-0 right-0 -z-40 h-14 w-20",
+							"absolute -bottom-0 right-0 z-20 h-14 w-20",
 							bom ? "block" : "hidden",
 						)}
 					>

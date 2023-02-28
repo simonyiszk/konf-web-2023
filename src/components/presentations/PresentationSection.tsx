@@ -16,7 +16,7 @@ export function PresentationSection({
 	return (
 		<section
 			id={href.split("/")[1]}
-			className="mx-auto w-full py-16 px-4 sm:px-16 md:px-8 lg:px-16 xl:px-32"
+			className="container mx-auto w-full py-16 px-4 sm:px-16 md:px-8 lg:px-16 xl:px-32"
 		>
 			<div className="grid grid-cols-1 place-items-center gap-8 md:grid-cols-2 xl:grid-cols-4">
 				{presentations.map((p) => (
