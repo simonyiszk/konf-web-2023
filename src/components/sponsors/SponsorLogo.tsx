@@ -32,12 +32,17 @@ export function SponsorLogo({
 		<ConditionalWrapper
 			condition={!!link}
 			renderWrapper={(children) => (
-				<a href={link} target="_blank" rel="noopener noreferrer">
+				<a
+					href={link}
+					target="_blank"
+					rel="noopener noreferrer"
+					className={restProps.className}
+				>
 					{children}
 				</a>
 			)}
 		>
-			<div className={clsx("relative m-2 p-2", restProps.className)}>
+			<div className={clsx("relative p-2")}>
 				<Image
 					src={`https:${image.fields.file.url}`}
 					alt={`${name} logo`}

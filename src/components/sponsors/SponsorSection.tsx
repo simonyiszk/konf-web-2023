@@ -39,7 +39,7 @@ export function SponsorSection({
 									<SponsorLogo
 										key={fields.name}
 										{...fields}
-										className="h-auto w-[192px]"
+										className="col-span-2 h-auto max-w-[200px]"
 									/>
 								),
 						)}
@@ -52,7 +52,7 @@ export function SponsorSection({
 							<SponsorLogo
 								key={fields.name}
 								{...fields}
-								className="h-auto w-[158px]"
+								className="col-span-2 h-auto max-w-[170px]"
 							/>
 						))}
 					</div>
