@@ -1,8 +1,6 @@
-import clsx from "clsx";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 
@@ -31,7 +29,6 @@ const localeSwitcher = (current: string) => {
 };
 
 export function Header() {
-	const router = useRouter();
 	const { t, i18n } = useTranslation("common");
 
 	const [isMenuOpen, setMenuOpen] = useBool(false);

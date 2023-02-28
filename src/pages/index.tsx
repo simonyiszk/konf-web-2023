@@ -9,7 +9,6 @@ import { GiveawaySection } from "@/components/giveaway/GiveawaySection";
 import { HeroV1 } from "@/components/hero/HeroV1";
 import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
-import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { PresentationSection } from "@/components/presentations/PresentationSection";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
@@ -82,10 +81,7 @@ export default function Index({
 						: `/en/presentations/${p.slug}`,
 			}));
 		setLocalizedPresentations(localized);
-		console.log(start, presentations.length, selected);
 	}, [i18n.language, presentations]);
-
-	// console.log(localizedPresentations);
 
 	return (
 		<Layout
