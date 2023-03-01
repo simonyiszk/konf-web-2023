@@ -27,7 +27,7 @@ export function OrganizerCard({ organizer }: OrganizerCardProps) {
 	const { name, title, email, image } = localized;
 
 	return (
-		<div className="w-full min-w-[320px] overflow-hidden rounded-lg bg-white/10">
+		<div className="w-full min-w-[320px] overflow-hidden rounded-lg bg-white/10 backdrop-blur">
 			<div className="relative mx-auto aspect-1 bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
