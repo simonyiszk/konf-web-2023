@@ -9,11 +9,20 @@ import { Seo } from "@/components/layout/Seo";
 import { LocationCard } from "@/components/location/LocationCard";
 import { OrganizerCard } from "@/components/organizer/OrganizerCard";
 import { getOrganizers } from "@/utils/contentful";
+import { useEffectOnce } from "@/utils/hooks";
 
 export default function Contact({
 	sortedOrganizers,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 	const { t } = useTranslation("common");
+
+	useEffectOnce(() => {
+		document.documentElement.style.setProperty(
+			"--randomHeight",
+			`${Math.floor(Math.random() * 300)}vh`,
+		);
+	});
+
 	return (
 		<Layout className="pt-8">
 			<Seo title={t("contact.title")} />
