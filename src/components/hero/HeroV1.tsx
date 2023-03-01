@@ -10,7 +10,7 @@ import styles from "./HeroV1.module.scss";
 function Hero() {
 	const { t, i18n } = useTranslation("common");
 	return (
-		<div className="mx-1 mt-8 flex flex-col justify-center sm:mt-0 xl:-mt-8">
+		<div className="mx-1 mt-12 flex flex-col justify-center sm:mt-0 xl:-mt-8">
 			<div className="aspect-w-16 aspect-h-7 relative mb-6 w-[252px] self-center sm:mx-28 sm:-mb-6 sm:w-[276px]">
 				<Image
 					src="/favicon.svg"
@@ -59,7 +59,7 @@ function CTA() {
 	const { t, i18n } = useTranslation("common");
 	const href = i18n.language === "hu" ? "#eloadasok" : "#presentations";
 	return (
-		<div className="mt-4 flex flex-col items-center gap-8">
+		<div className="mt-4 flex flex-col items-center gap-2 md:gap-8">
 			<TextButton
 				text={t("cta.register")}
 				href="https://simonyi-konferencia.eventbrite.com"

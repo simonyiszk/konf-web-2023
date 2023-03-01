@@ -2,12 +2,14 @@ import clsx from "clsx";
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useEffect } from "react";
 
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { PresentationCard } from "@/components/presentations/PresentationCard";
 import { getPresentations, ReturnTypePresentations } from "@/utils/contentful";
+import { useEffectOnce } from "@/utils/hooks";
 
 import styles from "./index.module.scss";
 
@@ -15,8 +17,16 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export default function Presentations({ buildDate, presentations }: PageProps) {
 	const { t } = useTranslation("common");
+
+	useEffectOnce(() => {
+		document.documentElement.style.setProperty(
+			"--randomHeight",
+			`${Math.floor(Math.random() * 300)}vh`,
+		);
+	});
+
 	return (
-		<Layout buildDate={buildDate}>
+		<Layout buildDate={buildDate} className="pt-8">
 			<Seo title={t("presentations.title")} />
 
 			<LayoutContent maxWidth="max-w-8xl">

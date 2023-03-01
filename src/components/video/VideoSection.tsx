@@ -20,15 +20,6 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 					<p className="md:text-right">
 						{t("gallery.items.video.description")}
 					</p>
-					<BgElement
-						img="green"
-						dimensions={{
-							height: 1200,
-							width: 1200,
-						}}
-						rotate={115}
-						className="top-[-170px] left-[-570px] -z-20 hidden h-max w-max xl:block"
-					/>
 					<DownArrowButton
 						href="#gallery"
 						scroll={false}
@@ -38,15 +29,6 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 					/>
 				</div>
 				<div className="relative md:col-span-4">
-					<BgElement
-						img="blue"
-						dimensions={{
-							height: 1000,
-							width: 1000,
-						}}
-						rotate={0}
-						className="top-[-350px] right-[-470px] z-[0] h-max w-max sm:top-[-250px] sm:right-[-570px]"
-					/>
 					<div
 						style={{
 							backdropFilter: "blur(10px)",

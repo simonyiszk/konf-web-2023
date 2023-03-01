@@ -20,6 +20,7 @@ import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { components } from "@/components/mdx/MDXComponents";
 import { getPresentation, getPresentations } from "@/utils/contentful";
+import { useEffectOnce } from "@/utils/hooks";
 
 type TextContentProps = {
 	title: string;
@@ -89,6 +90,13 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Presentation({ buildDate, presentation }: PageProps) {
 	const { t, i18n } = useTranslation("common");
 
+	useEffectOnce(() => {
+		document.documentElement.style.setProperty(
+			"--randomHeight",
+			`${Math.floor(Math.random() * 300)}vh`,
+		);
+	});
+
 	const href = i18n.language === "hu" ? "/eloadasok" : "/en/presentations";
 
 	const localized = Object.fromEntries(
@@ -110,8 +118,9 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 	const sponsor = localized.sponsorLogo?.fields as unknown as
 		| LocalizedTypeSponsorLogoFields<"hu">
 		| undefined;
+
 	return (
-		<Layout buildDate={buildDate}>
+		<Layout buildDate={buildDate} className="pt-4">
 			<Seo title={localized.title} description={localized.description} />
 			<LayoutContent maxWidth="max-w-6xl">
 				<Link

@@ -3,6 +3,7 @@
 
 :root {
 	color-scheme: dark light;
+	--randomHeight: 75vh;
 }
 
 html {
@@ -20,14 +21,12 @@ body {
 }
 
 main {
-	background-image: url("/assets/bg/mobile_small.png");
-	background-image: url("/assets/bg/mobile_small.webp");
+	background-image: url("/assets/bg/mobile_small_8bit.png");
 	background-size: 100% auto;
 	background-repeat: repeat-y;
-	background-position: 0 100vh;
+	background-position: 0 var(--randomHeight);
 	@screen md {
-		background-image: url("/assets/bg/desktop_small.png");
-		background-image: url("/assets/bg/desktop_small.webp");
-		background-position: 0 75vh;
+		background-image: url("/assets/bg/desktop_small_8bit.png");
+		background-position: 0 var(--randomHeight);
 	}
 }

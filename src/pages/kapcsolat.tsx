@@ -15,7 +15,7 @@ export default function Contact({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 	const { t } = useTranslation("common");
 	return (
-		<Layout>
+		<Layout className="pt-8">
 			<Seo title={t("contact.title")} />
 			<LayoutContent>
 				<h1
