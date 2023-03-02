@@ -8,7 +8,7 @@ import React from "react";
 
 import { TRACKING_ID } from "@/utils/constants";
 
-console.log("VERCEL_ENV: ", process.env.VERCEL_ENV);
+console.log("env: ", process.env);
 
 function KonfApp({ Component, pageProps }: AppProps) {
 	console.log("VERCEL_ENV: ", process.env.VERCEL_ENV);
