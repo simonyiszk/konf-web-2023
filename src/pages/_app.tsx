@@ -8,6 +8,8 @@ import React from "react";
 
 import { TRACKING_ID } from "@/utils/constants";
 
+console.log(process.env.VERCEL_ENV);
+
 function KonfApp({ Component, pageProps }: AppProps) {
 	return (
 		<React.StrictMode>
