@@ -30,6 +30,10 @@
 		"title": "Contact",
 		"items": {}
 	},
+	"workshop": {
+		"title": "Workshops",
+		"items": {}
+	},
 	"about": { "title": "About", "items": {} },
 	"raffle": {
 		"title": "Raffle",

@@ -39,6 +39,10 @@
 			"attendance": "Az előadásokon való aktív részvételért és kérdezésért pedig kisebb nyereményekre tehetnek szert a résztvevők!"
 		}
 	},
+	"workshop": {
+		"title": "Workshopok",
+		"items": {}
+	},
 	"gallery": {
 		"title": "Galéria",
 		"items": {

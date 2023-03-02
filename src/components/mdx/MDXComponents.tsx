@@ -25,4 +25,10 @@ export const components = {
 			{props.children}
 		</h1>
 	),
+	ul: (
+		props: DetailedHTMLProps<
+			HTMLAttributes<HTMLUListElement>,
+			HTMLUListElement
+		>,
+	) => <ul className="list-inside list-disc" {...props} />,
 };

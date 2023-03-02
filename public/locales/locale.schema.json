@@ -92,6 +92,19 @@
 			},
 			"required": ["title", "items"]
 		},
+		"workshop": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				},
+				"items": {
+					"type": "object",
+					"properties": {}
+				}
+			},
+			"required": ["title", "items"]
+		},
 		"about": {
 			"type": "object",
 			"properties": {
