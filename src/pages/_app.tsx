@@ -8,9 +8,10 @@ import React from "react";
 
 import { TRACKING_ID } from "@/utils/constants";
 
-console.log(process.env.VERCEL_ENV);
+console.log("VERCEL_ENV: ", process.env.VERCEL_ENV);
 
 function KonfApp({ Component, pageProps }: AppProps) {
+	console.log("VERCEL_ENV: ", process.env.VERCEL_ENV);
 	return (
 		<React.StrictMode>
 			{/* Umami analytics */}
