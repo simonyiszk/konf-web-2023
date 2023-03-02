@@ -22,6 +22,7 @@ function KonfApp({ Component, pageProps }: AppProps) {
 				data-auto-track={
 					process.env.VERCEL_ENV === "production" ? "true" : "false"
 				}
+				data-wtf={process.env.VERCEL_ENV}
 			/>
 
 			{/* Purge old Gatsby service worker */}
