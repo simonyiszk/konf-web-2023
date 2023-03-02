@@ -8,10 +8,7 @@ import React from "react";
 
 import { TRACKING_ID } from "@/utils/constants";
 
-console.log("env: ", process.env);
-
 function KonfApp({ Component, pageProps }: AppProps) {
-	console.log("VERCEL_ENV: ", process.env.VERCEL_ENV);
 	return (
 		<React.StrictMode>
 			{/* Umami analytics */}
@@ -21,9 +18,11 @@ function KonfApp({ Component, pageProps }: AppProps) {
 				data-website-id={TRACKING_ID}
 				src="https://succ.andrisborbas.com/succ.js"
 				data-auto-track={
-					process.env.VERCEL_ENV === "production" ? "true" : "false"
+					process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ||
+					process.env.VERCEL_ENV === "production"
+						? "true"
+						: "false"
 				}
-				data-wtf={`VERCEL_ENV: ${process.env.VERCEL_ENV}`}
 			/>
 
 			{/* Purge old Gatsby service worker */}
