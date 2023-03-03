@@ -2,7 +2,6 @@ import { useTranslation } from "next-i18next";
 import Youtube from "react-youtube";
 
 import { DownArrowButton } from "../button/DownArrowButton";
-import { BgElement } from "../layout/decorations/BgDecoration";
 
 type VideoSectionProps = {
 	videoId: string;

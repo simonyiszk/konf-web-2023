@@ -1,35 +1,37 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
 
 import { MenuButton } from "@/components/menu/MenuButton";
 import { useBool, useWindowSize } from "@/utils/hooks";
 
-const routeSwitcher = {
-	presentations: "eloadasok",
-	eloadasok: "presentations",
-	contact: "kapcsolat",
-	kapcsolat: "contact",
-};
+// const routeSwitcher = {
+// 	presentations: "eloadasok",
+// 	eloadasok: "presentations",
+// 	contact: "kapcsolat",
+// 	kapcsolat: "contact",
+// };
 
-const localeSwitcher = (current: string) => {
-	const found = Object.entries(routeSwitcher).find((v) =>
-		current.includes(v[0]),
-	);
-	if (found) {
-		return current.replace(found[0], found[1]);
-	}
-	if (process.env.VERCEL_ENV !== "production") {
-		// eslint-disable-next-line no-console
-		console.warn("No route found for", current);
-	}
-	return current;
-};
+// const localeSwitcher = (current: string) => {
+// 	const found = Object.entries(routeSwitcher).find((v) =>
+// 		current.includes(v[0]),
+// 	);
+// 	if (found) {
+// 		return current.replace(found[0], found[1]);
+// 	}
+// 	if (process.env.VERCEL_ENV !== "production") {
+// 		// eslint-disable-next-line no-console
+// 		console.warn("No route found for", current);
+// 	}
+// 	return current;
+// };
 
 export function Header() {
 	const { t, i18n } = useTranslation("common");
+	const router = useRouter();
 
 	const [isMenuOpen, setMenuOpen] = useBool(false);
 
@@ -52,7 +54,18 @@ export function Header() {
 			<div className="flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur sm:flex-row">
 				<div className="mx-auto flex w-full flex-row items-center justify-between">
 					<div className="flex w-full items-center justify-between gap-8">
-						<Link className="p-1" href="/">
+						<Link
+							className="p-1"
+							href="/"
+							scroll={router.pathname !== "/"}
+							onClick={() => {
+								if (router.pathname === "/") {
+									document
+										.getElementById("app")
+										?.scrollIntoView({ behavior: "smooth" });
+								}
+							}}
+						>
 							<div className="relative block h-7 w-16">
 								<Image
 									src="/favicon.svg"
@@ -124,6 +137,7 @@ export function Header() {
 						<Link
 							href="/#nyeremenyjatek"
 							className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
+							scroll={router.pathname !== "/"}
 						>
 							{t("raffle.title")}
 						</Link>

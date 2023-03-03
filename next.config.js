@@ -22,6 +22,9 @@ const nextConfig = {
 		],
 		domains: ["placekitten.com"],
 	},
+	experimental: {
+		scrollRestoration: true,
+	},
 
 	async headers() {
 		const headers = [

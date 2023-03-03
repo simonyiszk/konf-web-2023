@@ -15,13 +15,13 @@ function Hero() {
 				<Image
 					src="/favicon.svg"
 					alt="XX. Simonyi Konferencia logó"
-					className="absolute"
+					className="absolute z-[1]"
 					fill
 					priority
 					unoptimized
 				/>
 			</div>
-			<h1 className="mx-1 mb-4 text-center text-[48px] font-black uppercase leading-10 sm:text-[56px] sm:leading-[0.825]">
+			<h1 className="z-[2] mx-1 mb-4 text-center text-[48px] font-black uppercase leading-10 sm:text-[56px] sm:leading-[0.825]">
 				Simonyi
 				<br />
 				<span className="text-[42px] font-light lowercase leading-9 sm:text-[48px]">

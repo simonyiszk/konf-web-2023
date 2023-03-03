@@ -7,17 +7,13 @@
 }
 
 html {
-	--scroll-behavior: smooth !important;
-	scroll-behavior: smooth !important;
+	@apply scroll-smooth;
 	-webkit-tap-highlight-color: transparent;
 }
 
 body {
 	@apply text-konf-primary-white;
 	@apply bg-konf-background-blue;
-	@apply min-h-screen;
-
-	margin: 0 auto;
 }
 
 main {
