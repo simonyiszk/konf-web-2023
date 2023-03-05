@@ -17,7 +17,7 @@ export default function WorkshopPages({
 	return (
 		<Layout>
 			<Seo title={t("workshop.title")} />
-			<LayoutContent>
+			<LayoutContent maxWidth="max-w-6xl">
 				<h1
 					className={clsx(
 						"text-center text-5xl font-black md:text-7xl lg:text-9xl",
@@ -28,7 +28,7 @@ export default function WorkshopPages({
 				>
 					{t("workshop.title")}
 				</h1>
-				<section className="grid gap-16">
+				<section className="my-32 grid gap-16">
 					{workshops.map((ws) => (
 						<WorkshopCard
 							key={ws.fields.title.hu}

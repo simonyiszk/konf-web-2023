@@ -1,4 +1,4 @@
-import type { Entry, EntryFields } from "contentful";
+import type { Asset, Entry, EntryFields } from "contentful";
 import type { LocalizedEntry, LocalizedFields } from "./Localized";
 import type { TypeWorkshopPersonFields } from "./TypeWorkshopPerson";
 
@@ -11,6 +11,8 @@ export interface TypeWorkshopFields {
     startDate: EntryFields.Date;
     endDate: EntryFields.Date;
     presenter?: Entry<TypeWorkshopPersonFields>[];
+    company?: EntryFields.Symbol;
+    image?: Asset;
 }
 
 export type TypeWorkshop = Entry<TypeWorkshopFields>;
