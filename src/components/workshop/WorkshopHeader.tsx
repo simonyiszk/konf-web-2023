@@ -6,10 +6,21 @@ export const headerVariants = {
 		<>
 			<div className="col-span-2 hidden sm:block">
 				<span>{props.company}</span> <WorkshopPlace place={props.place ?? ""} />{" "}
-				<WorkshopTimeRange time={props.time ?? ""} />
+				<WorkshopTimeRange
+					start={props.time?.start ?? new Date()}
+					end={props.time?.end ?? new Date()}
+				/>
 			</div>
 			<div className="w-full place-items-center">
 				<span className="block text-center">{props.name}</span>
+				<div className="text-center sm:hidden">
+					<span className="block text-lg font-light">{props.company}</span>
+					<WorkshopPlace place={props.place ?? ""} />{" "}
+					<WorkshopTimeRange
+						start={props.time?.start ?? new Date()}
+						end={props.time?.end ?? new Date()}
+					/>
+				</div>
 			</div>
 		</>
 	),
@@ -17,10 +28,20 @@ export const headerVariants = {
 		<>
 			<div className="col-span-2  hidden sm:block">
 				<WorkshopPlace place={props.place ?? ""} />{" "}
-				<WorkshopTimeRange time={props.time ?? ""} />
+				<WorkshopTimeRange
+					start={props.time?.start ?? new Date()}
+					end={props.time?.end ?? new Date()}
+				/>
 			</div>
 			<div className="w-full place-items-center">
 				<span className="block text-center">{props.company}</span>
+				<div className="text-center sm:hidden">
+					<WorkshopPlace place={props.place ?? ""} />{" "}
+					<WorkshopTimeRange
+						start={props.time?.start ?? new Date()}
+						end={props.time?.end ?? new Date()}
+					/>
+				</div>
 			</div>
 		</>
 	),
@@ -37,7 +58,10 @@ export const headerVariants = {
 		props: Partial<{
 			company: string;
 			place: string;
-			time: string;
+			time: {
+				start: Date;
+				end: Date;
+			};
 			name: string; // Name of the presenter or group
 		}>,
 	) => React.ReactNode;

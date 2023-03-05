@@ -1,9 +1,8 @@
 import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
-import {
+import type {
 	LocalizedTypeOrganizer,
-	LocalizedTypeWorkshop,
 	TypeGalleryImagesFields,
 	TypeParagraphFields,
 	TypePresentationFields,
@@ -153,7 +152,7 @@ export async function getOrganizers() {
 export async function getWorkshops() {
 	const workshops = await client.withAllLocales.getEntries<TypeWorkshopFields>({
 		content_type: "workshop",
-		order: "fields.title",
+		order: "fields.order",
 		include: 2,
 	});
 

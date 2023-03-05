@@ -1,6 +1,7 @@
 import type { Asset, Entry, EntryFields } from "contentful";
 import type { LocalizedEntry, LocalizedFields } from "./Localized";
 import type { TypeWorkshopPersonFields } from "./TypeWorkshopPerson";
+import type { TypeWorkshopSlotFields } from "./TypeWorkshopSlot";
 
 export interface TypeWorkshopFields {
     variant: "gile" | "ipar4.0" | "schdesign";
@@ -13,6 +14,7 @@ export interface TypeWorkshopFields {
     presenter?: Entry<TypeWorkshopPersonFields>[];
     company?: EntryFields.Symbol;
     image?: Asset;
+    eventSlot: Entry<TypeWorkshopSlotFields>[];
 }
 
 export type TypeWorkshop = Entry<TypeWorkshopFields>;

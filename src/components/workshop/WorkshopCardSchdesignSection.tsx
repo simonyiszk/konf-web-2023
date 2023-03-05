@@ -1,12 +1,6 @@
 import clsx from "clsx";
-import type { Asset } from "contentful";
 import Image from "next/image";
 import { FiExternalLink } from "react-icons/fi";
-
-import type {
-	LocalizedEntry,
-	TypeWorkshopPersonFields,
-} from "@/@types/generated";
 
 import { Highlighted } from "../highlight/Highlighted";
 import type { RemappedWorkshopPresenter } from "./WorkshopTypes";
@@ -38,13 +32,6 @@ function LinkWrapper(
 		</a>
 	);
 }
-
-type TransformedLocalizedPresenterType = Omit<
-	TypeWorkshopPersonFields,
-	"image"
-> & {
-	image: LocalizedEntry<Asset, "en" | "hu">;
-};
 
 export function WorkshopCardSchdesignSection({
 	presenters,
