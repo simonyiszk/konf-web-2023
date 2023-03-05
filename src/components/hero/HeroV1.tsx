@@ -2,6 +2,8 @@ import clsx from "clsx";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 
+import { EVENTBRITE_LINK } from "@/utils/constants";
+
 import { DownArrowButton } from "../button/DownArrowButton";
 import { TextButton } from "../button/TextButton";
 import { CountdownTimer } from "../timer/CountdownTimer";
@@ -62,7 +64,7 @@ function CTA() {
 		<div className="mt-4 flex flex-col items-center gap-2 md:gap-8">
 			<TextButton
 				text={t("cta.register")}
-				href="https://simonyi-konferencia.eventbrite.com"
+				href={EVENTBRITE_LINK}
 				target="_blank"
 			/>
 			<DownArrowButton
