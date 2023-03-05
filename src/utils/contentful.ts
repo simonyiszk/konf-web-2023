@@ -7,6 +7,7 @@ import type {
 	TypeParagraphFields,
 	TypePresentationFields,
 	TypeSponsorLogoFields,
+	TypeWorkshopFields,
 } from "@/@types/generated/index";
 
 const client = createClient({
@@ -146,4 +147,29 @@ export async function getOrganizers() {
 	});
 
 	return organizers.items as unknown as LocalizedTypeOrganizer<"hu" | "en">[];
+}
+
+export async function getWorkshops() {
+	const workshops = await client.withAllLocales.getEntries<TypeWorkshopFields>({
+		content_type: "workshop",
+		order: "fields.order",
+		include: 2,
+	});
+
+	const renderedWorkshops = await Promise.all(
+		workshops.items.map(async (ws) => {
+			const mdxSourceHu = await serialize(
+				(ws.fields.description as OptionalMagicContentfulProperty)?.hu ?? "",
+			);
+			const mdxSourceEn = await serialize(
+				(ws.fields.description as OptionalMagicContentfulProperty)?.en ?? "",
+			);
+			return {
+				mdxSource: { hu: mdxSourceHu, en: mdxSourceEn },
+				...ws,
+			};
+		}),
+	);
+
+	return renderedWorkshops;
 }

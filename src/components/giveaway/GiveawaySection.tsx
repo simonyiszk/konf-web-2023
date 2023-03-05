@@ -4,60 +4,12 @@ import { useTranslation } from "next-i18next";
 import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
+import { Highlighted } from "@/components/highlight/Highlighted";
+
 import styles from "./GiveawaySection.module.scss";
 
 const budsBlurhash =
 	"data:image/webp;base64,UklGRvgDAABXRUJQVlA4WAoAAAAgAAAAXQEAXQEAVlA4INoDAABwMwCdASpeAV4BPvl2tFWqpqSjInB6YVAfCWlu3tJmT9H+pkwmjBIk9Zq5vcg/v/9ABRO3cIytbege/QEp7NO3Pas/vhjvwKbvCnwBZUMX7aq7L2N/7PdB8AocDb5T6PQ9H4F+APAcW/6gD/DMJEtJIOiym6EuYVwBn/NC+VdjlevJe6W4B33XCsCb2xOnU6vMrU76rw8pRK1qkDJmIipvOZXv0cQ+yduofLcdPnIQg3KE1sqQOyyDYsEd2KJeHOdzFg0BjK9+jDDLfpn4vUScnCIYRi/O7vo8DJyWOfPGsQcwuPzWVY2E6ZnhA2YDo3gH0fKDQ13PiiKqj4zJFTPnJ463Y+fUxUyEAgn7OieMt8gwC2YNoPay/e7nKgSbnO98goeZ1+x5WgLbCMtlfo6XvksPmZjn1rYFB55lNRLOWwCKkXpopy/wJmJzTmlxrVRfhQCUkdZOff3WtunB6i8lQ2gWUUHWJZxgEADL00EfuZp9j2xzikOAG+ZhxB/hCb6n+jd/fS/u910+BC9NCdzpG1qBq2DsjVC1CR5zENogRijVtQAA/hX/AnfrzJYH/X37s/dm7T8qVRX7p2fR3cSj4nhHhZVaX/H/vlxpTHcr1Zj/aCU79Tb4zgekf7ohIguiHn4TnfEKkzRgJQP5PKqqqteHLVauXwMVbMlacAcNCtjDgjwEXaV35p4YeiGLsPF6DH0QKGR6L+HvNJOw8p21YnCvLI72iAKaGfBYB2lICBmA8AsPF9lPiJC0l5m3VfAReWRK7q6lRALmRMwHSd5VYiXScbyaHAyFYdShMaE65RB8Unf/TXgmJEPWU6HQ0Vj+8VLM7ojpCBGm5mUxFvyOT5z/+41WhtVkxQCXC4gGZWP2GJzlMC+2PaU8w0jR4fTguSwbdnUZUhLPGoo1NHvQlqRKnQxNWq24rPDXtLhLJT5SipKP8dZjMEkRqTgvLaIgV2Lu9ipPgbxOqCTP4QI+joN87NmlwPhVME2RTFRngHIgIP8f8tEQVNPiOKj/c88B6q8t6WY3ppwLHGxF48CYRDqoxw2a8D+0NSyNOIUWpbedA9LsWIXiwSwenj4HPt7NPHSuH9WOvwkAm2K/wq/7pbhIHsCrn5SaIA/LmBAb33YoL+AtQcZHCsm/xTCGKO2rh2+gfDCqOKa4bHehlFC2wZdT+wj7/pvMV1d1cfYb3DVu2aLdh+ERNKGSp2C+BgJB/S0bfqVXuYMKC9f34zoYv6VQ6C3ogm18uBbRDDpDr5wP5jpTt+ppl1CGefp48iesjZpMI5f1bn/BHgJk94AxYot+t6N6kAAAAA==";
-
-// https://stackoverflow.com/a/43235785
-type HighlightedProps = {
-	text: string;
-	highlight: string;
-	className?: string;
-	wrapper?: React.ElementType;
-};
-
-function Highlighted({
-	text = "",
-	highlight = "",
-	className = "",
-	wrapper,
-}: HighlightedProps) {
-	if (!highlight.trim()) {
-		return <span>{text}</span>;
-	}
-	const parts = text.split(new RegExp(`(${highlight})`, "gi"));
-	return (
-		<span>
-			{" "}
-			{parts.map((part, i) => {
-				const isMatched = part.toLowerCase() === highlight.toLowerCase();
-				const content = (
-					<span
-						// eslint-disable-next-line react/no-array-index-key
-						key={i}
-						className={clsx(isMatched && className)}
-					>
-						{part}
-					</span>
-				);
-
-				if (isMatched && wrapper) {
-					return React.createElement(
-						wrapper,
-						{
-							// eslint-disable-next-line react/no-array-index-key
-							key: i,
-						},
-						content,
-					);
-				}
-
-				return content;
-			})}{" "}
-		</span>
-	);
-}
 
 function LinkWrapper(
 	props: DetailedHTMLProps<

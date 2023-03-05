@@ -4,3 +4,6 @@ export type { LocalizedTypeOrganizer, LocalizedTypeOrganizerFields, TypeOrganize
 export type { LocalizedTypeParagraph, LocalizedTypeParagraphFields, TypeParagraph, TypeParagraphFields } from "./TypeParagraph";
 export type { LocalizedTypePresentation, LocalizedTypePresentationFields, TypePresentation, TypePresentationFields } from "./TypePresentation";
 export type { LocalizedTypeSponsorLogo, LocalizedTypeSponsorLogoFields, TypeSponsorLogo, TypeSponsorLogoFields } from "./TypeSponsorLogo";
+export type { LocalizedTypeWorkshop, LocalizedTypeWorkshopFields, TypeWorkshop, TypeWorkshopFields } from "./TypeWorkshop";
+export type { LocalizedTypeWorkshopPerson, LocalizedTypeWorkshopPersonFields, TypeWorkshopPerson, TypeWorkshopPersonFields } from "./TypeWorkshopPerson";
+export type { LocalizedTypeWorkshopSlot, LocalizedTypeWorkshopSlotFields, TypeWorkshopSlot, TypeWorkshopSlotFields } from "./TypeWorkshopSlot";

@@ -124,6 +124,17 @@ export function Header() {
 						className="py-2 pl-1 pr-4"
 					>
 						<Link
+							href="/workshopok"
+							className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
+						>
+							{t("workshop.title")}
+						</Link>
+					</motion.div>
+					<motion.div
+						variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
+						className="py-2 pl-1 pr-4"
+					>
+						<Link
 							href="/kapcsolat"
 							className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
 						>
