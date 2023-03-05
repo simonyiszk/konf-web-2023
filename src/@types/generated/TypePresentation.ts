@@ -6,7 +6,7 @@ export interface TypePresentationFields {
     room?: "IB025" | "IB028";
     title: EntryFields.Symbol;
     name: EntryFields.Symbol;
-    profession: EntryFields.Symbol;
+    profession?: EntryFields.Symbol;
     startDate: EntryFields.Date;
     endDate: EntryFields.Date;
     image: Asset;

@@ -15,6 +15,7 @@ export interface TypeWorkshopFields {
     company?: EntryFields.Symbol;
     image?: Asset;
     eventSlot: Entry<TypeWorkshopSlotFields>[];
+    order: EntryFields.Integer;
 }
 
 export type TypeWorkshop = Entry<TypeWorkshopFields>;
