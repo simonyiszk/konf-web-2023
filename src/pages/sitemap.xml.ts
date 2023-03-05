@@ -29,6 +29,12 @@ function generateSiteMap({ host, presentationSlugs }: SitemapParams) {
      <url>
        <loc>https://${host}/eloadasok</loc>
      </url>
+	 <url>
+       <loc>https://${host}/workshopok</loc>
+     </url>
+	 <url>
+       <loc>https://${host}/kapcsolat</loc>
+     </url>
 
 
    ${presentationPrefixes
