@@ -102,7 +102,12 @@ export function WorkshopCard({ workshop, mdxSource }: WorkshopCardProps) {
 				<WorkshopCardSchdesignSection presenters={presenters} />
 			)}
 
-			<TextButton text="regisztráció" href={EVENTBRITE_LINK} className="mt-4" />
+			<TextButton
+				text="regisztráció"
+				href={EVENTBRITE_LINK}
+				className="mt-4"
+				fullWidth
+			/>
 		</WorkshopCardBase>
 	);
 }
