@@ -14,7 +14,6 @@ import { components } from "../mdx/MDXComponents";
 import { WorkshopCardBase } from "./WorkshopCardBase";
 import { WorkshopCardSchdesignSection } from "./WorkshopCardSchdesignSection";
 import { WorkshopPlace, WorkshopTimeRange } from "./WorkshopElements";
-import { headerVariants } from "./WorkshopHeader";
 import type {
 	RemappedWorkshop,
 	RemappedWorkshopPresenter,
@@ -79,15 +78,16 @@ export function WorkshopCard({ workshop, mdxSource }: WorkshopCardProps) {
 
 	return (
 		<WorkshopCardBase
-			header={headerVariants[localized.variant]({
-				company: localized.company,
-				name: localized.name ?? presenters[0]?.name,
-				place: eventSlots[0].room,
+			header={{
+				company: localized.company ?? "",
+				name: localized.name ?? "",
+				place: localized.room,
 				time: {
 					start: new Date(eventSlots[0].startDate),
 					end: new Date(eventSlots[0].endDate),
 				},
-			})}
+				variant: localized.variant,
+			}}
 			fullSizedImage={
 				localized.image?.fields.file?.hu?.url
 					? {
@@ -130,7 +130,7 @@ export function WorkshopCard({ workshop, mdxSource }: WorkshopCardProps) {
 			)}
 
 			<TextButton
-				text="regisztráció"
+				text="Regisztráció"
 				href={EVENTBRITE_LINK}
 				className="mt-4"
 				fullWidth
