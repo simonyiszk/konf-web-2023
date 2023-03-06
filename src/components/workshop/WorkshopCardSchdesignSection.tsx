@@ -15,7 +15,8 @@ function LinkWrapper(
 	return (
 		<a
 			href={
-				process.env.VERCEL_ENV !== "production"
+				process.env.VERCEL_ENV !== "production" ||
+				process.env.NEXT_PUBLIC_VERCEL_ENV !== "production"
 					? "https://schdesign.hu"
 					: "https://schdesign.hu?utm_source=simonyi_konferencia&utm_medium=konf&utm_campaign=konf2023&utm_content=workshop"
 			}

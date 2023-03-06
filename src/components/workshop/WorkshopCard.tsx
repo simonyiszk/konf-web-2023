@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useTranslation } from "next-i18next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
@@ -41,6 +42,27 @@ const workshopRenderComponents = {
 			HTMLUListElement
 		>,
 	) => <ul className="list-inside list-disc text-xl" {...props} />,
+	a: (
+		props: React.DetailedHTMLProps<
+			React.AnchorHTMLAttributes<HTMLAnchorElement>,
+			HTMLAnchorElement
+		>,
+	) => (
+		<a
+			// eslint-disable-next-line tailwindcss/no-custom-classname
+			className={clsx(
+				"text-konf-accent-yellow underline",
+				(process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ||
+					process.env.VERCEL_ENV === "production") &&
+					"unami--click--workshop-link",
+			)}
+			{...props}
+			target="_blank"
+			rel="noreferrer"
+		>
+			{props.children}
+		</a>
+	),
 };
 
 export function WorkshopCard({ workshop, mdxSource }: WorkshopCardProps) {
