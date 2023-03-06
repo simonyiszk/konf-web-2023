@@ -1,8 +1,10 @@
 import clsx from "clsx";
 import Image from "next/image";
 
+import { WorkshopHeader, WorkshopHeaderProps } from "./WorkshopHeader";
+
 type WorkshopCardBaseProps = {
-	header: React.ReactNode;
+	header: WorkshopHeaderProps;
 	children: React.ReactNode;
 	fullSizedImage?: {
 		src: string;
@@ -17,25 +19,23 @@ export function WorkshopCardBase({
 }: WorkshopCardBaseProps) {
 	return (
 		<div className="overflow-hidden rounded-2xl bg-white/10 backdrop-blur">
-			<div className="grid w-full border-b-[3px] border-white py-3 px-8 text-3xl sm:grid-cols-3 sm:pr-0 sm:pl-8">
-				{header}
-			</div>
+			<WorkshopHeader {...header} />
 			<div className="grid sm:grid-cols-3">
 				<div
 					className={clsx(
-						"px-8 py-10",
+						"order-2 my-4 px-8 py-10 sm:order-1 sm:my-0",
 						fullSizedImage ? "sm:col-span-2" : "col-span-3",
 					)}
 				>
 					{children}
 				</div>
 				{fullSizedImage && (
-					<div className="relative h-full w-full border-l-[3px] border-white">
+					<div className="relative order-1 mt-8 aspect-1 h-full w-full border-white sm:order-2 sm:my-0 sm:border-l-[3px] ">
 						<Image
 							src={fullSizedImage.src}
 							alt={fullSizedImage.alt}
 							fill
-							className="select-none object-cover object-top"
+							className="select-none object-cover object-center"
 							draggable={false}
 						/>
 					</div>

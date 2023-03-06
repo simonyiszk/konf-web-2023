@@ -13,6 +13,9 @@ function WorkshopTextContentBase({
 }
 
 export function WorkshopPlace({ place }: { place: string }) {
+	if (place === "") {
+		return null;
+	}
 	return (
 		<WorkshopTextContentBase className="text-konf-primary-blue">
 			{place}

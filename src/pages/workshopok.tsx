@@ -11,11 +11,12 @@ import { getWorkshops } from "@/utils/contentful";
 
 export default function WorkshopPages({
 	workshops,
+	buildDate,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
 	const { t } = useTranslation("common");
 
 	return (
-		<Layout>
+		<Layout buildDate={buildDate} className="pt-8">
 			<Seo title={t("workshop.title")} />
 			<LayoutContent maxWidth="max-w-6xl">
 				<h1
@@ -28,7 +29,7 @@ export default function WorkshopPages({
 				>
 					{t("workshop.title")}
 				</h1>
-				<section className="my-32 grid gap-16">
+				<section className="my-16 grid gap-16">
 					{workshops.map((ws) => (
 						<WorkshopCard
 							key={ws.fields.title.hu}
