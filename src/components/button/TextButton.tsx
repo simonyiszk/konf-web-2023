@@ -36,7 +36,7 @@ export function TextButton({
 					"h-full w-full bg-konf-overlay-blue p-3 hover:bg-transparent group-hover:bg-transparent",
 				)}
 			>
-				<p className="blue-green-gradient gradient-on-text group-hover:no-gradient-on-text inline-block bg-clip-text font-bold group-hover:text-konf-overlay-blue sm:w-full">
+				<p className="blue-green-gradient gradient-on-text group-hover:no-gradient-on-text inline-block w-full bg-clip-text font-bold group-hover:text-konf-overlay-blue">
 					{text}
 				</p>
 			</div>

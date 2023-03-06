@@ -24,7 +24,11 @@ export function PresentationSection({
 				))}
 			</div>
 			<div className="mx-auto my-8 max-w-lg">
-				<TextButton href={href} text={t("presentations.items.more")} />
+				<TextButton
+					fullWidth
+					href={href}
+					text={t("presentations.items.more")}
+				/>
 			</div>
 		</section>
 	);
