@@ -154,7 +154,7 @@ export async function getStaticProps({
 	params,
 }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
-	const presentation = await getPresentation(params?.slug as string);
+	const presentation = await getPresentation({ slug: params?.slug as string });
 
 	return {
 		props: {
