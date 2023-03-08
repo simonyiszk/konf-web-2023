@@ -115,11 +115,18 @@ export type ReturnTypePresentations = Awaited<
 	ReturnType<typeof getPresentations>
 >;
 
-export async function getPresentation(slug: string) {
+export async function getPresentation({
+	slug,
+	presenter,
+}: {
+	slug?: string;
+	presenter?: string;
+}) {
 	const presentation =
 		await client.withAllLocales.getEntries<TypePresentationFields>({
 			content_type: "presentation",
 			"fields.slug": slug,
+			"fields.name": presenter,
 			limit: 1,
 		});
 
