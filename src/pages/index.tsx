@@ -49,6 +49,11 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 		image: LocalizedEntry<Asset, "en" | "hu">;
 	};
 
+	const strippedPresentations = presentations.map((presentation) => {
+		const { slug, title } = presentation.fields;
+		return { slug, title };
+	});
+
 	return {
 		props: {
 			...i18n,
@@ -56,7 +61,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 			videoId,
 			galleryAlbums,
 			buildDate: Date.now(),
-			presentations,
+			presentations: strippedPresentations,
 			localizedCharlesSimonyiPresentation,
 		},
 	};
@@ -91,7 +96,7 @@ export default function Index({
 		const localized = selected
 			.map((p) => {
 				return Object.fromEntries(
-					Object.entries(p.fields).map(([key, value]) => [
+					Object.entries(p).map(([key, value]) => [
 						key,
 						value[i18n.language as "en" | "hu"] ?? value.hu,
 					]),
