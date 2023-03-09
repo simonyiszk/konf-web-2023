@@ -31,7 +31,7 @@ export function CharlesSection({
 	image: LocalizedEntry<Asset, "en" | "hu">;
 }) {
 	return (
-		<section className="container mx-auto px-4">
+		<section id="charles" className="container mx-auto px-4">
 			<div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-8 rounded-2xl bg-white/10 px-8 py-10 backdrop-blur sm:flex-row">
 				<div className="order-2 col-span-3 sm:order-1">
 					<h2
