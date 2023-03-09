@@ -7,14 +7,38 @@ import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { PresentationCard } from "@/components/presentations/PresentationCard";
+import { Timeline } from "@/components/presentations/Timeline";
 import { getPresentations, ReturnTypePresentations } from "@/utils/contentful";
 import { useEffectOnce } from "@/utils/hooks";
 
 import styles from "./index.module.scss";
 
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
+	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
+	const presentations = await getPresentations();
+	presentations.sort((a, b) => {
+		const dateDiff =
+			new Date(a.fields.startDate.hu ?? "2023-03-21T08:00:00Z").getTime() -
+			new Date(b.fields.startDate.hu ?? "2023-03-21T08:00:00Z").getTime();
+
+		const sideDiff = a.fields.room?.hu?.localeCompare(b.fields.room?.hu ?? "");
+		return dateDiff - (sideDiff ?? 0);
+	});
+	const left = presentations.filter((p) => p.fields.room?.hu === "IB028");
+	const right = presentations.filter((p) => p.fields.room?.hu === "IB025");
+	return {
+		props: {
+			...i18n,
+			left,
+			right,
+			buildDate: Date.now(),
+		},
+	};
+}
+
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Presentations({ buildDate, presentations }: PageProps) {
+export default function Presentations({ buildDate, left, right }: PageProps) {
 	const { t } = useTranslation("common");
 
 	useEffectOnce(() => {
@@ -39,28 +63,13 @@ export default function Presentations({ buildDate, presentations }: PageProps) {
 				>
 					{t("presentations.title")}
 				</h1>
-				<section className={clsx(styles.presentationContainer)}>
-					{presentations.map((presentation) => (
-						<PresentationCard
-							key={presentation.fields.title.hu ?? ""}
-							presentation={presentation.fields}
-							mdxSource={presentation.mdxSource}
-						/>
-					))}
-				</section>
+				<Timeline
+					left={left}
+					right={right}
+					startTime={new Date(left[0].fields.startDate.hu ?? "")}
+					endTime={new Date(left[left.length - 1].fields.endDate.hu ?? "")}
+				/>
 			</LayoutContent>
 		</Layout>
 	);
-}
-
-export async function getStaticProps({ locale }: GetStaticPropsContext) {
-	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
-	const presentations = (await getPresentations()) as ReturnTypePresentations;
-	return {
-		props: {
-			...i18n,
-			presentations,
-			buildDate: Date.now(),
-		},
-	};
 }
