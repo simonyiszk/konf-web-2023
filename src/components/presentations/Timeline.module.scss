@@ -1,4 +1,4 @@
 .timeline {
-	@apply relative grid gap-4;
+	@apply relative grid gap-4 overflow-x-auto;
 	grid-template-columns: auto 1fr 1fr;
 }
