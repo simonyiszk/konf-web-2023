@@ -1,13 +1,9 @@
 import clsx from "clsx";
-import type { Asset } from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
-import type {
-	LocalizedEntry,
-	TypePresentationFields,
-} from "@/@types/generated";
+import type { TypePresentationFields } from "@/@types/generated";
 
 export function SlugLink({ slug }: { slug: string }) {
 	return (
@@ -27,9 +23,7 @@ export function SlugLink({ slug }: { slug: string }) {
 export function CharlesSection({
 	image,
 	slug,
-}: Omit<TypePresentationFields, "image"> & {
-	image: LocalizedEntry<Asset, "en" | "hu">;
-}) {
+}: Pick<TypePresentationFields, "slug" | "image">) {
 	return (
 		<section id="charles" className="container mx-auto px-4">
 			<div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-8 rounded-2xl bg-white/10 px-8 py-10 backdrop-blur sm:flex-row">
@@ -70,9 +64,7 @@ export function CharlesSection({
 				>
 					<div className="relative h-full w-full">
 						<Image
-							src={
-								image.fields.file ? `https:${image.fields.file.hu?.url}` : ""
-							}
+							src={image.fields.file ? `https:${image.fields.file.url}` : ""}
 							alt="Charles Simonyi"
 							fill
 							className={clsx("object-contain")}

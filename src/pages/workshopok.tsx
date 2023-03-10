@@ -3,6 +3,7 @@ import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+import type { TypeWorkshopFields } from "@/@types/generated";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
@@ -32,7 +33,7 @@ export default function WorkshopPages({
 				<section className="my-16 grid gap-16">
 					{workshops.map((ws) => (
 						<WorkshopCard
-							key={ws.fields.title.hu}
+							key={ws.fields.title}
 							workshop={ws.fields}
 							mdxSource={ws.mdxSource}
 						/>
@@ -45,7 +46,10 @@ export default function WorkshopPages({
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
-	const workshops = await getWorkshops();
+	const workshops = (await getWorkshops()).map((ws) => ({
+		fields: ws.fields as TypeWorkshopFields,
+		mdxSource: ws.mdxSource,
+	}));
 
 	return {
 		props: {

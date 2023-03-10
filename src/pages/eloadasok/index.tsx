@@ -3,6 +3,7 @@ import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
+import type { TypePresentationFields } from "@/@types/generated";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
@@ -42,8 +43,8 @@ export default function Presentations({ buildDate, presentations }: PageProps) {
 				<section className={clsx(styles.presentationContainer)}>
 					{presentations.map((presentation) => (
 						<PresentationCard
-							key={presentation.fields.title.hu ?? ""}
-							presentation={presentation.fields}
+							key={presentation.fields.title}
+							presentation={presentation.fields as TypePresentationFields}
 							mdxSource={presentation.mdxSource}
 						/>
 					))}

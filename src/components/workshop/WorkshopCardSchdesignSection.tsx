@@ -2,8 +2,9 @@ import clsx from "clsx";
 import Image from "next/image";
 import { FiExternalLink } from "react-icons/fi";
 
+import type { TypeWorkshopPersonFields } from "@/@types/generated";
+
 import { Highlighted } from "../highlight/Highlighted";
-import type { RemappedWorkshopPresenter } from "./WorkshopTypes";
 
 function LinkWrapper(
 	props: React.DetailedHTMLProps<
@@ -37,7 +38,7 @@ function LinkWrapper(
 export function WorkshopCardSchdesignSection({
 	presenters,
 }: {
-	presenters: RemappedWorkshopPresenter[];
+	presenters: TypeWorkshopPersonFields[];
 }) {
 	return (
 		<div className="my-4">
@@ -59,9 +60,7 @@ export function WorkshopCardSchdesignSection({
 						<div className="relative aspect-1">
 							<Image
 								src={
-									p.image.fields.file?.hu
-										? `https:${p.image.fields.file.hu.url}`
-										: ""
+									p.image.fields.file ? `https:${p.image.fields.file.url}` : ""
 								}
 								fill
 								draggable={false}

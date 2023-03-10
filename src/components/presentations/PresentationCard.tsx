@@ -1,60 +1,29 @@
 import clsx from "clsx";
-import type { Asset } from "contentful";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MDXRemote } from "next-mdx-remote";
 
-import type {
-	LocalizedEntry,
-	LocalizedTypePresentationFields,
-	TypePresentationFields,
-} from "@/@types/generated";
+import type { TypePresentationFields } from "@/@types/generated";
 
 import { components } from "../mdx/MDXComponents";
 import styles from "./PresentationCard.module.scss";
 
-/*
-function sliceString(str: string, length: number) {
-	if (str.length > length) {
-		const slicedString = str.slice(0, 200);
-		const nearestWhiteSpace = slicedString.lastIndexOf(" ");
-		return `${slicedString.slice(0, nearestWhiteSpace)}...`;
-	}
-	return str.slice(0, length);
-}
-*/
-
 export type PresentationCardProps = {
-	presentation: LocalizedTypePresentationFields<"en" | "hu">;
-	mdxSource: {
-		en: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
-		hu: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
-	};
+	presentation: TypePresentationFields;
+	mdxSource: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
 };
 
 export function PresentationCard({
 	presentation,
 	mdxSource,
 }: PresentationCardProps) {
-	const { t, i18n } = useTranslation("common");
+	const { t } = useTranslation("common");
 
-	const localized = Object.fromEntries(
-		Object.entries(presentation).map(([key, value]) => [
-			key,
-			value[i18n.language as "en" | "hu"] ?? value.hu,
-		]),
-	) as unknown as Omit<TypePresentationFields, "image"> & {
-		image: LocalizedEntry<Asset, "en" | "hu">;
-	};
+	const { title, name, slug, image } = presentation;
 
-	const { title, name, slug, image } = localized;
-	const localizedMdxSource = mdxSource[i18n.language as "en" | "hu"];
-
-	// const slicedDescription = sliceString(description, 200);
-	const href =
-		i18n.language === "hu" ? `/eloadasok/${slug}` : `/en/presentations/${slug}`;
+	const href = `/eloadasok/${slug}`;
 
 	return (
 		<Link
@@ -64,8 +33,8 @@ export function PresentationCard({
 			<div className="relative mx-auto h-[300px] bg-gradient-to-b from-konf-primary-green to-transparent">
 				<Image
 					src={
-						image.fields.file?.hu?.url
-							? `https:${image.fields.file.hu.url}`
+						image.fields.file?.url
+							? `https:${image.fields.file.url}`
 							: "http://placekitten.com/350/200"
 					}
 					fill
@@ -96,7 +65,7 @@ export function PresentationCard({
 						styles.mdxContainer,
 					)}
 				>
-					<MDXRemote {...localizedMdxSource} components={components} />
+					<MDXRemote {...mdxSource} components={components} />
 				</div>
 			</div>
 			<div
