@@ -1,5 +1,4 @@
 import type { Asset, Entry, EntryFields } from "contentful";
-import type { LocalizedEntry, LocalizedFields } from "./Localized";
 import type { TypeWorkshopPersonFields } from "./TypeWorkshopPerson";
 import type { TypeWorkshopSlotFields } from "./TypeWorkshopSlot";
 
@@ -19,5 +18,3 @@ export interface TypeWorkshopFields {
 }
 
 export type TypeWorkshop = Entry<TypeWorkshopFields>;
-export type LocalizedTypeWorkshopFields<Locales extends keyof any> = LocalizedFields<TypeWorkshopFields, Locales>;
-export type LocalizedTypeWorkshop<Locales extends keyof any> = LocalizedEntry<TypeWorkshop, Locales>;

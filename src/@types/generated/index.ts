@@ -1,9 +1,9 @@
-export type { LocalizedEntry, LocalizedFields } from "./Localized";
-export type { LocalizedTypeGalleryImages, LocalizedTypeGalleryImagesFields, TypeGalleryImages, TypeGalleryImagesFields } from "./TypeGalleryImages";
-export type { LocalizedTypeOrganizer, LocalizedTypeOrganizerFields, TypeOrganizer, TypeOrganizerFields } from "./TypeOrganizer";
-export type { LocalizedTypeParagraph, LocalizedTypeParagraphFields, TypeParagraph, TypeParagraphFields } from "./TypeParagraph";
-export type { LocalizedTypePresentation, LocalizedTypePresentationFields, TypePresentation, TypePresentationFields } from "./TypePresentation";
-export type { LocalizedTypeSponsorLogo, LocalizedTypeSponsorLogoFields, TypeSponsorLogo, TypeSponsorLogoFields } from "./TypeSponsorLogo";
-export type { LocalizedTypeWorkshop, LocalizedTypeWorkshopFields, TypeWorkshop, TypeWorkshopFields } from "./TypeWorkshop";
-export type { LocalizedTypeWorkshopPerson, LocalizedTypeWorkshopPersonFields, TypeWorkshopPerson, TypeWorkshopPersonFields } from "./TypeWorkshopPerson";
-export type { LocalizedTypeWorkshopSlot, LocalizedTypeWorkshopSlotFields, TypeWorkshopSlot, TypeWorkshopSlotFields } from "./TypeWorkshopSlot";
+export type { TypeBreak, TypeBreakFields } from "./TypeBreak";
+export type { TypeGalleryImages, TypeGalleryImagesFields } from "./TypeGalleryImages";
+export type { TypeOrganizer, TypeOrganizerFields } from "./TypeOrganizer";
+export type { TypeParagraph, TypeParagraphFields } from "./TypeParagraph";
+export type { TypePresentation, TypePresentationFields } from "./TypePresentation";
+export type { TypeSponsorLogo, TypeSponsorLogoFields } from "./TypeSponsorLogo";
+export type { TypeWorkshop, TypeWorkshopFields } from "./TypeWorkshop";
+export type { TypeWorkshopPerson, TypeWorkshopPersonFields } from "./TypeWorkshopPerson";
+export type { TypeWorkshopSlot, TypeWorkshopSlotFields } from "./TypeWorkshopSlot";

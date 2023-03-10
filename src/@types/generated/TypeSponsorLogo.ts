@@ -1,5 +1,4 @@
 import type { Asset, Entry, EntryFields } from "contentful";
-import type { LocalizedEntry, LocalizedFields } from "./Localized";
 
 export interface TypeSponsorLogoFields {
     name: EntryFields.Symbol;
@@ -9,5 +8,3 @@ export interface TypeSponsorLogoFields {
 }
 
 export type TypeSponsorLogo = Entry<TypeSponsorLogoFields>;
-export type LocalizedTypeSponsorLogoFields<Locales extends keyof any> = LocalizedFields<TypeSponsorLogoFields, Locales>;
-export type LocalizedTypeSponsorLogo<Locales extends keyof any> = LocalizedEntry<TypeSponsorLogo, Locales>;
