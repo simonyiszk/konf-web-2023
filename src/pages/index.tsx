@@ -30,7 +30,9 @@ import {
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
 	const sponsors = await getSponsors();
-	const videoId = process.env.YOUTUBE_VIDEO_ID ?? "MD8VGKLklVQ";
+	const videoId = process.env.YOUTUBE_VIDEO_ID
+		? process.env.YOUTUBE_VIDEO_ID
+		: "MD8VGKLklVQ";
 	const galleryAlbums = await getGalleryImages();
 	const presentations = (await getPresentations()) as ReturnTypePresentations;
 
