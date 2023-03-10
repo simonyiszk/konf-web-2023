@@ -28,12 +28,14 @@ export function Timeline({
 	const leftRef = useRef<HTMLDivElement>(null);
 	const rightRef = useRef<HTMLDivElement>(null);
 
+	const rows = endHour - startHour + 1;
+
 	const tenMinSize = 60;
 	const gapSize = 16;
 
 	return (
 		<section className="container relative mx-auto mt-8 h-full w-full">
-			<div className="sticky top-20 z-20 mx-16 mb-4 flex justify-between">
+			<div className="sticky top-20 z-20 mx-20 mb-4 flex justify-between">
 				<button
 					type="button"
 					className="rounded-lg bg-white/10 p-4 font-bold text-konf-primary-green backdrop-blur"
@@ -65,27 +67,33 @@ export function Timeline({
 					IB025
 				</button>
 			</div>
-			{/* <div className="absolute inset-y-0 left-0 z-10 hidden h-full w-8 bg-gradient-to-r from-black/25 to-transparent" /> */}
+			<div className="absolute inset-y-0 left-0 z-10 hidden h-full w-8 bg-gradient-to-r from-black/25 to-transparent" />
 			<div className={clsx(styles.timeline)}>
 				<div id="times" ref={leftRef}>
-					{Array(endHour - startHour + 1)
+					{Array(rows)
 						.fill(0)
 						.map((_, i) => {
 							return (
 								<div
 									key={`${i + startHour}:00`}
 									className="relative"
-									style={{ height: tenMinSize * 6 + gapSize * 2 }}
+									style={{
+										height:
+											(i === rows - 1 ? tenMinSize * 3 : tenMinSize * 6) +
+											gapSize * 2,
+									}}
 								>
-									<p className="rounded-lg bg-white/10 p-1 backdrop-blur">
+									<p className="rounded-lg bg-white/10 py-1 px-2 backdrop-blur">
 										{i + startHour}:00
 									</p>
-									<p
-										className="absolute rounded-lg bg-white/10 p-1 backdrop-blur"
-										style={{ top: tenMinSize * 3 + gapSize }}
-									>
-										{i + startHour}:30
-									</p>
+									{i === rows - 1 ? null : (
+										<p
+											className="absolute rounded-lg bg-white/10 py-1 px-2 backdrop-blur"
+											style={{ top: tenMinSize * 3 + gapSize }}
+										>
+											{i + startHour}:30
+										</p>
+									)}
 								</div>
 							);
 						})}
@@ -151,7 +159,7 @@ export function Timeline({
 					})}
 				</div>
 			</div>
-			{/* <div className="absolute inset-y-0 right-0 z-10 hidden h-full w-8 bg-gradient-to-l from-black/25 to-transparent" /> */}
+			<div className="absolute inset-y-0 right-0 z-10 hidden h-full w-8 bg-gradient-to-l from-black/25 to-transparent" />
 		</section>
 	);
 }
