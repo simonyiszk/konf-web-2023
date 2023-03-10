@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useRef } from "react";
 
 import type { LocalizedTypePresentation, TypeBreak } from "@/@types/generated";
 
@@ -24,14 +25,49 @@ export function Timeline({
 	const startHour = startTime.getHours();
 	const endHour = endTime.getHours();
 
+	const leftRef = useRef<HTMLDivElement>(null);
+	const rightRef = useRef<HTMLDivElement>(null);
+
 	const tenMinSize = 60;
 	const gapSize = 16;
 
 	return (
-		<section className="container relative mx-auto mt-8 w-full">
-			<div className="absolute inset-y-0 left-0 z-10 hidden h-full w-8 bg-gradient-to-r from-black/25 to-transparent" />
+		<section className="container relative mx-auto mt-8 h-full w-full">
+			<div className="sticky top-20 z-20 mx-4 mb-4 flex justify-between">
+				<button
+					type="button"
+					className="rounded-lg bg-white/10 p-4 font-bold text-konf-primary-green backdrop-blur"
+					onClick={() => {
+						if (leftRef.current) {
+							leftRef.current.scrollIntoView({
+								behavior: "smooth",
+								block: "nearest",
+								inline: "center",
+							});
+						}
+					}}
+				>
+					IB028
+				</button>
+				<button
+					type="button"
+					className="rounded-lg bg-white/10 p-4 font-bold text-konf-primary-blue backdrop-blur"
+					onClick={() => {
+						if (rightRef.current) {
+							rightRef.current.scrollIntoView({
+								behavior: "smooth",
+								block: "nearest",
+								inline: "center",
+							});
+						}
+					}}
+				>
+					IB025
+				</button>
+			</div>
+			{/* <div className="absolute inset-y-0 left-0 z-10 hidden h-full w-8 bg-gradient-to-r from-black/25 to-transparent" /> */}
 			<div className={clsx(styles.timeline)}>
-				<div>
+				<div id="times" ref={leftRef}>
 					{Array(endHour - startHour + 1)
 						.fill(0)
 						.map((_, i) => {
@@ -54,7 +90,7 @@ export function Timeline({
 							);
 						})}
 				</div>
-				<div className="relative min-w-[240px]">
+				<div id="IB028" className="relative min-w-[240px]">
 					{breaks.map((breakItem) => {
 						if (
 							breakItem.fields.isDouble ||
@@ -84,14 +120,12 @@ export function Timeline({
 						);
 					})}
 				</div>
-				<div className="relative min-w-[240px]">
+				<div id="IB025" ref={rightRef} className="relative min-w-[240px]">
 					{breaks.map((breakItem) => {
-						console.log(breakItem.fields);
 						if (
 							!breakItem.fields.isDouble &&
 							breakItem.fields.room === "IB025"
 						) {
-							console.log("asd");
 							return (
 								<TimelineBreak
 									key={`${breakItem.fields.startDate}+${breakItem.fields.room}`}
@@ -117,7 +151,7 @@ export function Timeline({
 					})}
 				</div>
 			</div>
-			<div className="absolute inset-y-0 right-0 z-10 hidden h-full w-8 bg-gradient-to-l from-black/25 to-transparent" />
+			{/* <div className="absolute inset-y-0 right-0 z-10 hidden h-full w-8 bg-gradient-to-l from-black/25 to-transparent" /> */}
 		</section>
 	);
 }

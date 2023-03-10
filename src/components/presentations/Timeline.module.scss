@@ -1,4 +1,16 @@
 .timeline {
-	@apply relative grid gap-4 overflow-x-auto;
+	scroll-snap-type: mandatory;
+	-ms-scroll-snap-type: mandatory;
+	scroll-snap-points-x: repeat(100%);
+	@apply relative grid cursor-grab snap-x snap-mandatory scroll-px-8 gap-4 overflow-x-auto;
+	-webkit-overflow-scrolling: touch;
+	& > div {
+		scroll-snap-align: start;
+	}
+
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 	grid-template-columns: auto 1fr 1fr;
 }
