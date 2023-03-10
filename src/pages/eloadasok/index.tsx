@@ -6,16 +6,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
-import { PresentationCard } from "@/components/presentations/PresentationCard";
 import { Timeline } from "@/components/presentations/Timeline";
-import {
-	getBreaks,
-	getPresentations,
-	ReturnTypePresentations,
-} from "@/utils/contentful";
+import { getBreaks, getPresentations } from "@/utils/contentful";
 import { useEffectOnce } from "@/utils/hooks";
-
-import styles from "./index.module.scss";
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
