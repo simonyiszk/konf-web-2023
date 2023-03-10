@@ -106,6 +106,7 @@ export function Header() {
 						},
 					}}
 					defaultValue={(size.width ?? 1000) >= 768 ? "open" : "closed"}
+					initial={(size.width ?? 0) >= 768 ? "open" : "closed"}
 					animate={isMenuOpen ? "open" : "closed"}
 				>
 					<motion.div
