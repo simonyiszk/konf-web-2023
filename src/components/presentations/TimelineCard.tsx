@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import type { Asset } from "contentful";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import { FiExternalLink } from "react-icons/fi";
 
 import type {
 	LocalizedEntry,
@@ -21,7 +23,7 @@ export function TimelineCard({
 	tenMinSize,
 	gapSize,
 }: TimelineCardProps) {
-	const { t, i18n } = useTranslation("common");
+	const { i18n } = useTranslation("common");
 
 	const localized = Object.fromEntries(
 		Object.entries(presentation).map(([key, value]) => [
@@ -45,9 +47,18 @@ export function TimelineCard({
 	const length = (endDate.getTime() - startDate.getTime()) / 1000 / 60;
 	const height = (length * tenMinSize) / 10 + (length >= 60 ? gapSize : 0);
 
+	const href =
+		i18n.language === "hu"
+			? `/eloadasok/${localized.slug}`
+			: `/en/presentations/${localized.slug}`;
+
 	return (
-		<div className="absolute w-full" style={{ top: startHeight, height }}>
-			<div className="hyphens relative flex h-full w-full flex-col justify-center rounded-lg bg-white/10 p-4 text-center backdrop-blur">
+		<Link
+			className="absolute w-full"
+			style={{ top: startHeight, height }}
+			href={href}
+		>
+			<div className="hyphens relative flex h-full w-full flex-col justify-center rounded-lg bg-white/10 p-4 text-center backdrop-blur lg:px-16 xl:px-32 2xl:px-48">
 				<h3 className="mb-2 mt-3 font-bold">{localized.title}</h3>
 				<h4
 					className={clsx(
@@ -71,7 +82,10 @@ export function TimelineCard({
 						minute: "2-digit",
 					})}
 				</div>
+				<div className="absolute top-2 right-2 text-base text-gray-300">
+					<FiExternalLink />
+				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }

@@ -8,7 +8,11 @@ import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { PresentationCard } from "@/components/presentations/PresentationCard";
 import { Timeline } from "@/components/presentations/Timeline";
-import { getPresentations, ReturnTypePresentations } from "@/utils/contentful";
+import {
+	getBreaks,
+	getPresentations,
+	ReturnTypePresentations,
+} from "@/utils/contentful";
 import { useEffectOnce } from "@/utils/hooks";
 
 import styles from "./index.module.scss";
@@ -16,6 +20,7 @@ import styles from "./index.module.scss";
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const i18n = await serverSideTranslations(locale ?? "hu", ["common"]);
 	const presentations = await getPresentations();
+
 	presentations.sort((a, b) => {
 		const dateDiff =
 			new Date(a.fields.startDate.hu ?? "2023-03-21T08:00:00Z").getTime() -
@@ -26,11 +31,15 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	});
 	const left = presentations.filter((p) => p.fields.room?.hu === "IB028");
 	const right = presentations.filter((p) => p.fields.room?.hu === "IB025");
+
+	const breaks = await getBreaks();
+
 	return {
 		props: {
 			...i18n,
 			left,
 			right,
+			breaks,
 			buildDate: Date.now(),
 		},
 	};
@@ -38,7 +47,12 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export default function Presentations({ buildDate, left, right }: PageProps) {
+export default function Presentations({
+	buildDate,
+	left,
+	right,
+	breaks,
+}: PageProps) {
 	const { t } = useTranslation("common");
 
 	useEffectOnce(() => {
@@ -66,6 +80,7 @@ export default function Presentations({ buildDate, left, right }: PageProps) {
 				<Timeline
 					left={left}
 					right={right}
+					breaks={breaks}
 					startTime={new Date(left[0].fields.startDate.hu ?? "")}
 					endTime={new Date(left[left.length - 1].fields.endDate.hu ?? "")}
 				/>

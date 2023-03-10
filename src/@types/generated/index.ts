@@ -1,4 +1,5 @@
 export type { LocalizedEntry, LocalizedFields } from "./Localized";
+export type { LocalizedTypeBreak, LocalizedTypeBreakFields, TypeBreak, TypeBreakFields } from "./TypeBreak";
 export type { LocalizedTypeGalleryImages, LocalizedTypeGalleryImagesFields, TypeGalleryImages, TypeGalleryImagesFields } from "./TypeGalleryImages";
 export type { LocalizedTypeOrganizer, LocalizedTypeOrganizerFields, TypeOrganizer, TypeOrganizerFields } from "./TypeOrganizer";
 export type { LocalizedTypeParagraph, LocalizedTypeParagraphFields, TypeParagraph, TypeParagraphFields } from "./TypeParagraph";

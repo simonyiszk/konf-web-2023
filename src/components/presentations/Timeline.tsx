@@ -1,18 +1,26 @@
 import clsx from "clsx";
 
-import type { LocalizedTypePresentation } from "@/@types/generated";
+import type { LocalizedTypePresentation, TypeBreak } from "@/@types/generated";
 
 import styles from "./Timeline.module.scss";
+import { TimelineBreak } from "./TimelineBreak";
 import { TimelineCard } from "./TimelineCard";
 
 type TimelineProps = {
 	left: LocalizedTypePresentation<"en" | "hu">[];
 	right: LocalizedTypePresentation<"en" | "hu">[];
+	breaks: TypeBreak[];
 	startTime: Date;
 	endTime: Date;
 };
 
-export function Timeline({ left, right, startTime, endTime }: TimelineProps) {
+export function Timeline({
+	left,
+	right,
+	breaks,
+	startTime,
+	endTime,
+}: TimelineProps) {
 	const startHour = startTime.getHours();
 	const endHour = endTime.getHours();
 
@@ -20,8 +28,8 @@ export function Timeline({ left, right, startTime, endTime }: TimelineProps) {
 	const gapSize = 16;
 
 	return (
-		<section className="container relative mx-auto w-full">
-			<div className="absolute inset-y-0 left-0 z-10 h-full w-8 bg-gradient-to-r from-black/25 to-transparent" />
+		<section className="container relative mx-auto mt-8 w-full">
+			<div className="absolute inset-y-0 left-0 z-10 hidden h-full w-8 bg-gradient-to-r from-black/25 to-transparent" />
 			<div className={clsx(styles.timeline)}>
 				<div>
 					{Array(endHour - startHour + 1)
@@ -46,7 +54,24 @@ export function Timeline({ left, right, startTime, endTime }: TimelineProps) {
 							);
 						})}
 				</div>
-				<div className="relative min-w-[256px]">
+				<div className="relative min-w-[240px]">
+					{breaks.map((breakItem) => {
+						if (
+							breakItem.fields.isDouble ||
+							breakItem.fields.room === "IB028"
+						) {
+							return (
+								<TimelineBreak
+									key={`${breakItem.fields.startDate}+${breakItem.fields.room}`}
+									breakItem={breakItem.fields}
+									startHour={startHour}
+									tenMinSize={tenMinSize}
+									gapSize={gapSize}
+								/>
+							);
+						}
+						return null;
+					})}
 					{left.map((presentation) => {
 						return (
 							<TimelineCard
@@ -59,7 +84,26 @@ export function Timeline({ left, right, startTime, endTime }: TimelineProps) {
 						);
 					})}
 				</div>
-				<div className="relative min-w-[256px]">
+				<div className="relative min-w-[240px]">
+					{breaks.map((breakItem) => {
+						console.log(breakItem.fields);
+						if (
+							!breakItem.fields.isDouble &&
+							breakItem.fields.room === "IB025"
+						) {
+							console.log("asd");
+							return (
+								<TimelineBreak
+									key={`${breakItem.fields.startDate}+${breakItem.fields.room}`}
+									breakItem={breakItem.fields}
+									startHour={startHour}
+									tenMinSize={tenMinSize}
+									gapSize={gapSize}
+								/>
+							);
+						}
+						return null;
+					})}
 					{right.map((presentation) => {
 						return (
 							<TimelineCard
@@ -73,7 +117,7 @@ export function Timeline({ left, right, startTime, endTime }: TimelineProps) {
 					})}
 				</div>
 			</div>
-			<div className="absolute inset-y-0 right-0 z-10 h-full w-8 bg-gradient-to-l from-black/25 to-transparent" />
+			<div className="absolute inset-y-0 right-0 z-10 hidden h-full w-8 bg-gradient-to-l from-black/25 to-transparent" />
 		</section>
 	);
 }
