@@ -33,7 +33,7 @@ export function Timeline({
 
 	return (
 		<section className="container relative mx-auto mt-8 h-full w-full">
-			<div className="sticky top-20 z-20 mx-4 mb-4 flex justify-between">
+			<div className="sticky top-20 z-20 mx-16 mb-4 flex justify-between">
 				<button
 					type="button"
 					className="rounded-lg bg-white/10 p-4 font-bold text-konf-primary-green backdrop-blur"
