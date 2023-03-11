@@ -15,6 +15,7 @@ type TimelineCardProps = {
 	startTime: number;
 	tenMinSize: number;
 	gapSize: number;
+	isDouble?: boolean;
 };
 
 export function TimelineCard({
@@ -22,6 +23,7 @@ export function TimelineCard({
 	startTime,
 	tenMinSize,
 	gapSize,
+	isDouble,
 }: TimelineCardProps) {
 	const { i18n } = useTranslation("common");
 
@@ -47,6 +49,8 @@ export function TimelineCard({
 	const length = (endDate.getTime() - startDate.getTime()) / 1000 / 60;
 	const height = (length * tenMinSize) / 10 + (length >= 60 ? gapSize : 0);
 
+	const width = isDouble ? `calc( 200% + ${gapSize}px )` : "100%";
+
 	const href =
 		i18n.language === "hu"
 			? `/eloadasok/${localized.slug}`
@@ -55,7 +59,7 @@ export function TimelineCard({
 	return (
 		<Link
 			className="absolute w-full"
-			style={{ top: startHeight, height }}
+			style={{ top: startHeight, width, height }}
 			href={href}
 		>
 			<div className="hyphens relative flex h-full w-full flex-col justify-center rounded-lg bg-white/10 p-4 text-center backdrop-blur lg:px-16 xl:px-32 2xl:px-48">

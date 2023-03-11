@@ -124,6 +124,7 @@ export function Timeline({
 								startTime={startTime.getHours()}
 								tenMinSize={tenMinSize}
 								gapSize={gapSize}
+								isDouble={presentation.fields.name?.hu === "Charles Simonyi"}
 							/>
 						);
 					})}
