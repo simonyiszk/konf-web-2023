@@ -39,9 +39,9 @@ export default function Contact({
 				</h1>
 
 				{sortedOrganizers.map((level) => (
-					<section className="contentGridContainer" key={level[0].order?.hu}>
+					<section className="contentGridContainer" key={level[0].order}>
 						{level.map((o) => (
-							<OrganizerCard key={o.name?.hu} organizer={o} />
+							<OrganizerCard key={o.name} organizer={o} />
 						))}
 					</section>
 				))}
@@ -58,16 +58,13 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const organizers = (await getOrganizers()).map((o) => o.fields);
 
 	const levels = (
-		Array.from(new Set(organizers.map((o) => o.order?.hu))) as number[]
+		Array.from(new Set(organizers.map((o) => o.order))) as number[]
 	).sort((a, b) => a - b);
 
-	const sortedOrganizers = levels.map((l) => {
-		return (
-			organizers
-				.filter((o) => o.order?.hu === l)
-				// @ts-expect-error localized optional
-				.sort((a, b) => a.name?.hu.localeCompare(b.name?.hu))
-		);
+	const sortedOrganizers = levels.map((level) => {
+		return organizers
+			.filter((o) => o.order === level)
+			.sort((a, b) => a.name.localeCompare(b.name));
 	});
 
 	return {

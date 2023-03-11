@@ -1,14 +1,9 @@
-import type { Asset } from "contentful";
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useEffect, useState } from "react";
 
-import type {
-	LocalizedEntry,
-	LocalizedFields,
-	TypePresentationFields,
-} from "@/@types/generated";
+import type { TypePresentationFields } from "@/@types/generated";
 import { GallerySection } from "@/components/gallery/GallerySection";
 import { GiveawaySection } from "@/components/giveaway/GiveawaySection";
 import { HeroV1 } from "@/components/hero/HeroV1";
@@ -34,20 +29,16 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 	const galleryAlbums = await getGalleryImages();
 	const presentations = (await getPresentations()) as ReturnTypePresentations;
 
-	const charlesSimonyiPresentation = (
+	const charlesSimonyiPresentationFull = (
 		await getPresentation({
 			presenter: "Charles Simonyi",
 		})
-	).fields as unknown as LocalizedFields<TypePresentationFields, "hu">;
+	).fields;
 
-	const localizedCharlesSimonyiPresentation = Object.fromEntries(
-		Object.entries(charlesSimonyiPresentation).map(([key, value]) => [
-			key,
-			value.hu,
-		]),
-	) as unknown as Omit<TypePresentationFields, "image"> & {
-		image: LocalizedEntry<Asset, "en" | "hu">;
-	};
+	const charlesSimonyiPresentation = {
+		slug: charlesSimonyiPresentationFull.slug,
+		image: charlesSimonyiPresentationFull.image,
+	} as Pick<TypePresentationFields, "slug" | "image">;
 
 	const strippedPresentations = presentations.map((presentation) => {
 		const { slug, title } = presentation.fields;
@@ -62,7 +53,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 			galleryAlbums,
 			buildDate: Date.now(),
 			presentations: strippedPresentations,
-			localizedCharlesSimonyiPresentation,
+			charlesSimonyiPresentation,
 		},
 	};
 }
@@ -75,13 +66,13 @@ export default function Index({
 	galleryAlbums,
 	sponsors,
 	presentations,
-	localizedCharlesSimonyiPresentation,
+	charlesSimonyiPresentation,
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	...props
 }: PageProps) {
 	const { i18n } = useTranslation("common");
 
-	const [localizedPresentations, setLocalizedPresentations] = useState<
+	const [displayedPresentations, setDisplayedPresentations] = useState<
 		{
 			title: string;
 			href: string;
@@ -92,24 +83,12 @@ export default function Index({
 	// eslint-disable-next-line react-etc/prefer-usememo
 	useEffect(() => {
 		const start = Math.floor(Math.random() * (presentations.length - 4));
-		const selected = presentations.slice(start, start + 4);
-		const localized = selected
-			.map((p) => {
-				return Object.fromEntries(
-					Object.entries(p).map(([key, value]) => [
-						key,
-						value[i18n.language as "en" | "hu"] ?? value.hu,
-					]),
-				) as unknown as TypePresentationFields;
-			})
-			.map((p) => ({
-				title: p.title,
-				href:
-					i18n.language === "hu"
-						? `/eloadasok/${p.slug}`
-						: `/en/presentations/${p.slug}`,
-			}));
-		setLocalizedPresentations(localized);
+		const selected = presentations.slice(start, start + 4).map((p) => ({
+			title: p.title,
+			href: `/eloadasok/${p.slug}`,
+		}));
+
+		setDisplayedPresentations(selected);
 	}, [i18n.language, presentations]);
 
 	return (
@@ -125,8 +104,8 @@ export default function Index({
 		>
 			<Seo />
 
-			<PresentationSection presentations={localizedPresentations} />
-			<CharlesSection {...localizedCharlesSimonyiPresentation} />
+			<PresentationSection presentations={displayedPresentations} />
+			<CharlesSection {...charlesSimonyiPresentation} />
 			<VideoSection videoId={videoId} />
 			<GiveawaySection />
 

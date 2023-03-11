@@ -64,7 +64,7 @@ export async function getServerSideProps({
 	res,
 }: GetServerSidePropsContext) {
 	const presentations = (await getPresentations())
-		.map(({ fields }) => fields.slug.hu)
+		.map(({ fields }) => fields.slug)
 		// pepega typescript
 		.flatMap((f) => (f ? [f] : []));
 

@@ -1,4 +1,3 @@
-import type * as Contentful from "contentful";
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,13 +7,7 @@ import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MDXRemote } from "next-mdx-remote";
 import { FaArrowLeft } from "react-icons/fa";
 
-import type {
-	LocalizedEntry,
-	LocalizedFields,
-	LocalizedTypeSponsorLogoFields,
-	TypePresentationFields,
-	TypeSponsorLogoFields,
-} from "@/@types/generated";
+import type { TypeSponsorLogoFields } from "@/@types/generated";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
@@ -40,7 +33,7 @@ function TextContent({ title, description }: TextContentProps) {
 type SpeakerProps = {
 	name: string;
 	image: string;
-	sponsor?: LocalizedFields<TypeSponsorLogoFields, "hu">;
+	sponsor?: TypeSponsorLogoFields;
 };
 
 function Speaker({ image, name, sponsor }: SpeakerProps) {
@@ -60,19 +53,16 @@ function Speaker({ image, name, sponsor }: SpeakerProps) {
 					{name}
 				</p>
 			</div>
-			{sponsor?.image?.hu && (
-				<a href={sponsor.link?.hu ?? "#"} target="_blank" rel="noreferrer">
+			{sponsor?.image && (
+				<a href={sponsor.link ?? "#"} target="_blank" rel="noreferrer">
 					<div className="relative mt-8 h-12 w-full rounded bg-white sm:mt-16 md:mt-8">
 						<Image
 							src={
-								sponsor.image.hu.fields.file
-									? `https:${
-											// @ts-expect-error too lazy to remap types recursively
-											(sponsor.image.hu.fields.file as unknown).hu.url as string
-									  }`
+								sponsor.image.fields.file
+									? `https:${sponsor.image.fields.file.url as string}`
 									: "http://placekitten.com/200/300"
 							}
-							alt={sponsor.name?.hu ?? ""}
+							alt={sponsor.name}
 							fill
 							className="object-contain p-2"
 							unoptimized
@@ -90,6 +80,8 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Presentation({ buildDate, presentation }: PageProps) {
 	const { t, i18n } = useTranslation("common");
 
+	const { name, image, description, title, sponsorLogo } = presentation.fields;
+
 	useEffectOnce(() => {
 		document.documentElement.style.setProperty(
 			"--randomHeight",
@@ -99,29 +91,13 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 
 	const href = i18n.language === "hu" ? "/eloadasok" : "/en/presentations";
 
-	const localized = Object.fromEntries(
-		Object.entries(presentation.fields).map(([key, value]) => [
-			key,
-			value[i18n.language as "en" | "hu"] ?? value.hu,
-		]),
-	) as unknown as TypePresentationFields;
+	const presenterImage = image?.fields.file?.url;
 
-	const localizedMdx =
-		// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-		presentation.mdxSource[i18n.language as "en" | "hu"] ??
-		presentation.mdxSource.hu;
-
-	const presenterImage = (
-		localized.image as unknown as LocalizedEntry<Contentful.Asset, "hu">
-	).fields.file?.hu?.url;
-
-	const sponsor = localized.sponsorLogo?.fields as unknown as
-		| LocalizedTypeSponsorLogoFields<"hu">
-		| undefined;
+	const sponsor = sponsorLogo?.fields;
 
 	return (
 		<Layout buildDate={buildDate} className="pt-4">
-			<Seo title={localized.title} description={localized.description} />
+			<Seo title={title} description={description} />
 			<LayoutContent maxWidth="max-w-6xl">
 				<Link
 					href={href}
@@ -133,7 +109,7 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 				<div className="mt-8 rounded bg-konf-overlay-blue px-4">
 					<section className="mx-auto grid max-w-5xl gap-8 py-16 sm:grid-cols-3">
 						<Speaker
-							name={localized.name}
+							name={name}
 							sponsor={sponsor}
 							image={
 								presenterImage
@@ -141,7 +117,7 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 									: "http://placekitten.com/200/300"
 							}
 						/>
-						<TextContent title={localized.title} description={localizedMdx} />
+						<TextContent title={title} description={presentation.mdxSource} />
 					</section>
 				</div>
 			</LayoutContent>
@@ -169,10 +145,9 @@ export async function getStaticPaths() {
 	const lang = ["/eloadasok/"];
 	const presentationSlugs = (await getPresentations()).map(
 		({ fields }) => fields.slug,
-	) as { hu: string; en: string }[];
+	);
 
-	const pathHu = presentationSlugs.map((slug) => `${lang[0]}${slug.hu}`);
-	// const pathEn = presentationSlugs.map((slug) => `${lang[1]}${slug.hu}`);
+	const pathHu = presentationSlugs.map((slug) => `${lang[0]}${slug}`);
 
 	return {
 		paths: [...pathHu],

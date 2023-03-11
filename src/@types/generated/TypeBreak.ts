@@ -1,5 +1,4 @@
 import type { Entry, EntryFields } from "contentful";
-import type { LocalizedEntry, LocalizedFields } from "./Localized";
 
 export interface TypeBreakFields {
     isDouble: EntryFields.Boolean;
@@ -10,5 +9,3 @@ export interface TypeBreakFields {
 }
 
 export type TypeBreak = Entry<TypeBreakFields>;
-export type LocalizedTypeBreakFields<Locales extends keyof any> = LocalizedFields<TypeBreakFields, Locales>;
-export type LocalizedTypeBreak<Locales extends keyof any> = LocalizedEntry<TypeBreak, Locales>;

@@ -2,9 +2,9 @@ import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
 import type {
-	LocalizedTypeOrganizer,
 	TypeBreakFields,
 	TypeGalleryImagesFields,
+	TypeOrganizer,
 	TypeParagraphFields,
 	TypePresentationFields,
 	TypeSponsorLogoFields,
@@ -80,31 +80,18 @@ export async function getSponsors() {
 }
 export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
 
-type OptionalMagicContentfulProperty =
-	| {
-			[key: string]: string | undefined;
-	  }
-	| undefined;
-
 export async function getPresentations() {
-	const presentations =
-		await client.withAllLocales.getEntries<TypePresentationFields>({
-			content_type: "presentation",
-			order: "fields.name",
-		});
+	const presentations = await client.getEntries<TypePresentationFields>({
+		content_type: "presentation",
+		order: "fields.name",
+	});
 
 	const renderedPresentations = await Promise.all(
 		presentations.items.map(async (presentation) => {
-			const mdxSourceHu = await serialize(
-				(presentation.fields.description as OptionalMagicContentfulProperty)
-					?.hu ?? "",
-			);
-			const mdxSourceEn = await serialize(
-				(presentation.fields.description as OptionalMagicContentfulProperty)
-					?.en ?? "",
-			);
+			const mdxSource = await serialize(presentation.fields.description);
+
 			return {
-				mdxSource: { hu: mdxSourceHu, en: mdxSourceEn },
+				mdxSource,
 				...presentation,
 			};
 		}),
@@ -123,20 +110,18 @@ export async function getPresentation({
 	slug?: string;
 	presenter?: string;
 }) {
-	const presentation =
-		await client.withAllLocales.getEntries<TypePresentationFields>({
-			content_type: "presentation",
-			"fields.slug": slug,
-			"fields.name": presenter,
-			limit: 1,
-		});
+	const presentation = await client.getEntries<TypePresentationFields>({
+		content_type: "presentation",
+		"fields.slug": slug,
+		"fields.name": presenter,
+		limit: 1,
+	});
 
 	const renderedPresentation = await Promise.all(
 		presentation.items.map(async (p) => {
-			const mdxSourceHu = await serialize(p.fields.description.hu ?? "");
-			const mdxSourceEn = await serialize(p.fields.description.en ?? "");
+			const mdxSource = await serialize(p.fields.description);
 			return {
-				mdxSource: { hu: mdxSourceHu, en: mdxSourceEn },
+				mdxSource,
 				...p,
 			};
 		}),
@@ -149,16 +134,16 @@ export type ReturnTypePresentation = Awaited<
 >;
 
 export async function getOrganizers() {
-	const organizers = await client.withAllLocales.getEntries({
+	const organizers = await client.getEntries({
 		content_type: "organizer",
 		order: "fields.order",
 	});
 
-	return organizers.items as unknown as LocalizedTypeOrganizer<"hu" | "en">[];
+	return organizers.items as TypeOrganizer[];
 }
 
 export async function getWorkshops() {
-	const workshops = await client.withAllLocales.getEntries<TypeWorkshopFields>({
+	const workshops = await client.getEntries<TypeWorkshopFields>({
 		content_type: "workshop",
 		order: "fields.order",
 		include: 2,
@@ -166,14 +151,9 @@ export async function getWorkshops() {
 
 	const renderedWorkshops = await Promise.all(
 		workshops.items.map(async (ws) => {
-			const mdxSourceHu = await serialize(
-				(ws.fields.description as OptionalMagicContentfulProperty)?.hu ?? "",
-			);
-			const mdxSourceEn = await serialize(
-				(ws.fields.description as OptionalMagicContentfulProperty)?.en ?? "",
-			);
+			const mdxSource = await serialize(ws.fields.description);
 			return {
-				mdxSource: { hu: mdxSourceHu, en: mdxSourceEn },
+				mdxSource,
 				...ws,
 			};
 		}),

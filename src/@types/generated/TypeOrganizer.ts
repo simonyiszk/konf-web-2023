@@ -1,5 +1,4 @@
 import type { Asset, Entry, EntryFields } from "contentful";
-import type { LocalizedEntry, LocalizedFields } from "./Localized";
 
 export interface TypeOrganizerFields {
     name: EntryFields.Symbol;
@@ -10,5 +9,3 @@ export interface TypeOrganizerFields {
 }
 
 export type TypeOrganizer = Entry<TypeOrganizerFields>;
-export type LocalizedTypeOrganizerFields<Locales extends keyof any> = LocalizedFields<TypeOrganizerFields, Locales>;
-export type LocalizedTypeOrganizer<Locales extends keyof any> = LocalizedEntry<TypeOrganizer, Locales>;

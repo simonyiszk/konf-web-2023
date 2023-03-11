@@ -1,12 +1,9 @@
 import clsx from "clsx";
-import { useTranslation } from "next-i18next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 import type {
-	LocalizedTypeWorkshopFields,
-	LocalizedTypeWorkshopPersonFields,
-	LocalizedTypeWorkshopSlotFields,
-	TypeWorkshopSlotFields,
+	TypeWorkshopFields,
+	TypeWorkshopPersonFields,
 } from "@/@types/generated";
 import { EVENTBRITE_LINK } from "@/utils/constants";
 
@@ -15,17 +12,10 @@ import { components } from "../mdx/MDXComponents";
 import { WorkshopCardBase } from "./WorkshopCardBase";
 import { WorkshopCardSchdesignSection } from "./WorkshopCardSchdesignSection";
 import { WorkshopPlace, WorkshopTimeRange } from "./WorkshopElements";
-import type {
-	RemappedWorkshop,
-	RemappedWorkshopPresenter,
-} from "./WorkshopTypes";
 
 type WorkshopCardProps = {
-	workshop: LocalizedTypeWorkshopFields<"en" | "hu">;
-	mdxSource: {
-		en: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
-		hu: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
-	};
+	workshop: TypeWorkshopFields;
+	mdxSource: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
 };
 
 const workshopRenderComponents = {
@@ -66,82 +56,52 @@ const workshopRenderComponents = {
 };
 
 export function WorkshopCard({ workshop, mdxSource }: WorkshopCardProps) {
-	const { i18n } = useTranslation("common");
+	const { title, variant, company, room, eventSlot, name, image, presenter } =
+		workshop;
 
-	const localized = Object.fromEntries(
-		Object.entries(workshop).map(([key, value]) => [
-			key,
-			value[i18n.language as "en" | "hu"] ?? value.hu,
-		]),
-	) as unknown as RemappedWorkshop;
-
-	const localizedMdxSource = mdxSource[i18n.language as "en" | "hu"];
-
-	const presenters =
-		localized.presenter?.map((p) => {
-			const fields = p.fields as LocalizedTypeWorkshopPersonFields<"hu" | "en">;
-			return Object.fromEntries(
-				Object.entries(fields).map(([key, value]) => [
-					key,
-					value[i18n.language as "en" | "hu"] ?? value.hu,
-				]),
-			) as unknown as RemappedWorkshopPresenter;
-		}) ?? [];
-
-	const eventSlots = localized.eventSlot.map((s) => {
-		const fields = s.fields as LocalizedTypeWorkshopSlotFields<"hu" | "en">;
-		return Object.fromEntries(
-			Object.entries(fields).map(([key, value]) => [
-				key,
-				value[i18n.language as "en" | "hu"] ?? value.hu,
-			]),
-		) as unknown as TypeWorkshopSlotFields;
-	});
-
+	const presenters: TypeWorkshopPersonFields[] =
+		presenter?.map((p) => p.fields) ?? [];
 	return (
 		<WorkshopCardBase
 			header={{
-				company: localized.company ?? "",
-				name: localized.name ?? "",
-				place: localized.room,
+				company: company ?? "",
+				name: name ?? "",
+				place: room,
 				time: {
-					start: new Date(eventSlots[0].startDate),
-					end: new Date(eventSlots[0].endDate),
+					start: new Date(eventSlot[0].fields.startDate),
+					end: new Date(eventSlot[0].fields.endDate),
 				},
-				variant: localized.variant,
+				variant,
 			}}
 			fullSizedImage={
-				localized.image?.fields.file?.hu?.url
+				image?.fields.file?.url
 					? {
-							src: `https:${localized.image.fields.file.hu.url}`,
-							alt: localized.company ?? "",
+							src: `https:${image.fields.file.url}`,
+							alt: company ?? "",
 					  }
 					: undefined
 			}
 		>
 			<h2 className="mb-8 text-3xl font-bold sm:text-3xl lg:text-5xl">
-				{localized.title}
+				{title}
 			</h2>
-			<MDXRemote
-				{...localizedMdxSource}
-				components={workshopRenderComponents}
-			/>
-			{localized.variant === "schdesign" && (
+			<MDXRemote {...mdxSource} components={workshopRenderComponents} />
+			{variant === "schdesign" && (
 				<WorkshopCardSchdesignSection presenters={presenters} />
 			)}
 
-			{localized.variant === "ipar4.0" && (
+			{variant === "ipar4.0" && (
 				<>
 					<span className="my-2 block text-3xl font-medium">
 						Több időpontban is!
 					</span>
 					<div className="text-2xl">
-						{eventSlots.map((slot) => {
-							const start = new Date(slot.startDate);
-							const end = new Date(slot.endDate);
+						{eventSlot.map((slot) => {
+							const start = new Date(slot.fields.startDate);
+							const end = new Date(slot.fields.endDate);
 							return (
 								<li className="flex flex-row gap-2">
-									<WorkshopPlace place={slot.room} />
+									<WorkshopPlace place={slot.fields.room} />
 									<span className="select-none">|</span>
 									<WorkshopTimeRange start={start} end={end} />
 								</li>
