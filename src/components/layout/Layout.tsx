@@ -20,7 +20,7 @@ export function Layout({
 	return (
 		<div
 			id="app"
-			className="bg-gradient dark flex min-h-screen flex-col justify-between overflow-x-hidden font-mona"
+			className="bg-gradient dark flex min-h-screen flex-col justify-between font-mona"
 		>
 			<Header />
 
