@@ -33,7 +33,6 @@ export function VideoSection({ videoId }: VideoSectionProps) {
 				<div className="relative md:col-span-4">
 					<div
 						style={{
-							backdropFilter: "blur(10px)",
 							WebkitFilter: "drop-shadow(0 0 20px rgba(255, 255, 255, 0.5))",
 						}}
 						className={clsx(
