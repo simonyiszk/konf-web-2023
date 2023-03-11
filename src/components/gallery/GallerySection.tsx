@@ -173,7 +173,7 @@ export function GallerySection({ albums }: GallerySectionProps) {
 					</button>
 
 					<Lightbox
-						className="bg-black/75 backdrop-blur"
+						className="backdrop-blur-safari bg-black/75 backdrop-blur"
 						images={
 							albums[activeAlbumIndex].images?.map(({ fields }) => ({
 								src: fields.file?.url ?? "",

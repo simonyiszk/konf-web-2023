@@ -51,7 +51,7 @@ export function Header() {
 
 	return (
 		<header className="fixed top-2 z-30 mx-auto flex w-full items-center px-2">
-			<div className="flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur md:flex-row">
+			<div className="backdrop-blur-safari flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur md:flex-row">
 				<div className="mx-auto flex w-full flex-row items-center justify-between">
 					<div className="flex w-full items-center justify-between gap-8">
 						<Link

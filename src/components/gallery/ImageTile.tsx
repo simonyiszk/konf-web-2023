@@ -40,7 +40,7 @@ export function ImageTile({
 						draggable={false}
 					/>
 				</div>
-				<div className="flex flex-col items-center justify-center rounded-t bg-white/10 py-2 backdrop-blur lg:h-20">
+				<div className="backdrop-blur-safari flex flex-col items-center justify-center rounded-t bg-white/10 py-2 backdrop-blur lg:h-20">
 					<span className="block text-center text-2xl font-black lg:text-3xl">
 						{name}
 					</span>

@@ -11,7 +11,7 @@ const mapLinks = {
 export function LocationCard() {
 	const { t } = useTranslation("common");
 	return (
-		<section className="grid gap-12 rounded-2xl bg-white/10 px-4 py-8 backdrop-blur md:grid-cols-3 md:px-12">
+		<section className="backdrop-blur-safari grid gap-12 rounded-2xl bg-white/10 px-4 py-8 backdrop-blur md:grid-cols-3 md:px-12">
 			<div className="order-2 flex flex-col justify-center gap-4 md:order-1">
 				<h1
 					className={clsx(

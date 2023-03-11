@@ -42,7 +42,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 					isOpen
 						? "pointer-events-auto bg-konf-overlay-blue/10"
 						: "pointer-events-none bg-konf-overlay-blue/0",
-					"fixed inset-0 z-10 h-full w-full sm:hidden",
+					"backdrop-blur-safari fixed inset-0 z-10 h-full w-full sm:hidden",
 				)}
 				variants={backdrop}
 				animate={variant}
@@ -63,7 +63,7 @@ export function Menu({ isOpen = false, closeFn }: MenuProps) {
 				initial="closed"
 				className="absolute inset-x-0 top-0 z-20 flex w-full px-3 text-left sm:hidden"
 			>
-				<div className="relative w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur-md">
+				<div className="backdrop-blur-safari relative w-full rounded-b-lg border border-gray-400/10 bg-konf-overlay-blue/70 p-4 pt-14 backdrop-blur">
 					<p className="mb-4 text-3xl font-medium">
 						{t("conferences.checkout")}:
 					</p>

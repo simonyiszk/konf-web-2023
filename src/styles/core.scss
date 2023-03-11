@@ -18,6 +18,10 @@
 		}
 	}
 
+	.backdrop-blur-safari {
+		transform: translate3d(0, 0, 0);
+	}
+
 	.blue-green-gradient {
 		@apply bg-gradient-to-r from-konf-primary-blue to-konf-primary-green;
 	}

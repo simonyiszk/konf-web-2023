@@ -37,7 +37,7 @@ export function TimelineBreak({
 				height,
 			}}
 		>
-			<div className="hyphens relative flex h-full w-full flex-col justify-center rounded-lg bg-white/5 p-4 text-center backdrop-blur">
+			<div className="hyphens backdrop-blur-safari relative flex h-full w-full flex-col justify-center rounded-lg bg-white/5 p-4 text-center backdrop-blur">
 				{breakItem.content}
 				<div className="absolute top-2 left-2 text-xs text-gray-300">
 					{startDate.toLocaleTimeString("hu-HU", {

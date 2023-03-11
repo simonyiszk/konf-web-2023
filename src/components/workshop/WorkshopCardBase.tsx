@@ -18,7 +18,7 @@ export function WorkshopCardBase({
 	fullSizedImage,
 }: WorkshopCardBaseProps) {
 	return (
-		<div className="overflow-hidden rounded-2xl bg-white/10 backdrop-blur">
+		<div className="backdrop-blur-safari overflow-hidden rounded-2xl bg-white/10 backdrop-blur">
 			<WorkshopHeader {...header} />
 			<div className="relative grid sm:grid-cols-3">
 				<div

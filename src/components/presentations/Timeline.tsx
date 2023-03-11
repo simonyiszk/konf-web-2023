@@ -39,7 +39,7 @@ export function Timeline({
 			<div className="sticky top-20 z-20 mx-20 mb-4 flex justify-between">
 				<button
 					type="button"
-					className="rounded-lg bg-white/10 p-4 font-bold text-konf-primary-green backdrop-blur"
+					className="backdrop-blur-safari rounded-lg bg-white/10 p-4 font-bold text-konf-primary-green backdrop-blur"
 					onClick={() => {
 						if (leftRef.current) {
 							leftRef.current.scrollIntoView({
@@ -54,7 +54,7 @@ export function Timeline({
 				</button>
 				<button
 					type="button"
-					className="rounded-lg bg-white/10 p-4 font-bold text-konf-primary-blue backdrop-blur"
+					className="backdrop-blur-safari rounded-lg bg-white/10 p-4 font-bold text-konf-primary-blue backdrop-blur"
 					onClick={() => {
 						if (rightRef.current) {
 							rightRef.current.scrollIntoView({
@@ -84,12 +84,12 @@ export function Timeline({
 											gapSize * 2,
 									}}
 								>
-									<p className="rounded-lg bg-white/10 py-1 px-2 backdrop-blur">
+									<p className="backdrop-blur-safari rounded-lg bg-white/10 py-1 px-2 backdrop-blur">
 										{i + startHour}:00
 									</p>
 									{i === rows - 1 ? null : (
 										<p
-											className="absolute rounded-lg bg-white/10 py-1 px-2 backdrop-blur"
+											className="backdrop-blur-safari absolute rounded-lg bg-white/10 py-1 px-2 backdrop-blur"
 											style={{ top: tenMinSize * 3 + gapSize }}
 										>
 											{i + startHour}:30

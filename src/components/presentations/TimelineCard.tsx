@@ -50,7 +50,7 @@ export function TimelineCard({
 			style={{ top: startHeight, width, height }}
 			href={href}
 		>
-			<div className="hyphens relative flex h-full w-full flex-col justify-center rounded-lg bg-white/10 p-4 text-center backdrop-blur lg:px-16 xl:px-32 2xl:px-48">
+			<div className="hyphens backdrop-blur-safari relative flex h-full w-full flex-col justify-center rounded-lg bg-white/10 p-4 text-center backdrop-blur lg:px-16 xl:px-32 2xl:px-48">
 				<h3 className="mb-2 mt-3 font-bold">{presentation.title}</h3>
 				<h4
 					className={clsx(

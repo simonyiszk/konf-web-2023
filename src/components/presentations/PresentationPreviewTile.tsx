@@ -17,7 +17,7 @@ export function PresentationPreviewTile({
 			href={href}
 			className={clsx(
 				"h-full min-h-[120px]",
-				"relative flex w-full flex-col justify-center rounded-lg bg-white/10 py-4 backdrop-blur",
+				"backdrop-blur-safari relative flex w-full flex-col justify-center rounded-lg bg-white/10 py-4 backdrop-blur",
 				"hover:bg-konf-overlay-blue/70",
 				"transition duration-300 ease-in-out",
 				className,
