@@ -3,7 +3,6 @@ import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-import type { TypePresentationFields } from "@/@types/generated";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
