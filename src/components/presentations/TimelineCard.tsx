@@ -1,17 +1,14 @@
 import clsx from "clsx";
-import type { Asset } from "contentful";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { FiExternalLink } from "react-icons/fi";
 
-import type {
-	LocalizedEntry,
-	LocalizedTypePresentationFields,
-	TypePresentationFields,
-} from "@/@types/generated";
+import type { ReturnTypePresentations } from "@/utils/contentful";
+
+type SinglePresentation<T> = T extends unknown[] ? T[number] : never;
 
 type TimelineCardProps = {
-	presentation: LocalizedTypePresentationFields<"en" | "hu">;
+	presentation: SinglePresentation<ReturnTypePresentations>["fields"];
 	startTime: number;
 	tenMinSize: number;
 	gapSize: number;
@@ -27,17 +24,8 @@ export function TimelineCard({
 }: TimelineCardProps) {
 	const { i18n } = useTranslation("common");
 
-	const localized = Object.fromEntries(
-		Object.entries(presentation).map(([key, value]) => [
-			key,
-			value[i18n.language as "en" | "hu"] ?? value.hu,
-		]),
-	) as unknown as Omit<TypePresentationFields, "image"> & {
-		image: LocalizedEntry<Asset, "en" | "hu">;
-	};
-
-	const startDate = new Date(localized.startDate);
-	const endDate = new Date(localized.endDate);
+	const startDate = new Date(presentation.startDate);
+	const endDate = new Date(presentation.endDate);
 	const diff = startDate.getHours() - startTime;
 	const hourHeight = diff * tenMinSize * 6;
 	const minHeight = (startDate.getMinutes() * tenMinSize) / 10;
@@ -53,8 +41,8 @@ export function TimelineCard({
 
 	const href =
 		i18n.language === "hu"
-			? `/eloadasok/${localized.slug}`
-			: `/en/presentations/${localized.slug}`;
+			? `/eloadasok/${presentation.slug}`
+			: `/en/presentations/${presentation.slug}`;
 
 	return (
 		<Link
@@ -63,18 +51,18 @@ export function TimelineCard({
 			href={href}
 		>
 			<div className="hyphens relative flex h-full w-full flex-col justify-center rounded-lg bg-white/10 p-4 text-center backdrop-blur lg:px-16 xl:px-32 2xl:px-48">
-				<h3 className="mb-2 mt-3 font-bold">{localized.title}</h3>
+				<h3 className="mb-2 mt-3 font-bold">{presentation.title}</h3>
 				<h4
 					className={clsx(
-						localized.room === "IB028"
+						presentation.room === "IB028"
 							? "text-konf-primary-green"
 							: "text-konf-primary-blue",
 						"hyphens-none mb-1",
 					)}
 				>
-					{localized.name}
+					{presentation.name}
 				</h4>
-				<h5 className="text-xs text-gray-300">{localized.profession}</h5>
+				<h5 className="text-xs text-gray-300">{presentation.profession}</h5>
 				<div className="absolute top-2 left-2 text-xs text-gray-300">
 					{startDate.toLocaleTimeString(i18n.language, {
 						hour: "2-digit",

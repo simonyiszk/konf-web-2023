@@ -17,14 +17,14 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 
 	presentations.sort((a, b) => {
 		const dateDiff =
-			new Date(a.fields.startDate.hu ?? "2023-03-21T08:00:00Z").getTime() -
-			new Date(b.fields.startDate.hu ?? "2023-03-21T08:00:00Z").getTime();
+			new Date(a.fields.startDate).getTime() -
+			new Date(b.fields.startDate).getTime();
 
-		const sideDiff = a.fields.room?.hu?.localeCompare(b.fields.room?.hu ?? "");
+		const sideDiff = a.fields.room?.localeCompare(b.fields.room ?? "");
 		return dateDiff - (sideDiff ?? 0);
 	});
-	const left = presentations.filter((p) => p.fields.room?.hu === "IB028");
-	const right = presentations.filter((p) => p.fields.room?.hu === "IB025");
+	const left = presentations.filter((p) => p.fields.room === "IB028");
+	const right = presentations.filter((p) => p.fields.room === "IB025");
 
 	const breaks = await getBreaks();
 
@@ -75,8 +75,8 @@ export default function Presentations({
 					left={left}
 					right={right}
 					breaks={breaks}
-					startTime={new Date(left[0].fields.startDate.hu ?? "")}
-					endTime={new Date(left[left.length - 1].fields.endDate.hu ?? "")}
+					startTime={new Date(left[0].fields.startDate)}
+					endTime={new Date(left[left.length - 1].fields.endDate)}
 				/>
 			</LayoutContent>
 		</Layout>

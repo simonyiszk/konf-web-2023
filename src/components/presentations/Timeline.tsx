@@ -1,15 +1,16 @@
 import clsx from "clsx";
 import { useRef } from "react";
 
-import type { LocalizedTypePresentation, TypeBreak } from "@/@types/generated";
+import type { TypeBreak } from "@/@types/generated";
+import type { ReturnTypePresentations } from "@/utils/contentful";
 
 import styles from "./Timeline.module.scss";
 import { TimelineBreak } from "./TimelineBreak";
 import { TimelineCard } from "./TimelineCard";
 
 type TimelineProps = {
-	left: LocalizedTypePresentation<"en" | "hu">[];
-	right: LocalizedTypePresentation<"en" | "hu">[];
+	left: ReturnTypePresentations;
+	right: ReturnTypePresentations;
 	breaks: TypeBreak[];
 	startTime: Date;
 	endTime: Date;
@@ -119,12 +120,12 @@ export function Timeline({
 					{left.map((presentation) => {
 						return (
 							<TimelineCard
-								key={presentation.fields.title?.hu}
+								key={presentation.fields.title}
 								presentation={presentation.fields}
 								startTime={startTime.getHours()}
 								tenMinSize={tenMinSize}
 								gapSize={gapSize}
-								isDouble={presentation.fields.name?.hu === "Charles Simonyi"}
+								isDouble={presentation.fields.name === "Charles Simonyi"}
 							/>
 						);
 					})}
@@ -150,7 +151,7 @@ export function Timeline({
 					{right.map((presentation) => {
 						return (
 							<TimelineCard
-								key={presentation.fields.title?.hu}
+								key={presentation.fields.title}
 								presentation={presentation.fields}
 								startTime={startTime.getHours()}
 								tenMinSize={tenMinSize}
