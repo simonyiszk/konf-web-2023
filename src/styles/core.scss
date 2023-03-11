@@ -57,4 +57,12 @@
 			grid-template-columns: repeat(auto-fill, minmax(340px, 360px));
 		}
 	}
+
+	.hyphens {
+		hyphens: auto;
+	}
+
+	.hyphens-none {
+		hyphens: none;
+	}
 }

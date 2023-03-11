@@ -39,10 +39,10 @@ export function Header() {
 
 	useEffect(() => {
 		if (size.width) {
-			if (size.width >= 640 && !isMenuOpen) {
+			if (size.width >= 768 && !isMenuOpen) {
 				setMenuOpen.setTrue();
 			}
-			if (size.width < 640 && isMenuOpen) {
+			if (size.width < 768 && isMenuOpen) {
 				setMenuOpen.setFalse();
 			}
 		}
@@ -51,7 +51,7 @@ export function Header() {
 
 	return (
 		<header className="fixed top-2 z-30 mx-auto flex w-full items-center px-2">
-			<div className="flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur sm:flex-row">
+			<div className="flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur md:flex-row">
 				<div className="mx-auto flex w-full flex-row items-center justify-between">
 					<div className="flex w-full items-center justify-between gap-8">
 						<Link
@@ -74,7 +74,7 @@ export function Header() {
 								/>
 							</div>
 						</Link>
-						<div className="z-40 sm:hidden">
+						<div className="z-40 md:hidden">
 							<button
 								type="button"
 								className="z-40 p-2 hover:opacity-75"
@@ -87,7 +87,7 @@ export function Header() {
 					</div>
 				</div>
 				<motion.nav
-					className="flex w-full flex-col sm:flex sm:flex-row sm:justify-end sm:gap-4 sm:opacity-100"
+					className="flex w-full flex-col md:flex md:flex-row md:justify-end md:gap-4 md:opacity-100"
 					variants={{
 						open: {
 							opacity: 1,
@@ -105,7 +105,8 @@ export function Header() {
 							transitionEnd: { display: "none" },
 						},
 					}}
-					defaultValue={(size.width ?? 0) >= 640 ? "open" : "closed"}
+					defaultValue={(size.width ?? 1000) >= 768 ? "open" : "closed"}
+					initial={(size.width ?? 0) >= 768 ? "open" : "closed"}
 					animate={isMenuOpen ? "open" : "closed"}
 				>
 					<motion.div

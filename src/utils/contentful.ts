@@ -2,6 +2,7 @@ import { createClient } from "contentful";
 import { serialize } from "next-mdx-remote/serialize";
 
 import type {
+	TypeBreakFields,
 	TypeGalleryImagesFields,
 	TypeOrganizer,
 	TypeParagraphFields,
@@ -159,4 +160,13 @@ export async function getWorkshops() {
 	);
 
 	return renderedWorkshops;
+}
+
+export async function getBreaks() {
+	const breaks = await client.getEntries<TypeBreakFields>({
+		content_type: "break",
+		order: "fields.startDate",
+	});
+
+	return breaks.items;
 }
