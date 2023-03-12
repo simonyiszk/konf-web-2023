@@ -62,7 +62,11 @@ export function TimelineCard({
 				>
 					{presentation.name}
 				</h4>
-				<h5 className="text-xs text-gray-300">{presentation.profession}</h5>
+				<h5 className="text-xs text-gray-300">
+					{[presentation.profession, presentation.sponsorLogo?.fields.name]
+						.filter((e) => e !== undefined)
+						.join(", ")}
+				</h5>
 				<div className="absolute top-2 left-2 text-xs text-gray-300">
 					{startDate.toLocaleTimeString(i18n.language, {
 						hour: "2-digit",

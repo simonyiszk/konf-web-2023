@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,18 +13,36 @@ import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
 import { components } from "@/components/mdx/MDXComponents";
+import {
+	WorkshopPlace,
+	WorkshopTimeRange,
+} from "@/components/workshop/WorkshopElements";
 import { getPresentation, getPresentations } from "@/utils/contentful";
 import { useEffectOnce } from "@/utils/hooks";
 
 type TextContentProps = {
 	title: string;
 	description: MDXRemoteSerializeResult<{ [key: string]: unknown }>;
+	startDate: Date;
+	endDate: Date;
+	place: string;
 };
 
-function TextContent({ title, description }: TextContentProps) {
+function TextContent({
+	title,
+	description,
+	startDate,
+	endDate,
+	place,
+}: TextContentProps) {
 	return (
 		<div className="sm:col-span-2">
 			<h1 className="mb-4 text-3xl font-semibold lg:text-5xl">{title}</h1>
+			<div className="mb-2 flex flex-row gap-2 text-2xl">
+				<WorkshopPlace place={place} />
+				<span className="select-none">|</span>
+				<WorkshopTimeRange start={startDate} end={endDate} />
+			</div>
 			{/* <p className="my-1 text-lg tracking-wider ">IB026 | 16:00 - 17:00</p> */}
 			<MDXRemote {...description} components={components} />
 		</div>
@@ -34,9 +53,10 @@ type SpeakerProps = {
 	name: string;
 	image: string;
 	sponsor?: TypeSponsorLogoFields;
+	profession?: string;
 };
 
-function Speaker({ image, name, sponsor }: SpeakerProps) {
+function Speaker({ image, name, sponsor, profession }: SpeakerProps) {
 	return (
 		<div>
 			<div className="relative aspect-1 h-auto w-full rounded bg-gradient-to-b from-konf-primary-green to-transparent">
@@ -53,9 +73,15 @@ function Speaker({ image, name, sponsor }: SpeakerProps) {
 					{name}
 				</p>
 			</div>
+			{profession && <div className="mt-6 text-center ">{profession}</div>}
 			{sponsor?.image && (
 				<a href={sponsor.link ?? "#"} target="_blank" rel="noreferrer">
-					<div className="relative mt-8 h-12 w-full rounded bg-white sm:mt-16 md:mt-8">
+					<div
+						className={clsx(
+							!profession ? "mt-8 sm:mt-16 md:mt-8" : "mt-2",
+							"relative h-12 w-full rounded bg-white ",
+						)}
+					>
 						<Image
 							src={
 								sponsor.image.fields.file
@@ -80,7 +106,17 @@ type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 export default function Presentation({ buildDate, presentation }: PageProps) {
 	const { t, i18n } = useTranslation("common");
 
-	const { name, image, description, title, sponsorLogo } = presentation.fields;
+	const {
+		name,
+		image,
+		description,
+		title,
+		sponsorLogo,
+		startDate,
+		endDate,
+		room,
+		profession,
+	} = presentation.fields;
 
 	useEffectOnce(() => {
 		document.documentElement.style.setProperty(
@@ -91,7 +127,7 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 
 	const href = i18n.language === "hu" ? "/eloadasok" : "/en/presentations";
 
-	const presenterImage = image?.fields.file?.url;
+	const presenterImage = image ? image.fields.file?.url : undefined;
 
 	const sponsor = sponsorLogo?.fields;
 
@@ -116,8 +152,15 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 									? `https:${presenterImage}`
 									: "http://placekitten.com/200/300"
 							}
+							profession={profession}
 						/>
-						<TextContent title={title} description={presentation.mdxSource} />
+						<TextContent
+							title={title}
+							description={presentation.mdxSource}
+							startDate={new Date(startDate)}
+							endDate={new Date(endDate)}
+							place={room ?? ""}
+						/>
 					</section>
 				</div>
 			</LayoutContent>
