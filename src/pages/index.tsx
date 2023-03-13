@@ -1,7 +1,5 @@
 import type { GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useEffect, useState } from "react";
 
 import type { TypePresentationFields } from "@/@types/generated";
 import { GallerySection } from "@/components/gallery/GallerySection";
@@ -19,7 +17,6 @@ import {
 	getPresentation,
 	getPresentations,
 	getSponsors,
-	ReturnTypePresentations,
 } from "@/utils/contentful";
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {

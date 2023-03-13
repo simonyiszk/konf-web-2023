@@ -1,11 +1,9 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
-import { useEffect, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 import type { ReturnTypePresentations } from "@/utils/contentful";
-import { useFps } from "@/utils/hooks";
 
 type SinglePresentation<T> = T extends unknown[] ? T[number] : never;
 
