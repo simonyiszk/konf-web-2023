@@ -79,6 +79,11 @@ const nextConfig = {
 				destination: "https://regi.konferencia.simonyi.bme.hu/2017",
 				permanent: true,
 			},
+			{
+				source: "/golya",
+				destination: "https://golyakonf.sch.bme.hu",
+				permanent: true,
+			},
 		];
 	},
 

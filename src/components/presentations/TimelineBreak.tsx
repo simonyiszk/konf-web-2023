@@ -5,6 +5,7 @@ type TimelineBreakProps = {
 	startHour: number;
 	tenMinSize: number;
 	gapSize: number;
+	startMin: number;
 };
 
 export function TimelineBreak({
@@ -12,6 +13,7 @@ export function TimelineBreak({
 	startHour,
 	tenMinSize,
 	gapSize,
+	startMin = 0,
 }: TimelineBreakProps) {
 	const startDate = new Date(breakItem.startDate);
 	const endDate = new Date(breakItem.endDate);
@@ -22,7 +24,9 @@ export function TimelineBreak({
 		hourHeight +
 		minHeight +
 		diff * 2 * gapSize +
-		(startDate.getMinutes() === 0 ? 0 : gapSize);
+		(startDate.getMinutes() >= 20 ? gapSize : 0) -
+		tenMinSize * startMin -
+		(startMin >= 2 ? gapSize : 0);
 	const length = (endDate.getTime() - startDate.getTime()) / 1000 / 60;
 	const height = (length * tenMinSize) / 10 + (length >= 60 ? gapSize : 0);
 

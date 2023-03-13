@@ -44,6 +44,7 @@
 		"react/prop-types": "off", // TypeScript makes this safe
 		"react/require-default-props": "off", // React `defaultProps` are deprecated
 		"tailwindcss/classnames-order": "off", // Enforced by Prettier
+		"no-plusplus": "off",
 		"tailwindcss/no-custom-classname": [
 			"warn",
 			{

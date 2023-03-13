@@ -1,9 +1,11 @@
 import clsx from "clsx";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import { useEffect, useState } from "react";
 import { FiExternalLink } from "react-icons/fi";
 
 import type { ReturnTypePresentations } from "@/utils/contentful";
+import { useFps } from "@/utils/hooks";
 
 type SinglePresentation<T> = T extends unknown[] ? T[number] : never;
 
@@ -13,6 +15,8 @@ type TimelineCardProps = {
 	tenMinSize: number;
 	gapSize: number;
 	isDouble?: boolean;
+	isThrottled?: boolean;
+	startMin: number;
 };
 
 export function TimelineCard({
@@ -21,6 +25,8 @@ export function TimelineCard({
 	tenMinSize,
 	gapSize,
 	isDouble,
+	isThrottled,
+	startMin = 0,
 }: TimelineCardProps) {
 	const { i18n } = useTranslation("common");
 
@@ -33,7 +39,9 @@ export function TimelineCard({
 		hourHeight +
 		minHeight +
 		diff * 2 * gapSize +
-		(startDate.getMinutes() === 0 ? 0 : gapSize);
+		(startDate.getMinutes() >= 20 ? gapSize : 0) -
+		tenMinSize * startMin -
+		(startMin >= 2 ? gapSize : 0);
 	const length = (endDate.getTime() - startDate.getTime()) / 1000 / 60;
 	const height = (length * tenMinSize) / 10 + (length >= 60 ? gapSize : 0);
 
@@ -50,7 +58,14 @@ export function TimelineCard({
 			style={{ top: startHeight, width, height }}
 			href={href}
 		>
-			<div className="hyphens backdrop-blur-safari relative flex h-full w-full flex-col justify-center rounded-lg bg-white/10 p-4 text-center backdrop-blur lg:px-16 xl:px-32 2xl:px-48">
+			<div
+				className={clsx(
+					isThrottled
+						? "bg-konf-overlay-blue"
+						: "backdrop-blur-safari bg-white/10 backdrop-blur",
+					"hyphens relative flex h-full w-full flex-col justify-center rounded-lg p-4 text-center lg:px-16 xl:px-32 2xl:px-48",
+				)}
+			>
 				<h3 className="mb-2 mt-3 font-bold">{presentation.title}</h3>
 				<h4
 					className={clsx(

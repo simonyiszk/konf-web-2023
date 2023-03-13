@@ -74,8 +74,8 @@ export default function Presentations({
 					left={left}
 					right={right}
 					breaks={breaks}
-					startTime={new Date(left[0].fields.startDate)}
-					endTime={new Date(left[left.length - 1].fields.endDate)}
+					startTime={new Date(breaks[0].fields.startDate)}
+					endTime={new Date(breaks[breaks.length - 1].fields.endDate)}
 				/>
 			</LayoutContent>
 		</Layout>

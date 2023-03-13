@@ -1,8 +1,9 @@
 import clsx from "clsx";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import type { TypeBreak } from "@/@types/generated";
 import type { ReturnTypePresentations } from "@/utils/contentful";
+import { useFps } from "@/utils/hooks";
 
 import styles from "./Timeline.module.scss";
 import { TimelineBreak } from "./TimelineBreak";
@@ -23,20 +24,34 @@ export function Timeline({
 	startTime,
 	endTime,
 }: TimelineProps) {
+	const [isThrottled, setIsThrottled] = useState(false);
+	const { avgFps } = useFps(4);
+
+	useEffect(() => {
+		setTimeout(() => {
+			if (avgFps < 15) {
+				setIsThrottled(true);
+			}
+		}, 2000);
+		return () => {};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	const startHour = startTime.getHours();
 	const endHour = endTime.getHours();
 
 	const leftRef = useRef<HTMLDivElement>(null);
 	const rightRef = useRef<HTMLDivElement>(null);
 
-	const rows = endHour - startHour + 1;
+	const rows = endHour - startHour;
 
 	const tenMinSize = 60;
 	const gapSize = 16;
+	const startMin = startTime.getMinutes() / 10;
 
 	return (
 		<section className="container relative mx-auto mt-8 h-full w-full">
-			<div className="sticky top-20 z-20 mx-20 mb-4 flex justify-between">
+			<div className="sticky top-20 z-20 mx-12 mb-4 flex justify-between sm:mx-20 sm:ml-32">
 				<button
 					type="button"
 					className="backdrop-blur-safari rounded-lg bg-white/10 p-4 font-bold text-konf-primary-green backdrop-blur"
@@ -80,20 +95,47 @@ export function Timeline({
 									className="relative"
 									style={{
 										height:
-											(i === rows - 1 ? tenMinSize * 3 : tenMinSize * 6) +
-											gapSize * 2,
+											i === 0
+												? tenMinSize * 3 + gapSize
+												: tenMinSize * 6 + gapSize * 2,
 									}}
 								>
-									<p className="backdrop-blur-safari rounded-lg bg-white/10 py-1 px-2 backdrop-blur">
-										{i + startHour}:00
-									</p>
-									{i === rows - 1 ? null : (
+									{i === 0 ? (
 										<p
-											className="backdrop-blur-safari absolute rounded-lg bg-white/10 py-1 px-2 backdrop-blur"
-											style={{ top: tenMinSize * 3 + gapSize }}
+											className={clsx(
+												isThrottled
+													? "bg-konf-overlay-blue"
+													: "backdrop-blur-safari bg-white/10 backdrop-blur",
+												"rounded-lg py-1 px-2",
+											)}
 										>
 											{i + startHour}:30
 										</p>
+									) : (
+										<>
+											<p
+												className={clsx(
+													isThrottled
+														? "bg-konf-overlay-blue"
+														: "backdrop-blur-safari bg-white/10 backdrop-blur",
+													"rounded-lg py-1 px-2",
+												)}
+											>
+												{i + startHour}:00
+											</p>
+
+											<p
+												className={clsx(
+													isThrottled
+														? "bg-konf-overlay-blue"
+														: "backdrop-blur-safari bg-white/10 backdrop-blur",
+													"absolute rounded-lg py-1 px-2",
+												)}
+												style={{ top: tenMinSize * 3 + gapSize }}
+											>
+												{i + startHour}:30
+											</p>
+										</>
 									)}
 								</div>
 							);
@@ -112,6 +154,7 @@ export function Timeline({
 									startHour={startHour}
 									tenMinSize={tenMinSize}
 									gapSize={gapSize}
+									startMin={startMin}
 								/>
 							);
 						}
@@ -125,7 +168,8 @@ export function Timeline({
 								startTime={startTime.getHours()}
 								tenMinSize={tenMinSize}
 								gapSize={gapSize}
-								isDouble={presentation.fields.name === "Charles Simonyi"}
+								isThrottled={isThrottled}
+								startMin={startMin}
 							/>
 						);
 					})}
@@ -143,6 +187,7 @@ export function Timeline({
 									startHour={startHour}
 									tenMinSize={tenMinSize}
 									gapSize={gapSize}
+									startMin={startMin}
 								/>
 							);
 						}
@@ -156,6 +201,8 @@ export function Timeline({
 								startTime={startTime.getHours()}
 								tenMinSize={tenMinSize}
 								gapSize={gapSize}
+								isThrottled={isThrottled}
+								startMin={startMin}
 							/>
 						);
 					})}
