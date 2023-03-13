@@ -81,7 +81,7 @@ export function HeroV1() {
 	return (
 		<div className={clsx(styles.heroV1, "bg-hero-pattern")}>
 			<Hero />
-			<CountdownTimer endDate="2023-03-21T12:00:00.000+02:00" />
+			<CountdownTimer endDate="2023-03-21T12:30:00.000+01:00" />
 			<CTA />
 			<div className="pointer-events-none absolute bottom-0 z-20 h-32 w-full bg-gradient-to-b from-transparent to-konf-background-blue" />
 			<div className="pointer-events-none absolute -bottom-16 z-20 h-16 w-full bg-gradient-to-t from-transparent to-konf-background-blue" />
