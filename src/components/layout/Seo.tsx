@@ -18,8 +18,8 @@ export function Seo({ title, description }: SeoProps) {
 		"Magyarország legnagyobb egyetemi hallgatók által szervezett éves technológiai konferenciája.";
 	const v0Preview =
 		i18n.language === "hu"
-			? "https://konferencia.simonyi.bme.hu/previewV0.png"
-			: "https://konferencia.simonyi.bme.hu/preview_eng.png";
+			? "https://konferencia.simonyi.bme.hu/preview.jpg"
+			: "https://konferencia.simonyi.bme.hu/preview_eng.jpg";
 
 	const structuredData = generateStructuredData({
 		title: defaultTitle,
