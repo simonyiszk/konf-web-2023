@@ -83,7 +83,7 @@ export type ReturnTypeSponsors = Awaited<ReturnType<typeof getSponsors>>;
 export async function getPresentations() {
 	const presentations = await client.getEntries<TypePresentationFields>({
 		content_type: "presentation",
-		order: "fields.name",
+		order: "fields.startDate",
 	});
 
 	const renderedPresentations = await Promise.all(

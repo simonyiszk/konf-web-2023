@@ -1,4 +1,5 @@
 import "@/styles/global.scss";
+import "react-alice-carousel/lib/scss/alice-carousel.scss";
 
 import { AnimatePresence } from "framer-motion";
 import type { AppProps } from "next/app";

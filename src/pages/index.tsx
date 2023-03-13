@@ -29,7 +29,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 		? process.env.YOUTUBE_VIDEO_ID
 		: "MD8VGKLklVQ";
 	const galleryAlbums = await getGalleryImages();
-	const presentations = (await getPresentations()) as ReturnTypePresentations;
+	const presentations = await getPresentations();
 
 	const charlesSimonyiPresentationFull = (
 		await getPresentation({
@@ -47,6 +47,11 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 		return { slug, title };
 	});
 
+	const mapped = strippedPresentations.map((p) => ({
+		title: p.title,
+		href: `/eloadasok/${p.slug}`,
+	}));
+
 	return {
 		props: {
 			...i18n,
@@ -54,7 +59,7 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
 			videoId,
 			galleryAlbums,
 			buildDate: Date.now(),
-			presentations: strippedPresentations,
+			presentations: mapped,
 			charlesSimonyiPresentation,
 		},
 	};
@@ -72,27 +77,6 @@ export default function Index({
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	...props
 }: PageProps) {
-	const { i18n } = useTranslation("common");
-
-	const [displayedPresentations, setDisplayedPresentations] = useState<
-		{
-			title: string;
-			href: string;
-		}[]
-	>([]);
-
-	// Needs to be client side because of the randomization
-	// eslint-disable-next-line react-etc/prefer-usememo
-	useEffect(() => {
-		const start = Math.floor(Math.random() * (presentations.length - 4));
-		const selected = presentations.slice(start, start + 4).map((p) => ({
-			title: p.title,
-			href: `/eloadasok/${p.slug}`,
-		}));
-
-		setDisplayedPresentations(selected);
-	}, [i18n.language, presentations]);
-
 	return (
 		<Layout
 			className=""
@@ -106,7 +90,7 @@ export default function Index({
 		>
 			<Seo />
 
-			<PresentationSection presentations={displayedPresentations} />
+			<PresentationSection presentations={presentations} />
 			<CharlesSection {...charlesSimonyiPresentation} />
 			<VideoSection videoId={videoId} />
 			<GiveawaySection />

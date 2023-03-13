@@ -1,4 +1,9 @@
 import { useTranslation } from "next-i18next";
+import { Suspense } from "react";
+import AliceCarousel from "react-alice-carousel";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+import { useWindowSize } from "@/utils/hooks";
 
 import { TextButton } from "../button/TextButton";
 import type { PresentationPreviewType } from ".";
@@ -13,16 +18,44 @@ export function PresentationSection({
 }: PresentationSectionProps) {
 	const { t, i18n } = useTranslation("common");
 	const href = i18n.language === "hu" ? "/eloadasok" : "/presentations";
+	const responsive = {
+		0: { items: 1 },
+		640: { items: 2 },
+		1024: { items: 3 },
+		1536: { items: 4 },
+	};
+
+	const { width } = useWindowSize();
+
 	return (
 		<section
 			id={href.split("/")[1]}
-			className="container mx-auto w-full py-16 px-4 sm:px-16 md:px-8 lg:px-16 xl:px-32"
+			className="container mx-auto w-full py-16 px-4"
 		>
-			<div className="grid grid-cols-1 place-items-center gap-8 md:grid-cols-2 xl:grid-cols-4">
-				{presentations.map((p) => (
-					<PresentationPreviewTile key={p.href} title={p.title} href={p.href} />
-				))}
-			</div>
+			<Suspense fallback={<PresentationPreviewTile title="" href="" />}>
+				<AliceCarousel
+					mouseTracking
+					items={presentations.map((p) => (
+						<PresentationPreviewTile
+							key={p.href}
+							title={p.title}
+							href={p.href}
+						/>
+					))}
+					responsive={responsive}
+					innerWidth={width}
+					controlsStrategy="alternate"
+					autoPlay
+					autoPlayInterval={7000}
+					infinite
+					renderPrevButton={() => (
+						<FaChevronLeft className="m-2 ml-auto text-2xl transition-all hover:scale-125 active:scale-75" />
+					)}
+					renderNextButton={() => (
+						<FaChevronRight className="m-2 text-2xl transition-all hover:scale-125 active:scale-75" />
+					)}
+				/>
+			</Suspense>
 			<div className="mx-auto my-8 max-w-lg">
 				<TextButton
 					fullWidth
