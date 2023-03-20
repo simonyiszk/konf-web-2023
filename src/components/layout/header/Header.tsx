@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { useEffect } from "react";
+import { FiExternalLink } from "react-icons/fi";
 
 import { MenuButton } from "@/components/menu/MenuButton";
 import { useBool, useWindowSize } from "@/utils/hooks";
@@ -39,10 +40,10 @@ export function Header() {
 
 	useEffect(() => {
 		if (size.width) {
-			if (size.width >= 768 && !isMenuOpen) {
+			if (size.width >= 1024 && !isMenuOpen) {
 				setMenuOpen.setTrue();
 			}
-			if (size.width < 768 && isMenuOpen) {
+			if (size.width < 1024 && isMenuOpen) {
 				setMenuOpen.setFalse();
 			}
 		}
@@ -51,7 +52,7 @@ export function Header() {
 
 	return (
 		<header className="fixed top-2 z-30 mx-auto flex w-full items-center px-2">
-			<div className="backdrop-blur-safari flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur md:flex-row">
+			<div className="backdrop-blur-safari flex w-full flex-col justify-between rounded-lg bg-black/20 px-3 py-2 backdrop-blur lg:flex-row">
 				<div className="mx-auto flex w-full flex-row items-center justify-between">
 					<div className="flex w-full items-center justify-between gap-8">
 						<Link
@@ -74,7 +75,7 @@ export function Header() {
 								/>
 							</div>
 						</Link>
-						<div className="z-40 md:hidden">
+						<div className="z-40 lg:hidden">
 							<button
 								type="button"
 								className="z-40 p-2 hover:opacity-75"
@@ -87,7 +88,7 @@ export function Header() {
 					</div>
 				</div>
 				<motion.nav
-					className="flex w-full flex-col md:flex md:flex-row md:justify-end md:gap-4 md:opacity-100"
+					className="flex w-full flex-col lg:flex lg:flex-row lg:justify-end lg:gap-4 lg:opacity-100"
 					variants={{
 						open: {
 							opacity: 1,
@@ -105,8 +106,8 @@ export function Header() {
 							transitionEnd: { display: "none" },
 						},
 					}}
-					defaultValue={(size.width ?? 1000) >= 768 ? "open" : "closed"}
-					initial={(size.width ?? 0) >= 768 ? "open" : "closed"}
+					defaultValue={(size.width ?? 1100) >= 1024 ? "open" : "closed"}
+					initial={(size.width ?? 0) >= 1024 ? "open" : "closed"}
 					animate={isMenuOpen ? "open" : "closed"}
 				>
 					<motion.div
@@ -152,6 +153,21 @@ export function Header() {
 							scroll={router.pathname !== "/"}
 						>
 							{t("raffle.title")}
+						</Link>
+					</motion.div>
+					<motion.div
+						variants={{ open: { opacity: 1 }, closed: { opacity: 0 } }}
+						className="py-2 pl-1 pr-4"
+					>
+						<Link
+							href="/golya"
+							className="group flex flex-row gap-1 text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
+							scroll={router.pathname !== "/"}
+						>
+							<span className="inline">{t("golya.title")}</span>
+							<span>
+								<FiExternalLink className="inline pb-1 text-white group-hover:text-konf-accent-yellow" />
+							</span>
 						</Link>
 					</motion.div>
 				</motion.nav>

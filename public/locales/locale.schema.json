@@ -2,6 +2,15 @@
 	"$schema": "http://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
+		"golya": {
+			"type": "object",
+			"properties": {
+				"title": {
+					"type": "string"
+				}
+			},
+			"required": ["title"]
+		},
 		"seo": {
 			"type": "object",
 			"properties": {
