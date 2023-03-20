@@ -1,7 +1,9 @@
 import clsx from "clsx";
 import Image from "next/image";
+import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import React, { DetailedHTMLProps, HTMLAttributes } from "react";
+import { FaArrowRight } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
 
 import { Highlighted } from "@/components/highlight/Highlighted";
@@ -35,7 +37,11 @@ function LinkWrapper(
 	);
 }
 
-export function GiveawaySection() {
+export function GiveawaySection({
+	showDetailsLink,
+}: {
+	showDetailsLink?: boolean;
+}) {
 	const { t, i18n } = useTranslation("common");
 
 	const [counter, setCounter] = React.useState(0);
@@ -91,6 +97,18 @@ export function GiveawaySection() {
 						/>
 					</p>
 					<p className="text-2xl">{t("raffle.items.attendance")}</p>
+					{showDetailsLink && (
+						<Link
+							href="/nyeremenyjatek"
+							className={clsx(
+								"bg-gradient-to-r from-konf-primary-blue to-konf-primary-green bg-clip-text text-2xl font-bold text-transparent",
+								"group transition-all duration-200 hover:text-konf-accent-yellow",
+							)}
+						>
+							További részletek{" "}
+							<FaArrowRight className=" inline-block pb-1 text-white transition-all group-hover:text-konf-accent-yellow" />{" "}
+						</Link>
+					)}
 				</div>
 			</div>
 		</section>

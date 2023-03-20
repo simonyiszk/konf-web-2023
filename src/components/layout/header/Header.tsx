@@ -147,7 +147,7 @@ export function Header() {
 						className="py-2 pl-1 pr-4"
 					>
 						<Link
-							href="/#nyeremenyjatek"
+							href="/nyeremenyjatek"
 							className="text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
 							scroll={router.pathname !== "/"}
 						>

@@ -90,7 +90,7 @@ export default function Index({
 			<PresentationSection presentations={presentations} />
 			<CharlesSection {...charlesSimonyiPresentation} />
 			<VideoSection videoId={videoId} />
-			<GiveawaySection />
+			<GiveawaySection showDetailsLink />
 
 			<GallerySection albums={galleryAlbums} />
 			<SponsorSection {...sponsors} />

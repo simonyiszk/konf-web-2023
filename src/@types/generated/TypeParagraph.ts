@@ -1,6 +1,7 @@
 import type { Asset, Entry, EntryFields } from "contentful";
 
 export interface TypeParagraphFields {
+    id: EntryFields.Symbol;
     name: EntryFields.Symbol;
     content: EntryFields.Text;
     image?: Asset;
