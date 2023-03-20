@@ -28,7 +28,6 @@ const client = createClient({
 export async function getParagraphs() {
 	const paragraphs = await client.getEntries<TypeParagraphFields>({
 		content_type: "paragraph",
-		order: "fields.order",
 	});
 
 	const renderedParagraphs = await Promise.all(
