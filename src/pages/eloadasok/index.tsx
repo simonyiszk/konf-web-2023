@@ -6,6 +6,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
+import { Floorplan } from "@/components/map/Floorplan";
 import { Timeline } from "@/components/presentations/Timeline";
 import { getBreaks, getPresentations } from "@/utils/contentful";
 import { useEffectOnce } from "@/utils/hooks";
@@ -77,6 +78,7 @@ export default function Presentations({
 					startTime={new Date(breaks[0].fields.startDate)}
 					endTime={new Date(breaks[breaks.length - 1].fields.endDate)}
 				/>
+				<Floorplan />
 			</LayoutContent>
 		</Layout>
 	);

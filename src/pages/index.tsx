@@ -8,6 +8,7 @@ import { HeroV1 } from "@/components/hero/HeroV1";
 import { BgDecoration } from "@/components/layout/decorations/BgDecoration";
 import { Layout } from "@/components/layout/Layout";
 import { Seo } from "@/components/layout/Seo";
+import { Floorplan } from "@/components/map/Floorplan";
 import { PresentationSection } from "@/components/presentations/PresentationSection";
 import { CharlesSection } from "@/components/section/CharlesSection";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
@@ -97,6 +98,9 @@ export default function Index({
 			/>
 			<PresentationSection presentations={presentations} />
 			<CharlesSection {...charlesSimonyiPresentation} />
+
+			<Floorplan />
+
 			<VideoSection videoId={videoId} />
 			<GiveawaySection showDetailsLink />
 
