@@ -88,6 +88,10 @@ export function CountdownTimer({ endDate }: SeasonTimerProps) {
 		return () => clearInterval(interval);
 	}, [endDate]);
 
+	if (Date.now() > Date.parse(endDate)) {
+		return null;
+	}
+
 	return (
 		<Suspense fallback={<Loading />}>
 			<p className="blue-green-gradient gradient-on-text flex flex-row text-4xl font-medium sm:text-5xl">

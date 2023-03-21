@@ -24,8 +24,8 @@ export function Seo({ title, description }: SeoProps) {
 	const structuredData = generateStructuredData({
 		title: defaultTitle,
 		description: defaultDescription,
-		startDate: new Date("2023-03-21T08:00:00.000+02:00"),
-		endDate: new Date("2023-03-21T18:00:00.000+02:00"),
+		startDate: new Date("2023-03-21T12:00:00.000+01:00"),
+		endDate: new Date("2023-03-21T20:00:00.000+01:00"),
 		sponsors: [],
 		speakers: [],
 	});

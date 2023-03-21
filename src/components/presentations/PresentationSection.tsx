@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useTranslation } from "next-i18next";
 import { Suspense } from "react";
 import AliceCarousel from "react-alice-carousel";
@@ -30,8 +31,18 @@ export function PresentationSection({
 	return (
 		<section
 			id={href.split("/")[1]}
-			className="container mx-auto w-full py-16 px-4"
+			className="container mx-auto w-full py-6 px-4 md:py-16"
 		>
+			<h3
+				className={clsx(
+					"mb-4 pt-6 text-center text-4xl font-black md:text-6xl lg:col-span-2 lg:text-8xl",
+					"bg-gradient-to-r bg-clip-text text-transparent",
+					"from-konf-primary-blue to-konf-primary-green",
+					"animate-text",
+				)}
+			>
+				Előadások
+			</h3>
 			<Suspense fallback={<PresentationPreviewTile title="" href="" />}>
 				<AliceCarousel
 					mouseTracking

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 type TextButtonProps = {
 	size?: 60 | 48 | 24;
-	text: string;
+	text: React.ReactNode;
 	fullWidth?: boolean;
 } & React.ComponentProps<typeof Link>;
 
@@ -15,6 +15,10 @@ export function TextButton({
 	fullWidth = false,
 	...restProps
 }: TextButtonProps) {
+	const isExternalLink =
+		typeof href === "string"
+			? href.startsWith("http")
+			: href.href?.startsWith("http");
 	return (
 		<Link
 			href={href}
@@ -26,6 +30,7 @@ export function TextButton({
 				fullWidth ? "w-full" : "w-fit",
 				`group relative block overflow-hidden bg-gradient-to-r from-konf-primary-blue to-konf-primary-green p-[3px] text-center`,
 			)}
+			target={isExternalLink ? "_blank" : undefined}
 			{...restProps}
 		>
 			<div

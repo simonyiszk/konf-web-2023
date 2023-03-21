@@ -161,6 +161,7 @@ export function Header() {
 					>
 						<Link
 							href="/golya"
+							target="_blank"
 							className="group flex flex-row gap-1 text-xl font-semibold hover:text-konf-accent-yellow active:text-konf-accent-yellow"
 							scroll={router.pathname !== "/"}
 						>

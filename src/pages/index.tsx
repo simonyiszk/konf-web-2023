@@ -11,7 +11,9 @@ import { Seo } from "@/components/layout/Seo";
 import { PresentationSection } from "@/components/presentations/PresentationSection";
 import { CharlesSection } from "@/components/section/CharlesSection";
 import { SponsorSection } from "@/components/sponsors/SponsorSection";
+import { LiveStreamSection } from "@/components/video/LiveStreamSection";
 import { VideoSection } from "@/components/video/VideoSection";
+import { videoLinks } from "@/utils/constants";
 import {
 	getGalleryImages,
 	getPresentation,
@@ -87,6 +89,12 @@ export default function Index({
 		>
 			<Seo />
 
+			<LiveStreamSection
+				link1={videoLinks.ib028.video}
+				link2={videoLinks.ib025.video}
+				questions1={videoLinks.ib028.questions}
+				questions2={videoLinks.ib025.questions}
+			/>
 			<PresentationSection presentations={presentations} />
 			<CharlesSection {...charlesSimonyiPresentation} />
 			<VideoSection videoId={videoId} />
