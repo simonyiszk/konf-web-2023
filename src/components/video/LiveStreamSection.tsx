@@ -19,7 +19,7 @@ export function LiveStreamSection({
 	questions1,
 	questions2,
 }: LiveStreamSectionProps) {
-	const { t, i18n } = useTranslation("common");
+	const { i18n } = useTranslation("common");
 
 	const opts: YouTubeProps["opts"] = {
 		rel: 0,

@@ -58,7 +58,7 @@ function Hero() {
 }
 
 function CTA() {
-	const { t, i18n } = useTranslation("common");
+	const { t } = useTranslation("common");
 	return (
 		<div className="mt-4 flex flex-col items-center gap-2 md:gap-8">
 			<TextButton

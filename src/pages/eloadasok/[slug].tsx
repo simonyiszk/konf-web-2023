@@ -7,8 +7,10 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MDXRemote } from "next-mdx-remote";
 import { FaArrowLeft } from "react-icons/fa";
+import { FiExternalLink } from "react-icons/fi";
 
 import type { TypeSponsorLogoFields } from "@/@types/generated";
+import { TextButton } from "@/components/button/TextButton";
 import { Layout } from "@/components/layout/Layout";
 import { LayoutContent } from "@/components/layout/LayoutContent";
 import { Seo } from "@/components/layout/Seo";
@@ -17,6 +19,7 @@ import {
 	WorkshopPlace,
 	WorkshopTimeRange,
 } from "@/components/workshop/WorkshopElements";
+import { videoLinks } from "@/utils/constants";
 import { getPresentation, getPresentations } from "@/utils/contentful";
 import { useEffectOnce } from "@/utils/hooks";
 
@@ -142,8 +145,8 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 					<FaArrowLeft className="inline" />{" "}
 					{t("presentations.items.back").toLowerCase()}
 				</Link>
-				<div className="mt-8 rounded bg-konf-overlay-blue px-4">
-					<section className="mx-auto grid max-w-5xl gap-8 py-16 sm:grid-cols-3">
+				<div className="mt-8 rounded bg-white/10 p-4 backdrop-blur">
+					<section className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-3 lg:py-12">
 						<Speaker
 							name={name}
 							sponsor={sponsor}
@@ -162,6 +165,24 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 							place={room ?? ""}
 						/>
 					</section>
+				</div>
+				<div className="mx-auto my-8 max-w-lg">
+					<TextButton
+						fullWidth
+						href={
+							room === "IB028"
+								? videoLinks.ib028.questions
+								: videoLinks.ib025.questions
+						}
+						text={
+							<span>
+								Kérdezz az előadótól
+								<span>
+									<FiExternalLink className="inline pb-1 text-white group-hover:text-konf-accent-yellow" />
+								</span>
+							</span>
+						}
+					/>
 				</div>
 			</LayoutContent>
 		</Layout>
