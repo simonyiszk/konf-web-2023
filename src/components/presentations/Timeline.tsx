@@ -54,7 +54,7 @@ export function Timeline({
 			<div className="sticky top-20 z-20 mx-12 mb-4 flex justify-between sm:mx-20 sm:ml-32">
 				<button
 					type="button"
-					className="backdrop-blur-safari rounded-lg bg-white/10 p-4 font-bold text-konf-primary-green backdrop-blur"
+					className="backdrop-blur-safari rounded-lg bg-white/10 p-4 backdrop-blur"
 					onClick={() => {
 						if (leftRef.current) {
 							leftRef.current.scrollIntoView({
@@ -65,11 +65,18 @@ export function Timeline({
 						}
 					}}
 				>
-					IB028
+					<span
+						className={clsx(
+							styles.holoTextGreen,
+							"text-2xl font-black text-transparent md:text-5xl",
+						)}
+					>
+						IB028
+					</span>
 				</button>
 				<button
 					type="button"
-					className="backdrop-blur-safari rounded-lg bg-white/10 p-4 font-bold text-konf-primary-blue backdrop-blur"
+					className="backdrop-blur-safari rounded-lg bg-white/10 p-4 backdrop-blur"
 					onClick={() => {
 						if (rightRef.current) {
 							rightRef.current.scrollIntoView({
@@ -80,7 +87,14 @@ export function Timeline({
 						}
 					}}
 				>
-					IB025
+					<span
+						className={clsx(
+							styles.holoTextBlue,
+							"text-2xl font-black text-transparent md:text-5xl",
+						)}
+					>
+						IB025
+					</span>
 				</button>
 			</div>
 			<div className="absolute inset-y-0 left-0 z-10 hidden h-full w-8 bg-gradient-to-r from-black/25 to-transparent" />
