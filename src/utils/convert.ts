@@ -44,3 +44,17 @@ export function romanize(num: number) {
 	}
 	return Array(+digits.join("") + 1).join("M") + roman;
 }
+
+
+export function parseYoutubeIdFromLink(url: string | undefined) {
+	if (!url) {
+		return undefined;
+	}
+	const regex =
+		/^.*(?:(?:youtu\.be\/|v\/|vi\/|u\/\w\/|embed\/)|(?:(?:watch)?\?v(?:i)?=|&v(?:i)?=))([^#&?]*).*/;
+	const parsed = url.match(regex);
+	if (parsed) {
+		return parsed[1];
+	}
+	return undefined;
+}

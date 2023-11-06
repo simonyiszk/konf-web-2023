@@ -8,6 +8,7 @@ import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MDXRemote } from "next-mdx-remote";
 import { FaArrowLeft } from "react-icons/fa";
 import { FiExternalLink } from "react-icons/fi";
+import YouTube from "react-youtube";
 
 import type { TypeSponsorLogoFields } from "@/@types/generated";
 import { TextButton } from "@/components/button/TextButton";
@@ -21,6 +22,7 @@ import {
 } from "@/components/workshop/WorkshopElements";
 import { videoLinks } from "@/utils/constants";
 import { getPresentation, getPresentations } from "@/utils/contentful";
+import { parseYoutubeIdFromLink } from "@/utils/convert";
 import { useEffectOnce } from "@/utils/hooks";
 
 type TextContentProps = {
@@ -119,6 +121,7 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 		endDate,
 		room,
 		profession,
+		videoLink,
 	} = presentation.fields;
 
 	useEffectOnce(() => {
@@ -133,6 +136,8 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 	const presenterImage = image ? image.fields.file?.url : undefined;
 
 	const sponsor = sponsorLogo?.fields;
+
+	const ytId = parseYoutubeIdFromLink(videoLink);
 
 	return (
 		<Layout buildDate={buildDate} className="pt-4">
@@ -164,6 +169,12 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 							endDate={new Date(endDate)}
 							place={room ?? ""}
 						/>
+						{ytId && ytId !== "" && (
+							<YouTube
+								videoId={ytId}
+								className="aspect-w-16 aspect-h-9 col-span-1 col-start-1 row-start-2 sm:col-span-3 sm:col-start-1 sm:row-start-2"
+							/>
+						)}
 					</section>
 				</div>
 				<div className="mx-auto my-8 max-w-lg">

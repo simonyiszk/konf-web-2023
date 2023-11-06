@@ -2,7 +2,7 @@
 	"name": "konf-web-2023",
 	"homepage": "https://github.com/simonyiszk/konf-web-2023",
 	"private": true,
-	"version": "1.4.1",
+	"version": "1.5.0",
 	"packageManager": "^npm@9.2.0",
 	"scripts": {
 		"build": "next build",
