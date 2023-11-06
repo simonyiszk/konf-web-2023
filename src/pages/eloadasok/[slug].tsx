@@ -172,7 +172,8 @@ export default function Presentation({ buildDate, presentation }: PageProps) {
 						{ytId && ytId !== "" && (
 							<YouTube
 								videoId={ytId}
-								className="aspect-w-16 aspect-h-9 col-span-1 col-start-1 row-start-2 sm:col-span-3 sm:col-start-1 sm:row-start-2"
+								className="aspect-w-16 aspect-h-9 col-span-1 col-start-1 row-start-2 rounded sm:col-span-3 sm:col-start-1 sm:row-start-2"
+								iframeClassName="rounded"
 							/>
 						)}
 					</section>

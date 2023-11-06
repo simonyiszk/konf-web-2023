@@ -45,7 +45,6 @@ export function romanize(num: number) {
 	return Array(+digits.join("") + 1).join("M") + roman;
 }
 
-
 export function parseYoutubeIdFromLink(url: string | undefined) {
 	if (!url) {
 		return undefined;
